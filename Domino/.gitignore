@@ -3,4 +3,5 @@
 .classpath
 .project
 .settings
-*generated*
+*generated-sources*
+/xtend-gen
