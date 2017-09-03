@@ -6,6 +6,8 @@ import java.util.List
 class Menu {
 	
 	List<Promocion> promociones = newArrayList
+	List<Ingrediente> ingredientes= newArrayList
+	List<Usuario> usuarios= newArrayList
 	
 	def agregarPromo(Promocion promocion) {
 		promociones.add(promocion)
@@ -15,4 +17,15 @@ class Menu {
 		promociones.remove(promocion)
 	}
 	
+	def agregarIngrediente(Ingrediente ingrediente) {
+		ingredientes.add(ingrediente)
+	}
+	
+	def quitarIngrediente(Ingrediente ingrediente) {
+		ingredientes.remove(ingrediente)
+	}
+	
+	def registrarUsuario(Usuario usuario) {
+		usuarios.add(usuario);
+	}
 }
