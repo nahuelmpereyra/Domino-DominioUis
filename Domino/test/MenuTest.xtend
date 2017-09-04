@@ -104,6 +104,18 @@ class MenuTest {
 		promo2.quitarIngrediente(ingred2)
 		assertTrue(menu.promociones.get(0).precioBase == 70)
 	}	
+
+
+/* 
+	@Test
+	def editarDistribucionDeIngredienteAUnaPromoEnElMenu(){
+		menu.agregarPromo(promo2)
+		promo2.agregarIngrediente(ingred2, Distribucion.Toda)
+		assertEquals(menu.promociones.get(0).ingredientes.get(0), Distribucion.Toda)
+		promo2.ingredientes.get(0).editarDistribucion(Distribucion.MitadIzquierda)
+		assertEquals(menu.promociones.get(0).ingredientes.get(0), Distribucion.MitadIzquierda)
+	}
 	
+*/	
 
 }
