@@ -8,7 +8,7 @@ class Promocion {
 	
 	List<Ingrediente> ingredientes = newArrayList
 	List<Distribucion> distribuciones = newArrayList
-	float precioBase
+	double precioBase
 	String nombrePromo
 	
 	new(String nombre, float precio, List<Ingrediente> ingredientesBase, List<Distribucion> distribucionBase) {
@@ -24,13 +24,14 @@ class Promocion {
 		
 		ingredientes.add(ingrediente)
 		distribuciones.add(distribucion)
-		precioBase = 70
+		precioBase += ingrediente.precio
 
 	}
 	
 	def quitarIngrediente(Ingrediente ingrediente) {
 		distribuciones.remove(ingredientes.indexOf(ingrediente))
 		ingredientes.remove(ingrediente)
+		precioBase -= ingrediente.precio
 		
 	}
 	
