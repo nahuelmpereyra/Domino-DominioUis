@@ -6,10 +6,13 @@ import org.mockito.Mock
 
 class MenuTest {
 
-		Menu menu = new Menu		
+		Menu menu = new Menu
 		@Mock Promocion promo; 
 		@Mock Ingrediente ingrediente;
 		@Mock Usuario usuario;
+		Promocion promo2 = new Promocion("Muzza", 70, newArrayList, newArrayList)
+
+		
 	@Test
 	def agregarPromoAlMenu(){
 		assertEquals(menu.promociones.size, 0)
@@ -17,6 +20,7 @@ class MenuTest {
 		assertEquals(menu.promociones.size, 1)	
 	} 
 	
+	@Test
 	def quitarPromoDelMenu(){
 		menu.agregarPromo(promo)
 		assertEquals(menu.promociones.size, 1)
@@ -25,6 +29,7 @@ class MenuTest {
 		
 	}
 	
+	@Test
 	def agregarIngredienteAlMenu(){
 		assertEquals(menu.ingredientes.size, 0)
 		menu.agregarIngrediente(ingrediente)
@@ -32,6 +37,7 @@ class MenuTest {
 		
 		}
 		
+	@Test	
 	def quitarIngredienteDelMenu(){
 		menu.agregarIngrediente(ingrediente)
 		assertEquals(menu.ingredientes.size,1)
@@ -40,13 +46,30 @@ class MenuTest {
 		
 		}
 		
+	@Test	
 	def agregarUnUsuarioAlMenu(){
 		assertEquals(menu.usuarios.size, 0)
 		menu.registrarUsuario(usuario)
 		assertEquals(menu.usuarios.size, 1)
 		
 		}
+		
+ 	@Test	
+	def editarNombreAUnaPromoEnElMenu(){
+		menu.agregarPromo(promo2)
+		assertEquals(menu.promociones.get(0).nombrePromo, "Muzza")
+		promo2.editarNombre("Muzzarella")
+		assertEquals(menu.promociones.get(0).nombrePromo, "Muzzarella")
+	}
 	
+	@Test
+	def editarPrecioAUnaPromoEnElMenu(){
+		menu.agregarPromo(promo2)
+		assertTrue(menu.promociones.get(0).precioBase == 70)
+		promo2.editarPrecio(80)
+		assertTrue(menu.promociones.get(0).precioBase == 80)
+	}
+
 
 	
 }

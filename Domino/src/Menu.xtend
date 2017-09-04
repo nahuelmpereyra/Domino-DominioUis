@@ -1,13 +1,22 @@
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 
+
+
 @Accessors
 
 class Menu {
 	
-	List<Promocion> promociones = newArrayList
-	List<Ingrediente> ingredientes= newArrayList
-	List<Usuario> usuarios= newArrayList
+	List<Promocion> promociones
+	List<Ingrediente> ingredientes
+	List<Usuario> usuarios
+	
+	new(){
+		promociones = newArrayList
+		ingredientes = newArrayList
+		usuarios = newArrayList
+		}
+		
 	
 	def agregarPromo(Promocion promocion) {
 		promociones.add(promocion)

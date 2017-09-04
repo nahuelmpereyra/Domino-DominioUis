@@ -18,6 +18,7 @@ class Promocion {
 		precioBase = precio
 		nombrePromo  = nombre
 	}
+
 	
 	def void agregarIngrediente(Ingrediente ingrediente, Distribucion distribucion) {
 		
@@ -33,6 +34,15 @@ class Promocion {
 		
 	}
 	
+	def editarNombre(String nombre) {
+		this.nombrePromo = nombre
+	}
+	
+	def editarPrecio(float precio) {
+		this.precioBase = precio
+	}
+	
+
 	
 }  
 

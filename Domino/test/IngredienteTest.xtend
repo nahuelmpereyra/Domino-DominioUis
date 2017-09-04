@@ -16,3 +16,4 @@ class IngredienteTest {
 		assertEquals(ingrediente.nombre, "Morron Rojo")
 	}
 }
+
