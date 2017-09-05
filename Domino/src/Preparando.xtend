@@ -1,0 +1,4 @@
+
+class Preparando implements EstadoDePedido{
+	
+}

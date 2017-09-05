@@ -11,7 +11,6 @@ class PedidoTest {
 		
 	Cliente lucas = mock(Cliente)
 	Plato plato1 = mock(Plato)
-	Plato plato2 = mock(Plato)
 	
 	SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");	
 	Date fecha1 = new Date();
@@ -49,13 +48,13 @@ class PedidoTest {
 		assertEquals(pedido.platos.size, 1)
 	}
 	
-		@Test
+	@Test
 	def calcularMontoRetiroPorLocal(){
 		pedido.agregarPlato(plato1)
 		assertEquals(pedido.montoFinal, 100)
 	}
 	
-		@Test
+	@Test
 	def calcularMontoDelivery(){
 		pedidoDelivery.agregarPlato(plato1)
 		assertEquals(pedidoDelivery.montoFinal, 115)
