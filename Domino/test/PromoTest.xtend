@@ -35,8 +35,8 @@ class PromoTest {
 				
 		promo.agregarIngrediente(huevo, mitadDerecha)
 		
-		assertEquals(3, promo.ingredientes.size())
-		assertEquals(3, promo.distribuciones.size())
+		assertEquals(3, promo.ingredientes.size)
+		assertEquals(3, promo.distribuciones.size)
 		
 	}
 	
