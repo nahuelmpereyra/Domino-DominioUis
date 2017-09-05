@@ -1,56 +1,49 @@
-
-
 import static org.junit.Assert.*
-import org.mockito.Mock
 import java.util.List
 import org.junit.Test
 import org.junit.Before
-
+import static org.mockito.Mockito.*
 
 class PromoTest {
-	
 
 	List<Ingrediente> ingredientesBase = newArrayList
 	List<Distribucion> distribucionBase = newArrayList
-	
-	@Mock Ingrediente jamon
-	@Mock Ingrediente morron
-	@Mock Ingrediente huevo
-	@Mock Distribucion toda
-	@Mock Distribucion mitadDerecha
-	Promocion promo
-	
-	@Before	
-	def void setUp (){
-	
+
+	Ingrediente jamon = mock(Ingrediente)
+	Ingrediente morron = mock(Ingrediente)
+	Distribucion toda = mock(Distribucion)
+	Distribucion mitadDerecha = mock(Distribucion)
+
+	Promocion promo = new Promocion("Jamon Y Morrones", 50, ingredientesBase, distribucionBase)
+	Ingrediente huevo = new Ingrediente("Huevo", 10)
+
+	@Before
+	def void setUp() {
+
 		ingredientesBase.add(jamon)
 		ingredientesBase.add(morron)
 		distribucionBase.add(toda)
 		distribucionBase.add(toda)
-		promo = new Promocion ("Jamon Y Morrones", 50, ingredientesBase, distribucionBase )
 	}
-	
+
 	@Test
-	def agregarUnIngredienteALaPromoTest(){
-				
+	def agregarUnIngredienteALaPromoTest() {
+
+		assertEquals(promo.ingredientes.size, 2)
 		promo.agregarIngrediente(huevo, mitadDerecha)
-		
-		assertEquals(3, promo.ingredientes.size)
-		assertEquals(3, promo.distribuciones.size)
-		
+		assertEquals(promo.ingredientes.size, 3)
+		assertEquals(promo.distribuciones.size, 3)
+
 	}
-	
+
 	@Test
-	def quitarUnIngredienteALaPromoTest(){
-		
-		
-		promo.quitarIngrediente(morron)
-		
-		assertEquals(1, promo.ingredientes.size())
-		assertEquals(1, promo.distribuciones.size())
-		
+	def quitarUnIngredienteALaPromoTest() {
+		promo.agregarIngrediente(huevo, mitadDerecha)
+		assertEquals(promo.ingredientes.size, 3)
+		promo.quitarIngrediente(huevo)
+		assertEquals(promo.ingredientes.size, 2)
+		assertEquals(promo.distribuciones.size, 2)
+
 	}
-	
-	
-	
+
 }

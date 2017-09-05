@@ -1,4 +1,2 @@
-
-class Preparando implements EstadoDePedido{
-	
+class Preparando implements EstadoDePedido {
 }

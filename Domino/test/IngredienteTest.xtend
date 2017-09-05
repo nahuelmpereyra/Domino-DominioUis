@@ -11,9 +11,9 @@ class IngredienteTest {
 		assertEquals(ingrediente.precio, 3.5, 0)
 	}
 
+	@Test
 	def modificarNombreIngrediente() {
 		ingrediente.modificarNombre("Morron Rojo")
 		assertEquals(ingrediente.nombre, "Morron Rojo")
 	}
 }
-

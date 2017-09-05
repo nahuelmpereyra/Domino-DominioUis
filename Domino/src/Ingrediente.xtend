@@ -19,6 +19,5 @@ class Ingrediente {
 	def modificarNombre(String nombre) {
 		this.nombre = nombre
 	}
-	
 
 }
