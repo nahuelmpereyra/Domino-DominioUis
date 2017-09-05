@@ -9,7 +9,6 @@ class MenuTest {
 		Menu menu = new Menu
 		@Mock Promocion promo; 
 		@Mock Ingrediente ingrediente;
-		@Mock Usuario usuario;
 		Promocion promo2 = new Promocion("Muzza", 70, newArrayList, newArrayList)
 		Ingrediente ingred2 = new Ingrediente("Jamon", 15)
 
@@ -47,13 +46,7 @@ class MenuTest {
 		
 		}
 		
-	@Test	
-	def agregarUnUsuarioAlMenu(){
-		assertEquals(menu.usuarios.size, 0)
-		menu.registrarUsuario(usuario)
-		assertEquals(menu.usuarios.size, 1)
-		
-		}
+
 		
  	@Test	
 	def editarNombreAUnaPromoEnElMenu(){

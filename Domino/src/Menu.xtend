@@ -9,12 +9,10 @@ class Menu {
 	
 	List<Promocion> promociones
 	List<Ingrediente> ingredientes
-	List<Usuario> usuarios
 	
 	new(){
 		promociones = newArrayList
 		ingredientes = newArrayList
-		usuarios = newArrayList
 		}
 		
 	
@@ -34,7 +32,4 @@ class Menu {
 		ingredientes.remove(ingrediente)
 	}
 	
-	def registrarUsuario(Usuario usuario) {
-		usuarios.add(usuario);
-	}
 }
