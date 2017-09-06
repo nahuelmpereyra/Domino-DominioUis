@@ -1,12 +1,14 @@
 import org.junit.Test
 import static org.junit.Assert.*
-import org.mockito.Mock
+import static org.mockito.Mockito.*
 
 class MenuTest {
+	Cliente lucas = mock(Cliente)
+	Cliente ramiro = mock(Cliente)
+	Promocion promo = mock(Promocion)
+	Ingrediente ingrediente = mock(Ingrediente)
 
 	Menu menu = new Menu
-	@Mock Promocion promo;
-	@Mock Ingrediente ingrediente;
 	Promocion promo2 = new Promocion("Muzza", 70, newArrayList, newArrayList)
 	Ingrediente ingred2 = new Ingrediente("Jamon", 15)
 
@@ -93,15 +95,47 @@ class MenuTest {
 		assertTrue(menu.promociones.get(0).precioBase == 70)
 	}
 
-/* 
- * 	@Test
- * 	def editarDistribucionDeIngredienteAUnaPromoEnElMenu(){
- * 		menu.agregarPromo(promo2)
- * 		promo2.agregarIngrediente(ingred2, Distribucion.Toda)
- * 		assertEquals(menu.promociones.get(0).ingredientes.get(0), Distribucion.Toda)
- * 		promo2.ingredientes.get(0).editarDistribucion(Distribucion.MitadIzquierda)
- * 		assertEquals(menu.promociones.get(0).ingredientes.get(0), Distribucion.MitadIzquierda)
- * 	}
- * 	
- */
+	/* 
+	 * 	@Test
+	 * 	def editarDistribucionDeIngredienteAUnaPromoEnElMenu(){
+	 * 		menu.agregarPromo(promo2)
+	 * 		promo2.agregarIngrediente(ingred2, Distribucion.Toda)
+	 * 		assertEquals(menu.promociones.get(0).ingredientes.get(0), Distribucion.Toda)
+	 * 		promo2.ingredientes.get(0).editarDistribucion(Distribucion.MitadIzquierda)
+	 * 		assertEquals(menu.promociones.get(0).ingredientes.get(0), Distribucion.MitadIzquierda)
+	 * 	}
+	 * 	
+	 */
+	@Test
+	def registrarUnCliente() {
+
+		menu.registrarCliente(ramiro)
+		assertEquals(menu.clientes.size, 1)
+	}
+
+	@Test
+	def alQuererRegistrar2ClientesConElMismoMailNoLoRegistra() {
+
+		when(ramiro.email).thenReturn("shamainco@gmail.com")
+		when(lucas.email).thenReturn("shamainco@gmail.com")
+
+		menu.registrarCliente(ramiro)
+		menu.registrarCliente(lucas)
+
+		assertEquals(menu.clientes.size, 1)
+	}
+
+	@Test
+	def alQuererRegistrar2ClientesConElMismoNickNoLoRegistra() {
+		
+		when(ramiro.email).thenReturn("shamainco@gmail.com")
+		when(lucas.email).thenReturn("lpier@gmail.com")
+		when(ramiro.nick).thenReturn("SHAMAINCO")
+		when(lucas.nick).thenReturn("SHAMAINCO")
+
+		menu.registrarCliente(ramiro)
+		menu.registrarCliente(lucas)
+
+		assertEquals(menu.clientes.size, 1)
+	}
 }
