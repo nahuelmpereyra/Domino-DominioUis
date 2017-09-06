@@ -9,27 +9,32 @@ class Pedido {
 	String aclaracion
 	FormaDeEnvio formaDeEnvio
 	List<Plato> platos
+	Integer monto
 	EstadoDePedido estado
 
-	new(Cliente cliente, Date fecha, String aclaracion, FormaDeEnvio envio) {
+	new(Cliente cliente) {
 		this.cliente = cliente
 		this.fecha = fecha
-		this.aclaracion = aclaracion
-		this.formaDeEnvio = envio
+		this.aclaracion = ""
 		this.platos = newArrayList
+		this.monto = 0
 		this.estado = new Preparando
 	}
 
 	def agregarPlato(Plato plato) {
 		platos.add(plato)
 	}
+	
+	def quitarPlato(Plato plato) {
+		platos.remove(plato)
+	}
 
 	def montoFinal() {
-		var monto = 0
+		var int precioFinal = 0
 		for (Plato p : platos) {
-			monto += p.monto + formaDeEnvio.recargo
+			precioFinal += p.calcularPrecio.intValue()
 		}
-		return monto
+		monto = precioFinal
 	}
 
 }

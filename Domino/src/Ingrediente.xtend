@@ -5,16 +5,16 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class Ingrediente {
 
 	String nombre
-	double precio
+	Integer precio
 
-	new(String nombre, double precio) {
+	new(String nombre, int precio) {
 		this.nombre = nombre
 		this.precio = precio
 
 	}
 
-	def modificarPrecio(double i) {
-		this.precio = i
+	def modificarPrecio(int nuevoPrecio) {
+		this.precio = nuevoPrecio
 	}
 
 	def modificarNombre(String nombre) {

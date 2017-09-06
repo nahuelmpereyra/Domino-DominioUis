@@ -33,6 +33,15 @@ def void cambiarDistribucion(Ingrediente ingrediente, DistribucionPizza distribu
 		listaDeIngredientes.addAll(this.ingredientes.keySet())
 		listaDeIngredientes
 	}
+	
+	
+	def costo() {
+		var double res = 0
+		for(Ingrediente i : ingredientes.keySet){
+			res += i.precio
+		}
+		res
+	}
 
 
 

@@ -1,13 +1,11 @@
 import org.junit.Test
 import static org.junit.Assert.*
-import static org.mockito.Mockito.*
 import org.junit.Before
 import org.mockito.Mock
-
+import org.mockito.MockitoAnnotations
 
 class MenuTest {
-	@Mock Cliente lucas
-	@Mock Cliente ramiro
+
 	@Mock Promocion promo
 	@Mock Ingrediente ingrediente
 
@@ -18,6 +16,7 @@ class MenuTest {
 
 	@Before
 	def void setUp() {
+		MockitoAnnotations.initMocks(this)
 		menu = new Menu
 		ingred2 = new Ingrediente("Jamon", 15)
 	}
@@ -63,13 +62,5 @@ class MenuTest {
 
 	}
 
-
-
-	@Test
-	def registrarUnCliente() {
-
-		menu.registrarCliente(ramiro)
-		assertEquals(menu.clientes.size, 1)
-	}
 
 }

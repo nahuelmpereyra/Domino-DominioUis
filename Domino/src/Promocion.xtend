@@ -3,11 +3,11 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class Promocion {
 
-	double precioBase
+	Integer precioBase
 	String nombrePromo
 	Distribucion distribucion
 
-	new(String nombre, float precio, Distribucion distribucion) {
+	new(String nombre, Integer precio, Distribucion distribucion) {
 
 		this.nombrePromo = nombre
 		this.precioBase = precio
@@ -29,7 +29,7 @@ class Promocion {
 		this.nombrePromo = nombre
 	}
 
-	def editarPrecio(float precio) {
+	def editarPrecio(Integer precio) {
 		this.precioBase = precio
 	}
 	
