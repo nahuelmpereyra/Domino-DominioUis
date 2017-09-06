@@ -19,7 +19,12 @@ class Menu {
 	}
 
 	def quitarPromo(Promocion promocion) {
-		promociones.remove(promocion)
+		if (promociones.contains(promocion)) {
+			promociones.remove(promocion)
+		} else {
+			throw new Exception("No se encuentra dicha promocion")
+		}
+
 	}
 
 	def agregarIngrediente(Ingrediente ingrediente) {
@@ -35,8 +40,8 @@ class Menu {
 			System.out.println("el email " + cliente.email + " ya se encuentra registrado")
 		} else if (clientes.stream.anyMatch[c|c.nick == cliente.nick]) {
 			System.out.println("El nick " + cliente.nick + " ya se encuentra registrado.")
-		} 		else {
-				clientes.add(cliente)
+		} else {
+			clientes.add(cliente)
 
 		}
 	}
