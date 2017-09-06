@@ -1,34 +1,27 @@
-import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class Promocion {
 
-	List<Ingrediente> ingredientes = newArrayList
-	List<Distribucion> distribuciones = newArrayList
 	double precioBase
 	String nombrePromo
+	Distribucion distribucion
 
-	new(String nombre, float precio, List<Ingrediente> ingredientesBase, List<Distribucion> distribucionBase) {
+	new(String nombre, float precio, Distribucion distribucion) {
 
-		ingredientes = ingredientesBase
-		distribuciones = distribucionBase
-		precioBase = precio
-		nombrePromo = nombre
+		this.nombrePromo = nombre
+		this.precioBase = precio
+		this.distribucion = distribucion
 	}
 
-	def void agregarIngrediente(Ingrediente ingrediente, Distribucion distribucion) {
+	def agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
 
-		ingredientes.add(ingrediente)
-		distribuciones.add(distribucion)
-		precioBase += ingrediente.precio
+		this.distribucion.agregarIngrediente(ingrediente, distribucion)
 
 	}
 
 	def quitarIngrediente(Ingrediente ingrediente) {
-		distribuciones.remove(ingredientes.indexOf(ingrediente))
-		ingredientes.remove(ingrediente)
-		precioBase -= ingrediente.precio
+		this.distribucion.quitarIngrediente(ingrediente)
 
 	}
 
@@ -38,6 +31,18 @@ class Promocion {
 
 	def editarPrecio(float precio) {
 		this.precioBase = precio
+	}
+	
+	def cambiarDistribucion(Ingrediente ingrediente, DistribucionPizza distribucion){
+		this.distribucion.cambiarDistribucion(ingrediente,distribucion)
+	}
+	
+	def listaDeIngredientes(){
+		this.distribucion.listaDeIngredientes()
+	}
+	
+	def cantidadDeIngredientes(){
+		this.distribucion.listaDeIngredientes().size
 	}
 
 }

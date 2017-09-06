@@ -1,50 +1,72 @@
 import static org.junit.Assert.*
 import org.junit.Test
-import java.util.List
-import org.junit.Test
 import org.junit.Before
-import static org.mockito.Mockito.*
+import org.mockito.MockitoAnnotations
+import org.mockito.Mock
+import org.mockito.Spy
 
 class PromoTest {
 
-	List<Ingrediente> ingredientesBase = newArrayList
-	List<Distribucion> distribucionBase = newArrayList
-
-	Ingrediente jamon = mock(Ingrediente)
-	Ingrediente morron = mock(Ingrediente)
-	Distribucion toda = mock(Distribucion)
-	Distribucion mitadDerecha = mock(Distribucion)
-
-	Promocion promo = new Promocion("Jamon Y Morrones", 50, ingredientesBase, distribucionBase)
-	Ingrediente huevo = new Ingrediente("Huevo", 10)
+	Promocion promo
+	@Mock Ingrediente jamon
+	@Mock Ingrediente morron
+	@Spy Distribucion distribucion
 
 	@Before
 	def void setUp() {
+		MockitoAnnotations.initMocks(this)
+		promo = new Promocion("Jamon", 50, distribucion)
+	}
 
-		ingredientesBase.add(jamon)
-		ingredientesBase.add(morron)
-		distribucionBase.add(toda)
-		distribucionBase.add(toda)
+	@Test
+	def listaDeIngredientes() {
+		assertTrue(promo.listaDeIngredientes.isEmpty)
+		promo.distribucion.agregarIngrediente(jamon, DistribucionPizza.Toda)
+		assertTrue(promo.listaDeIngredientes.contains(jamon))
+	}
+
+	@Test
+	def cantidadDeIngredientes() {
+		assertEquals(promo.cantidadDeIngredientes, 0)
+		promo.distribucion.agregarIngrediente(jamon, DistribucionPizza.Toda)
+		assertEquals(promo.cantidadDeIngredientes, 1)
 	}
 
 	@Test
 	def agregarUnIngredienteALaPromoTest() {
-
-		assertEquals(promo.ingredientes.size, 2)
-		promo.agregarIngrediente(huevo, mitadDerecha)
-		assertEquals(promo.ingredientes.size, 3)
-		assertEquals(promo.distribuciones.size, 3)
+		assertEquals(promo.cantidadDeIngredientes, 0)
+		promo.agregarIngrediente(jamon, DistribucionPizza.Toda)
+		assertEquals(promo.cantidadDeIngredientes, 1)
+		assertTrue(promo.listaDeIngredientes.contains(jamon))
 
 	}
 
 	@Test
 	def quitarUnIngredienteALaPromoTest() {
-		promo.agregarIngrediente(huevo, mitadDerecha)
-		assertEquals(promo.ingredientes.size, 3)
-		promo.quitarIngrediente(huevo)
-		assertEquals(promo.ingredientes.size, 2)
-		assertEquals(promo.distribuciones.size, 2)
+		promo.agregarIngrediente(jamon, DistribucionPizza.MitadDerecha)
+		promo.agregarIngrediente(morron, DistribucionPizza.MitadDerecha)
+		assertEquals(promo.cantidadDeIngredientes, 2)
+		promo.quitarIngrediente(jamon)
+		assertEquals(promo.cantidadDeIngredientes, 1)
+		assertFalse(promo.listaDeIngredientes.contains(jamon))
 
+	}
+
+	@Test(expected=Exception)
+	def quitarUnIngredienteInvalidoALaPromoTest() {
+		promo.quitarIngrediente(jamon)
+	}
+
+	@Test
+	def editarNombrePromo() {
+		promo.editarNombre("Jamon y Morron")
+		assertEquals(promo.nombrePromo, "Jamon y Morron")
+	}
+
+	@Test
+	def editarPrecio() {
+		promo.editarPrecio(100)
+		assertTrue(promo.precioBase == 100)
 	}
 
 }

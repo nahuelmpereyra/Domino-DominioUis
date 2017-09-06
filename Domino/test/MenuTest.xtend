@@ -65,7 +65,7 @@ class MenuTest {
 	def agregarIngredienteAUnaPromoEnElMenu() {
 		menu.agregarPromo(promo2)
 		assertEquals(menu.promociones.get(0).ingredientes.size(), 0)
-		promo2.agregarIngrediente(ingred2, Distribucion.Toda)
+		promo2.agregarIngrediente(ingred2, DistribucionPizza.Toda)
 		assertEquals(menu.promociones.get(0).ingredientes.size(), 1)
 	}
 
@@ -73,14 +73,14 @@ class MenuTest {
 	def alAgregarUnIngredienteAUnaPromoEnElMenuElPrecioSeActualiza() {
 		menu.agregarPromo(promo2)
 		assertTrue(menu.promociones.get(0).precioBase == 70)
-		promo2.agregarIngrediente(ingred2, Distribucion.Toda)
+		promo2.agregarIngrediente(ingred2, DistribucionPizza.Toda)
 		assertTrue(menu.promociones.get(0).precioBase == 85)
 	}
 
 	@Test
 	def quitarIngredienteAUnaPromoEnElMenu() {
 		menu.agregarPromo(promo2)
-		promo2.agregarIngrediente(ingred2, Distribucion.Toda)
+		promo2.agregarIngrediente(ingred2, DistribucionPizza.Toda)
 		assertEquals(menu.promociones.get(0).ingredientes.size(), 1)
 		promo2.quitarIngrediente(ingred2)
 		assertEquals(menu.promociones.get(0).ingredientes.size(), 0)
@@ -89,7 +89,7 @@ class MenuTest {
 	@Test
 	def alQuitarUnIngredienteAUnaPromoEnElMenuElPrecioSeActualiza() {
 		menu.agregarPromo(promo2)
-		promo2.agregarIngrediente(ingred2, Distribucion.Toda)
+		promo2.agregarIngrediente(ingred2, DistribucionPizza.Toda)
 		assertTrue(menu.promociones.get(0).precioBase == 85)
 		promo2.quitarIngrediente(ingred2)
 		assertTrue(menu.promociones.get(0).precioBase == 70)
