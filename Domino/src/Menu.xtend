@@ -35,15 +35,6 @@ class Menu {
 		ingredientes.remove(ingrediente)
 	}
 
-	def registrarCliente(Cliente cliente) {
-		if (clientes.stream.anyMatch[c|c.email == cliente.email]) {
-			System.out.println("el email " + cliente.email + " ya se encuentra registrado")
-		} else if (clientes.stream.anyMatch[c|c.nick == cliente.nick]) {
-			System.out.println("El nick " + cliente.nick + " ya se encuentra registrado.")
-		} else {
-			clientes.add(cliente)
 
-		}
-	}
 
 }

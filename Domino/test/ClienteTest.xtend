@@ -13,10 +13,8 @@ class ClienteTest {
 	}
 
 	@Test
-	def inicializacionPedido() {
-		/*
-		 * Habr�a que corregir este test, ya que ma�ana va a fallar porque cambia la fecha.
-		 */
+	def inicializacionCliente() {
+		
 		
 		assertEquals(cliente.nombre, "Ramiro")
 		assertEquals(cliente.historial.size,0)
