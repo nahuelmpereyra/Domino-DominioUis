@@ -9,10 +9,8 @@ class MenuTest {
 	@Mock Promocion promo
 	@Mock Ingrediente ingrediente
 
-
 	Ingrediente ingred2
 	Menu menu
-	
 
 	@Before
 	def void setUp() {
@@ -20,7 +18,6 @@ class MenuTest {
 		menu = new Menu
 		ingred2 = new Ingrediente("Jamon", 15)
 	}
-	
 
 	@Test
 	def agregarPromoAlMenu() {
@@ -37,14 +34,14 @@ class MenuTest {
 		assertEquals(menu.promociones.size, 0)
 
 	}
-	
-	/*
-	@Test(expected=Exception)
-	def quitarPromoInvalidaDelMenu() {
-		menu.quitarPromo(promo)
 
-	}
-*/
+	/*
+	 * @Test(expected=Exception)
+	 * def quitarPromoInvalidaDelMenu() {
+	 * 	menu.quitarPromo(promo)
+
+	 * }
+	 */
 	@Test
 	def agregarIngredienteAlMenu() {
 		assertEquals(menu.ingredientes.size, 0)
@@ -61,6 +58,5 @@ class MenuTest {
 		assertEquals(menu.ingredientes.size, 0)
 
 	}
-
 
 }

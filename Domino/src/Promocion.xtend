@@ -32,16 +32,16 @@ class Promocion {
 	def editarPrecio(Integer precio) {
 		this.precioBase = precio
 	}
-	
-	def cambiarDistribucion(Ingrediente ingrediente, DistribucionPizza distribucion){
-		this.distribucion.cambiarDistribucion(ingrediente,distribucion)
+
+	def cambiarDistribucion(Ingrediente ingrediente, DistribucionPizza distribucion) {
+		this.distribucion.cambiarDistribucion(ingrediente, distribucion)
 	}
-	
-	def listaDeIngredientes(){
+
+	def listaDeIngredientes() {
 		this.distribucion.listaDeIngredientes()
 	}
-	
-	def cantidadDeIngredientes(){
+
+	def cantidadDeIngredientes() {
 		this.distribucion.listaDeIngredientes().size
 	}
 

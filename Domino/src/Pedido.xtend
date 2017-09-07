@@ -13,8 +13,8 @@ class Pedido {
 	Integer monto
 	EstadoDePedido estado
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY HH:mm");
-	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY HH:mm");
+
 	new(Cliente cliente, FormaDeEnvio formaDeEnvio) {
 		this.cliente = cliente
 		this.formaDeEnvio = formaDeEnvio
@@ -27,7 +27,7 @@ class Pedido {
 	def agregarPlato(Plato plato) {
 		platos.add(plato)
 	}
-	
+
 	def quitarPlato(Plato plato) {
 		platos.remove(plato)
 	}
@@ -39,9 +39,9 @@ class Pedido {
 		}
 		monto = precioFinal + formaDeEnvio.recargo
 	}
-	
-	def finalizarPedido(){
-		
+
+	def finalizarPedido() {
+
 		this.fecha = sdf.format(new Timestamp(System.currentTimeMillis()))
 	}
 

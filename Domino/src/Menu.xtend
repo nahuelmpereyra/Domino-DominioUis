@@ -35,6 +35,4 @@ class Menu {
 		ingredientes.remove(ingrediente)
 	}
 
-
-
 }

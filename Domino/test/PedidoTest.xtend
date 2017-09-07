@@ -11,7 +11,7 @@ class PedidoTest {
 
 	@Mock Cliente lucas
 	@Mock Plato plato1
-	
+
 	Date fecha1
 	SimpleDateFormat formateador
 	String aclaracion1
@@ -19,7 +19,7 @@ class PedidoTest {
 	Delivery envioDelivery
 	Pedido pedido
 	Pedido pedidoDelivery
-	
+
 	@Before
 	def void setUp() {
 		MockitoAnnotations.initMocks(this)
@@ -34,10 +34,6 @@ class PedidoTest {
 		pedido.aclaracion = "Cliente regular"
 		pedidoDelivery = new Pedido(lucas, envioDelivery)
 	}
-
-
-	
-
 
 	@Test
 	def inicializacionPedido() {
