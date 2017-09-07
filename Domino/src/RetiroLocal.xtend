@@ -1,7 +1,8 @@
-class RetiroLocal implements FormaDeEnvio {
 
-	override recargo() {
-		0
+class RetiroLocal implements FormaDeRetiro{
+	
+	override proximoEstado() {
+		new ListoParaRetirar
 	}
-
+	
 }

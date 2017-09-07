@@ -1,13 +1,8 @@
-class Delivery implements FormaDeEnvio {
-
-	String direccion
-
-	new(String direccion) {
-		this.direccion = direccion
+class Delivery implements FormaDeRetiro {
+	
+	override proximoEstado() {
+		new ListoParaEnviar
 	}
 
-	override recargo() {
-		15
-	}
 
 }
