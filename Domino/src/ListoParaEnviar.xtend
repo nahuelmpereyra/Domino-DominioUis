@@ -2,11 +2,11 @@
 class ListoParaEnviar extends EstadoDePedido{
 	
 	override proximo() {
-		new Preparando
+		new EnViaje
 	}
 	
 	override previo() {
-		new EnViaje
+		new Preparando
 	}
 	
 }

@@ -16,7 +16,6 @@ class PedidoTest {
 	String aclaracion1
 	RetiroLocal envio1
 	Pedido pedido
-	Pedido pedidoDelivery
 
 	@Before
 	def void setUp() {
@@ -27,7 +26,6 @@ class PedidoTest {
 		when(plato1.calcularPrecio).thenReturn(100)
 		pedido = new Pedido(lucas)
 		pedido.aclaracion = "Cliente regular"
-		pedidoDelivery = new Pedido(lucas)
 	}
 
 	@Test

@@ -1,3 +1,6 @@
+import org.eclipse.xtend.lib.annotations.Accessors
+
+@Accessors
 class Preparando extends EstadoDePedido {
 	
 	override siguiente(Pedido pedido){

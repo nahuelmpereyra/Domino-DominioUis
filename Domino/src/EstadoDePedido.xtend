@@ -5,14 +5,12 @@ abstract class EstadoDePedido  {
 		
 	
 	def void siguiente(Pedido pedido){
-	 	var estadoSiguiente = this.proximo()
-	 	pedido.estado = estadoSiguiente
+	 	pedido.estado = this.proximo()
 		  
 			
 	}
 	def void anterior(Pedido pedido){
-		var estadoAnterior = this.previo()
-		pedido.estado = estadoAnterior
+		pedido.estado = this.previo()
 			  
 	}
 	
