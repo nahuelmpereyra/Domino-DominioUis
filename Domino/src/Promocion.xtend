@@ -3,11 +3,11 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class Promocion {
 
-	Integer precioBase
+	double precioBase
 	String nombrePromo
-	Distribucion distribucion
+	IngredientesExtras distribucion
 
-	new(String nombre, Integer precio, Distribucion distribucion) {
+	new(String nombre, double precio, IngredientesExtras distribucion) {
 
 		this.nombrePromo = nombre
 		this.precioBase = precio

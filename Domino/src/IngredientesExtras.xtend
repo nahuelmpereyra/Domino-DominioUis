@@ -4,7 +4,7 @@ import java.util.HashMap
 import java.util.ArrayList
 
 @Accessors
-class Distribucion {
+class IngredientesExtras {
 
 	Map<Ingrediente, DistribucionPizza> ingredientes = new HashMap<Ingrediente, DistribucionPizza>();
 
@@ -33,6 +33,7 @@ class Distribucion {
 
 	def costo() {
 		var double res = 0
+		
 		for (Ingrediente i : ingredientes.keySet) {
 			res += i.precio
 		}

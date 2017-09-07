@@ -10,7 +10,7 @@ class PromoTest {
 	Promocion promo
 	@Mock Ingrediente jamon
 	@Mock Ingrediente morron
-	@Spy Distribucion distribucion
+	@Spy IngredientesExtras distribucion
 
 	@Before
 	def void setUp() {

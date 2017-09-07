@@ -7,11 +7,11 @@ import org.mockito.MockitoAnnotations
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
 class PedidoTest {
 
 	@Mock Cliente lucas
 	@Mock Plato plato1
+	@Mock Plato plato2
 
 	String aclaracion1
 	RetiroLocal envio1
@@ -23,9 +23,11 @@ class PedidoTest {
 		aclaracion1 = "Cliente regular"
 		envio1 = new RetiroLocal
 		when(lucas.nombre).thenReturn("Lucas")
-		when(plato1.calcularPrecio).thenReturn(100)
+		when(plato1.calcularPrecio).thenReturn(100.0)
+		when(plato2.calcularPrecio).thenReturn(80.0)
 		pedido = new Pedido(lucas)
 		pedido.aclaracion = "Cliente regular"
+		pedido.formaDeRetiro = new RetiroLocal
 	}
 
 	@Test
@@ -42,7 +44,7 @@ class PedidoTest {
 		assertEquals(pedido.cliente.nombre, "Lucas")
 		assertEquals(pedido.aclaracion, "Cliente regular")
 		assertTrue(pedido.estado instanceof Preparando)
-		assertEquals(pedido.montoFinal, 0)
+		assertTrue(pedido.montoFinal == 0.0)
 	}
 
 	@Test
@@ -61,19 +63,23 @@ class PedidoTest {
 	}
 
 	@Test
-	def calculoPrecio(){
-		when(plato1.calcularPrecio).thenReturn(70)
+	def calculoPrecioRetiraLocal() {
 		pedido.agregarPlato(plato1)
-		assertEquals(pedido.montoFinal, 70)
-		
+		assertTrue(pedido.montoFinal == 100.0)
 	}
-	
+
 	@Test
-	def cancelarPedido(){
+	def calculoPrecioDelivery() {
+		pedido.agregarPlato(plato1)
+		pedido.agregarPlato(plato2)
+		pedido.formaDeRetiro = new Delivery
+		assertTrue(pedido.montoFinal == 195.0)
+	}
+
+	@Test
+	def cancelarPedido() {
 		pedido.cancelar
 		assertEquals(pedido.estado.class, Cancelado)
 	}
-
-
 
 }

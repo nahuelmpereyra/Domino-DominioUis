@@ -5,16 +5,16 @@ class Plato {
 
 	Promocion promo
 	TamanioPromo tamanio
-	Distribucion ingredientes
+	IngredientesExtras ingredientes
 
-	new(Promocion promo, TamanioPromo tamanio, Distribucion distribucion) {
+	new(Promocion promo, TamanioPromo tamanio, IngredientesExtras distribucion) {
 		this.promo = promo
 		this.tamanio = tamanio
 		this.ingredientes = distribucion
 	}
 
 	def calcularPrecio() {
-		(this.promo.precioBase * precioTamanio + costoIngredientesExtras).intValue
+		this.promo.precioBase * precioTamanio + costoIngredientesExtras
 	}
 
 	def costoIngredientesExtras() {

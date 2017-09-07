@@ -57,7 +57,7 @@ class SistemaTest {
 	}
 
 	@Test(expected=Exception)
-	def alQuererRegistrar2ClientesConElMismoMailNoLoRegistra() {
+	def void alQuererRegistrar2ClientesConElMismoMailNoLoRegistra() {
 
 		when(ramiro.nick).thenReturn("SHAMAINCO")
 		when(ramiro.email).thenReturn("emailfalso@gmail.com")
@@ -65,9 +65,6 @@ class SistemaTest {
 		when(lucas.email).thenReturn("emailfalso@gmail.com")
 		sistema.registrarCliente(lucas)
 		sistema.registrarCliente(ramiro)
-		assertEquals(sistema.clientes.size, 1)
-		assertTrue(sistema.clientes.contains(lucas))
-		assertFalse(sistema.clientes.contains(ramiro))
 	}
 
 }

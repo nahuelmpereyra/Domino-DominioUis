@@ -9,4 +9,5 @@ class ListoParaEnviar extends EstadoDePedido{
 		new Preparando
 	}
 	
+	
 }

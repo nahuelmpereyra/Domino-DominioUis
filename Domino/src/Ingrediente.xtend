@@ -4,9 +4,9 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class Ingrediente {
 
 	String nombre
-	Integer precio
+	double precio
 
-	new(String nombre, int precio) {
+	new(String nombre, double precio) {
 		this.nombre = nombre
 		this.precio = precio
 
