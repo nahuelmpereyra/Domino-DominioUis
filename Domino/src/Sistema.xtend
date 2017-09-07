@@ -9,15 +9,15 @@ class Sistema {
 
 	List<Cliente> clientes
 	List<Pedido> pedidos
-	List<Menu> menu
+	Menu menu = new Menu
 	new() {
 
 		this.clientes= newArrayList
 		this.pedidos= newArrayList
-		this.menu= newArrayList
+		 // Segun el enunciado dice que tiene un unico menu, no una lista de menues-***Ver
 	}
 	
-	def registrarCliente(Cliente cliente) {
+	def registrarCliente(Cliente cliente) throws Exception {
 		if (clientes.stream.anyMatch[c|c.email == cliente.email]) {
 			throw new Exception("el email " + cliente.email + " ya se encuentra registrado")
 		} else if (clientes.stream.anyMatch[c|c.nick == cliente.nick]) {
@@ -29,8 +29,5 @@ class Sistema {
 		
 		}
 	
-	def agregarMenu(Menu menu) {
-		this.menu.add(menu)
-	}
-	
+
 }

@@ -1,20 +1,23 @@
-import org.eclipse.xtend.lib.annotations.Accessors
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
 import java.util.List
-import java.util.Date
+import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class Pedido {
 	Cliente cliente
-	Date fecha
+	String fecha
 	String aclaracion
 	FormaDeEnvio formaDeEnvio
 	List<Plato> platos
 	Integer monto
 	EstadoDePedido estado
 
-	new(Cliente cliente) {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY HH:mm");
+	
+	new(Cliente cliente, FormaDeEnvio formaDeEnvio) {
 		this.cliente = cliente
-		this.fecha = fecha
+		this.formaDeEnvio = formaDeEnvio
 		this.aclaracion = ""
 		this.platos = newArrayList
 		this.monto = 0
@@ -34,7 +37,12 @@ class Pedido {
 		for (Plato p : platos) {
 			precioFinal += p.calcularPrecio.intValue()
 		}
-		monto = precioFinal
+		monto = precioFinal + formaDeEnvio.recargo
+	}
+	
+	def finalizarPedido(){
+		
+		this.fecha = sdf.format(new Timestamp(System.currentTimeMillis()))
 	}
 
 }

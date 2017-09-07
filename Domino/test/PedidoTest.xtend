@@ -15,8 +15,8 @@ class PedidoTest {
 	Date fecha1
 	SimpleDateFormat formateador
 	String aclaracion1
-	FormaDeEnvio envio1
-	FormaDeEnvio envioDelivery
+	RetiroLocal envio1
+	Delivery envioDelivery
 	Pedido pedido
 	Pedido pedidoDelivery
 	
@@ -30,8 +30,9 @@ class PedidoTest {
 		envioDelivery = new Delivery("Boedo 500")
 		when(lucas.nombre).thenReturn("Lucas")
 		when(plato1.calcularPrecio).thenReturn(100)
-		pedido = new Pedido(lucas)
-		pedidoDelivery = new Pedido(lucas)
+		pedido = new Pedido(lucas, envio1)
+		pedido.aclaracion = "Cliente regular"
+		pedidoDelivery = new Pedido(lucas, envioDelivery)
 	}
 
 
@@ -41,12 +42,13 @@ class PedidoTest {
 	@Test
 	def inicializacionPedido() {
 		/*
-		 * Habría que corregir este test, ya que mañana va a fallar porque cambia la fecha.
+		 * Habrï¿½a que corregir este test, ya que maï¿½ana va a fallar porque cambia la fecha.
 		 */
 		assertEquals(pedido.platos.size, 0)
 		assertEquals(pedido.cliente.nombre, "Lucas")
 		assertEquals(pedido.aclaracion, "Cliente regular")
-		assertEquals(formateador.format(pedido.fecha), "05-09-2017")
+		pedido.finalizarPedido
+		assertEquals(pedido.fecha, "07/09/2017 00:07")
 		assertTrue(pedido.estado instanceof Preparando)
 	}
 
