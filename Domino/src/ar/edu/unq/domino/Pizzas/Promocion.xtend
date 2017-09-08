@@ -8,23 +8,23 @@ class Promocion {
 
 	double precioBase
 	String nombrePromo
-	IngredientesExtras distribucion
+	IngredientesExtras ingredientesBase
 
 	new(String nombre, double precio, IngredientesExtras distribucion) {
 
 		this.nombrePromo = nombre
 		this.precioBase = precio
-		this.distribucion = distribucion
+		this.ingredientesBase = distribucion
 	}
 
 	def agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
 
-		this.distribucion.agregarIngrediente(ingrediente, distribucion)
+		this.ingredientesBase.agregarIngrediente(ingrediente, distribucion)
 
 	}
 
 	def quitarIngrediente(Ingrediente ingrediente) {
-		this.distribucion.quitarIngrediente(ingrediente)
+		this.ingredientesBase.quitarIngrediente(ingrediente)
 
 	}
 
@@ -37,15 +37,15 @@ class Promocion {
 	}
 
 	def cambiarDistribucion(Ingrediente ingrediente, DistribucionPizza distribucion) {
-		this.distribucion.cambiarDistribucion(ingrediente, distribucion)
+		this.ingredientesBase.cambiarDistribucion(ingrediente, distribucion)
 	}
 
 	def listaDeIngredientes() {
-		this.distribucion.listaDeIngredientes()
+		this.ingredientesBase.listaDeIngredientes()
 	}
 
 	def cantidadDeIngredientes() {
-		this.distribucion.listaDeIngredientes().size
+		this.ingredientesBase.listaDeIngredientes().size
 	}
 
 }

@@ -9,12 +9,12 @@ class Plato {
 
 	Promocion promo
 	TamanioPromo tamanio
-	IngredientesExtras ingredientes
+	IngredientesExtras ingredientesExtras
 
-	new(Promocion promo, TamanioPromo tamanio, IngredientesExtras distribucion) {
+	new(Promocion promo, TamanioPromo tamanio, IngredientesExtras ingredientesExtras) {
 		this.promo = promo
 		this.tamanio = tamanio
-		this.ingredientes = distribucion
+		this.ingredientesExtras = ingredientesExtras
 	}
 
 	def calcularPrecio() {
@@ -22,7 +22,7 @@ class Plato {
 	}
 
 	def costoIngredientesExtras() {
-		this.ingredientes.costo
+		this.ingredientesExtras.costo
 	}
 
 	def precioTamanio() {
@@ -30,7 +30,7 @@ class Plato {
 	}
 
 	def agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
-		promo.agregarIngrediente(ingrediente, distribucion)
+		ingredientesExtras.agregarIngrediente(ingrediente, distribucion)
 	}
 
 }

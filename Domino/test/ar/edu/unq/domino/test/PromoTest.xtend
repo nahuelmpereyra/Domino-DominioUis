@@ -28,14 +28,14 @@ class PromoTest {
 	@Test
 	def listaDeIngredientes() {
 		assertTrue(promo.listaDeIngredientes.isEmpty)
-		promo.distribucion.agregarIngrediente(jamon, DistribucionPizza.Toda)
+		promo.getIngredientesBase.agregarIngrediente(jamon, DistribucionPizza.Toda)
 		assertTrue(promo.listaDeIngredientes.contains(jamon))
 	}
 
 	@Test
 	def cantidadDeIngredientes() {
 		assertEquals(promo.cantidadDeIngredientes, 0)
-		promo.distribucion.agregarIngrediente(jamon, DistribucionPizza.Toda)
+		promo.getIngredientesBase.agregarIngrediente(jamon, DistribucionPizza.Toda)
 		assertEquals(promo.cantidadDeIngredientes, 1)
 	}
 

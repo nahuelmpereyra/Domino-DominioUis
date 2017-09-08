@@ -9,7 +9,7 @@ import org.mockito.MockitoAnnotations
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
-import Test
+import ar.edu.unq.domino.sistema.GMailSender
 
 class SistemaTest {
 	@Mock Cliente lucas = mock(Cliente)
