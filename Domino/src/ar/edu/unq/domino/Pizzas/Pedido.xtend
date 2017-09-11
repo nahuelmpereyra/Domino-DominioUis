@@ -51,4 +51,11 @@ class Pedido {
 		estado = new Cancelado
 	}
 
+	def demoroMasDe30Minutos() {
+		var ahora = LocalDateTime.now
+		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
+		var fechaPedido = LocalDateTime.parse(this.fecha, formateador)
+		ahora.isAfter(fechaPedido.plusMinutes(30))
+	}
+
 }

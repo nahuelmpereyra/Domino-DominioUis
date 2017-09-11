@@ -1,6 +1,5 @@
 package ar.edu.unq.domino.Pizzas
 
-
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors

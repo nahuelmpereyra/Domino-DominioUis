@@ -8,12 +8,11 @@ class Menu {
 
 	List<Promocion> promociones
 	List<Ingrediente> ingredientes
-	
 
 	new() {
 		promociones = newArrayList
 		ingredientes = newArrayList
-		
+
 	}
 
 	def agregarPromo(Promocion promocion) {

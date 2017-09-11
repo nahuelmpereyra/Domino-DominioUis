@@ -25,9 +25,9 @@ class ClienteTest {
 		assertEquals(cliente.nombre, "Ramiro")
 		assertEquals(cliente.historial.size, 0)
 	}
-	
+
 	@Test
-	def agregarPedido(){
+	def agregarPedido() {
 		cliente.agregarPedido(pedido)
 		assertTrue(cliente.historial.contains(pedido))
 	}

@@ -23,7 +23,7 @@ class EstadosTest {
 	Pedido pedidoDelivery
 	RetiroLocal retiroLocal
 	Delivery retiroDelivery
-	@Mock Cliente lucas 
+	@Mock Cliente lucas
 	@Mock Cliente martin
 
 	@Before
@@ -44,14 +44,14 @@ class EstadosTest {
 		pedidoLocal.cancelar
 		assertTrue(pedidoLocal.estado instanceof Cancelado)
 	}
-	
+
 	@Test
 	def void pedidoLocalDePreparandoAEstadoPrevio() {
 		assertTrue(pedidoLocal.estado instanceof Preparando)
 		pedidoLocal.estado.anterior(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Preparando)
 	}
-	
+
 	@Test
 	def void pedidoLocalDePreparandoAEstadoSiguiente() {
 		assertTrue(pedidoLocal.estado instanceof Preparando)
@@ -66,7 +66,7 @@ class EstadosTest {
 		pedidoLocal.estado.anterior(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Preparando)
 	}
-	
+
 	@Test
 	def void pedidoLocalDeListoParaRetirarAEstadoSiguiente() {
 		pedidoLocal.estado.siguiente(pedidoLocal)
@@ -74,7 +74,7 @@ class EstadosTest {
 		pedidoLocal.estado.siguiente(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Entregado)
 	}
-	
+
 	@Test
 	def void pedidoLocalDeEntregadoAEstadoPrevio() {
 		pedidoLocal.estado.siguiente(pedidoLocal)
@@ -83,8 +83,7 @@ class EstadosTest {
 		pedidoLocal.estado.anterior(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Entregado)
 	}
-	
-	
+
 	@Test
 	def void pedidoLocalDeEntregadoAEstadoSiguiente() {
 		pedidoLocal.estado.siguiente(pedidoLocal)
@@ -93,31 +92,28 @@ class EstadosTest {
 		pedidoLocal.estado.siguiente(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Entregado)
 	}
-	
-	
-	
-	
+
 	@Test
 	def void unPedidoDeliverySePuedeCancelar() {
 		assertTrue(pedidoDelivery.estado instanceof Preparando)
 		pedidoDelivery.cancelar
 		assertTrue(pedidoDelivery.estado instanceof Cancelado)
 	}
-	
+
 	@Test
 	def void pedidoDeliveryDePreparandoAEstadoPrevio() {
 		assertTrue(pedidoDelivery.estado instanceof Preparando)
 		pedidoDelivery.estado.anterior(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Preparando)
 	}
-	
+
 	@Test
 	def void pedidoDeliveryDePreparandoAEstadoSiguiente() {
 		assertTrue(pedidoDelivery.estado instanceof Preparando)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof ListoParaEnviar)
 	}
-	
+
 	@Test
 	def void pedidoDeliveryDeListoParaEnviarAEstadoPrevio() {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
@@ -125,7 +121,7 @@ class EstadosTest {
 		pedidoDelivery.estado.anterior(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Preparando)
 	}
-	
+
 	@Test
 	def void pedidoDeliveryDeListoParaEnviarAEstadoSiguiente() {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
@@ -133,8 +129,7 @@ class EstadosTest {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof EnViaje)
 	}
-	
-	
+
 	@Test
 	def void pedidoDeliveryDeEnViajeAEstadoPrevio() {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
@@ -143,8 +138,7 @@ class EstadosTest {
 		pedidoDelivery.estado.anterior(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof ListoParaEnviar)
 	}
-	
-	
+
 	@Test
 	def void pedidoDeliveryDeEnViajeAEstadoSiguiente() {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
@@ -153,8 +147,8 @@ class EstadosTest {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
 	}
-	
-		@Test
+
+	@Test
 	def void pedidoDeliveryDeEntregadoAEstadoPrevio() {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
@@ -163,8 +157,7 @@ class EstadosTest {
 		pedidoDelivery.estado.anterior(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
 	}
-	
-	
+
 	@Test
 	def void pedidoDeliveryDeEntregadoAEstadoSiguiente() {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
@@ -174,6 +167,5 @@ class EstadosTest {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
 	}
-	
-	
+
 }

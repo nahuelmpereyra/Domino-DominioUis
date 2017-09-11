@@ -1,6 +1,5 @@
 package ar.edu.unq.domino.Pizzas
 
-
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Map
 import java.util.HashMap
@@ -36,7 +35,7 @@ class IngredientesExtras {
 
 	def costo() {
 		var double res = 0
-		
+
 		for (Ingrediente i : ingredientes.keySet) {
 			res += i.precio
 		}

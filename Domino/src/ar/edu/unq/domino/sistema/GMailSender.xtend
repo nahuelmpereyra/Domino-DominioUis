@@ -17,12 +17,12 @@ class GMailSender {
 	new(String username, String password) {
 		authentication = new UserPasswordAuthentication(username, password)
 	}
-	
+
 	static GMailSender instance
-	
+
 	static def instance() { instance }
-	
-	static def config(GMailSender sender) { 
+
+	static def config(GMailSender sender) {
 		instance = sender
 	}
 

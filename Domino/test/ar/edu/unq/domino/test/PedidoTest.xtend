@@ -92,4 +92,20 @@ class PedidoTest {
 		assertEquals(pedido.estado.class, Cancelado)
 	}
 
+	@Test
+	def pedidoConTiempoDeDemoraSinExceder() {
+		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
+		var fechaDelPedido = formateador.format(LocalDateTime.now)
+		pedido.fecha = fechaDelPedido
+		assertFalse(pedido.demoroMasDe30Minutos())
+	}
+
+	@Test
+	def pedidoConTiempoDeDemoraExcedido() {
+		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
+		var fechaDelPedido = formateador.format(LocalDateTime.of(2017, 9, 11, 15, 37, 20))
+		pedido.fecha = fechaDelPedido
+		assertTrue(pedido.demoroMasDe30Minutos())
+	}
+
 }
