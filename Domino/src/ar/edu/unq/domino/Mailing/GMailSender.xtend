@@ -1,4 +1,4 @@
-package ar.edu.unq.domino.sistema
+package ar.edu.unq.domino.Mailing
 
 import java.util.Properties
 import javax.mail.Authenticator

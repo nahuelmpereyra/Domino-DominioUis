@@ -3,9 +3,9 @@ package ar.edu.unq.domino.Pizzas
 import ar.edu.unq.domino.EstadosDePedido.Cancelado
 import ar.edu.unq.domino.EstadosDePedido.EstadoDePedido
 import ar.edu.unq.domino.EstadosDePedido.Preparando
+import ar.edu.unq.domino.Mailing.Notificador
 import ar.edu.unq.domino.formasDeEnvio.FormaDeRetiro
 import ar.edu.unq.domino.sistema.Cliente
-import ar.edu.unq.domino.sistema.Notificador
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.List
@@ -21,6 +21,7 @@ class Pedido  extends Observable {
 	double monto
 	EstadoDePedido estado
 	FormaDeRetiro formaDeRetiro
+	Notificador notificador = new Notificador("ciu.dominos.pizza@gmail.com","interfaces2017")
 
 	new(Cliente cliente) {
 		this.cliente = cliente
@@ -31,7 +32,7 @@ class Pedido  extends Observable {
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var LocalDateTime now = LocalDateTime.now
 		fecha = formateador.format(now)
-		this.addObserver(new Notificador("ciu.dominos.pizza@gmail.com","interfaces2017"))
+		this.addObserver(notificador)
 		
 	}
 
