@@ -9,7 +9,7 @@ import org.mockito.MockitoAnnotations
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
-import ar.edu.unq.domino.sistema.GMailSender
+
 
 class SistemaTest {
 	@Mock Cliente lucas = mock(Cliente)
@@ -72,20 +72,6 @@ class SistemaTest {
 		sistema.registrarCliente(ramiro)
 	}
 
-	@Test
-	def void notificarUnPedidoEnViaje() {
-		GMailSender.config(new GMailSender("ciu.dominos.pizza@gmail.com", "interfaces2017"))
-		when(ramiro.email).thenReturn("shamainco@gmail.com")
 
-		sistema.notificarPedidoEnViaje(ramiro)
-	}
-
-	@Test
-	def void notificarUnPedidoDemorado() {
-		GMailSender.config(new GMailSender("ciu.dominos.pizza@gmail.com", "interfaces2017"))
-		when(ramiro.email).thenReturn("shamainco@gmail.com")
-
-		sistema.notificarPedidoDemorado(ramiro)
-	}
 
 }

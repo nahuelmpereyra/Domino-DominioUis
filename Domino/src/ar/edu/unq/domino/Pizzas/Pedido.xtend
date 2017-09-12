@@ -1,17 +1,19 @@
 package ar.edu.unq.domino.Pizzas
 
+import ar.edu.unq.domino.EstadosDePedido.Cancelado
+import ar.edu.unq.domino.EstadosDePedido.EstadoDePedido
+import ar.edu.unq.domino.EstadosDePedido.Preparando
+import ar.edu.unq.domino.formasDeEnvio.FormaDeRetiro
+import ar.edu.unq.domino.sistema.Cliente
+import ar.edu.unq.domino.sistema.Notificador
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.List
+import java.util.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
-import ar.edu.unq.domino.formasDeEnvio.FormaDeRetiro
-import ar.edu.unq.domino.EstadosDePedido.EstadoDePedido
-import ar.edu.unq.domino.EstadosDePedido.Cancelado
-import ar.edu.unq.domino.EstadosDePedido.Preparando
-import ar.edu.unq.domino.sistema.Cliente
 
 @Accessors
-class Pedido {
+class Pedido  extends Observable {
 	Cliente cliente
 	String fecha
 	String aclaracion
@@ -29,6 +31,8 @@ class Pedido {
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var LocalDateTime now = LocalDateTime.now
 		fecha = formateador.format(now)
+		this.addObserver(new Notificador("ciu.dominos.pizza@gmail.com","interfaces2017"))
+		
 	}
 
 	def void agregarPlato(Plato plato) {
@@ -58,4 +62,7 @@ class Pedido {
 		ahora.isAfter(fechaPedido.plusMinutes(30))
 	}
 
+	def changed(){
+		setChanged
+	}
 }

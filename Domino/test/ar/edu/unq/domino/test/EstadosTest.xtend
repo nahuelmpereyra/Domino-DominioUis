@@ -14,8 +14,9 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
-
 import static org.junit.Assert.*
+import static org.mockito.Mockito.*
+
 
 class EstadosTest {
 
@@ -124,6 +125,7 @@ class EstadosTest {
 
 	@Test
 	def void pedidoDeliveryDeListoParaEnviarAEstadoSiguiente() {
+		when(martin.email).thenReturn("shamainco@gmail.com")
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof ListoParaEnviar)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)

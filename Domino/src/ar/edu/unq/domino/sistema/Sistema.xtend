@@ -31,17 +31,5 @@ class Sistema {
 
 	}
 
-	def notificarPedidoEnViaje(Cliente cliente) {
-		GMailSender.instance.sendMail(cliente.email, "Domino Pizza's Pedido En Viaje", "Estimado/a " + cliente.nombre +
-			" el pedido que realizo ya se encuentra en viaje!. Muchas gracias por elegirnos!, Domino Pizza's")
-	}
-
-	def notificarPedidoDemorado(Cliente cliente) {
-		GMailSender.instance.sendMail(cliente.email, "Domino Pizza's Pedido Demorado",
-			"Mil disculpas " + cliente.nombre +
-				" el pedido que realizo se encuentra demorado. Esperamos que sepa comprendernos, Domino Pizza's")
-
-			}
-
 		}
 		
