@@ -36,18 +36,18 @@ class MenuTest {
 	def quitarPromoDelMenu() {
 		menu.agregarPromo(promo)
 		assertEquals(menu.promociones.size, 1)
+		assertTrue(menu.promociones.contains(promo))
 		menu.quitarPromo(promo)
 		assertEquals(menu.promociones.size, 0)
 
 	}
 
-	/*
-	 * @Test(expected=Exception)
-	 * def quitarPromoInvalidaDelMenu() {
-	 * 	menu.quitarPromo(promo)
+	@Test(expected = Exception)
+	def quitarPromoInvalidaDelMenu(){
+		menu.quitarPromo(promo)
+	}
 
-	 * }
-	 */
+	 
 	@Test
 	def agregarIngredienteAlMenu() {
 		assertEquals(menu.ingredientes.size, 0)

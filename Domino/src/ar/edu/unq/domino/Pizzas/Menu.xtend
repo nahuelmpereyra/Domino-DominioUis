@@ -19,7 +19,7 @@ class Menu {
 		promociones.add(promocion)
 	}
 
-	def quitarPromo(Promocion promocion) {
+	def void quitarPromo(Promocion promocion) {
 		if (promociones.contains(promocion)) {
 			promociones.remove(promocion)
 		} else {

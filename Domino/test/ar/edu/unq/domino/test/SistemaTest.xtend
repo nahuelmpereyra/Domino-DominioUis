@@ -37,16 +37,6 @@ class SistemaTest {
 		assertTrue(sistema.clientes.contains(ramiro))
 	}
 
-	/*
-	 * 
-	 * 	@Test
-	 * 	def alAgregarUnMenuEsteSeAgrega() {
-
-	 * 
-	 * 		assertEquals(sistema.menu.class, Menu)
-	 * 	}
-	 * 	Al crear el sistema ya tendria que venir con un menu y no depender de si lo agregan o no
-	 */
 	@Test(expected=Exception)
 	def alQuererRegistrar2ClientesConElMismoNickNoLoRegistra() {
 

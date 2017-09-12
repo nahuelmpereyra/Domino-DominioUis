@@ -6,7 +6,6 @@ import ar.edu.unq.domino.EstadosDePedido.Entregado
 import ar.edu.unq.domino.EstadosDePedido.ListoParaEnviar
 import ar.edu.unq.domino.EstadosDePedido.ListoParaRetirar
 import ar.edu.unq.domino.EstadosDePedido.Preparando
-import ar.edu.unq.domino.Mailing.Notificador
 import ar.edu.unq.domino.Pizzas.Pedido
 import ar.edu.unq.domino.formasDeEnvio.Delivery
 import ar.edu.unq.domino.formasDeEnvio.RetiroLocal
