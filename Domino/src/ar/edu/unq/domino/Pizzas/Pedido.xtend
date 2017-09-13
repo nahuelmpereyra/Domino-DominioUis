@@ -74,4 +74,11 @@ class Pedido  extends Observable {
 	def changed(){
 		setChanged
 	}
+	
+	def tiempoEspera(){
+		var ahora = LocalDateTime.now
+		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
+		var fechaPedido = LocalDateTime.parse(this.fecha, formateador)
+		ahora.minusMinutes(fechaPedido.minute)
+	}
 }
