@@ -17,13 +17,13 @@ class Notificador extends GMailSender implements Observer {
 	}
 
 	def notificarPedidoEnViaje(Pedido pedido) {
-		this.sendMail(pedido.cliente.email, "Domino Pizza's Pedido En Viaje", "Estimado/a " + pedido.cliente.nombre +
-			" el pedido que realizo ya se encuentra en viaje!. Muchas gracias por elegirnos!, Domino Pizza's")
+		this.sendMail(pedido.cliente.email, "Domino Pizza's: Pedido en viaje", "Estimado/a " + pedido.cliente.nombre +
+			", el pedido que realizo ya se encuentra en viaje.\n\nMuchas gracias por elegirnos!\n\nDomino Pizza's")
 	}
 
 	def notificarPedidoDemorado(Pedido pedido) {
-		this.sendMail(pedido.cliente.email, "Domino Pizza's Pedido Demorado", "Mil disculpas " + pedido.cliente.nombre +
-			" el pedido que realizo se encuentra demorado. Esperamos que sepa comprendernos, Domino Pizza's")
+		this.sendMail(pedido.cliente.email, "Domino Pizza's: Pedido demorado", "Mil disculpas " + pedido.cliente.nombre +
+			", el pedido que realizo se encuentra demorado, esperamos que sepa comprendernos.\n\nDomino Pizza's")
 
 	}
 

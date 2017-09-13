@@ -19,6 +19,7 @@ import static org.junit.Assert.*
 import static org.mockito.Mockito.*
 import ar.edu.unq.domino.Mailing.Notificador
 
+
 class EstadosTest {
 
 	Pedido pedidoLocal
@@ -27,6 +28,7 @@ class EstadosTest {
 	Delivery retiroDelivery
 	@Mock Cliente lucas
 	@Mock Cliente martin
+	@Mock Notificador notificador
 	
 
 	@Before
@@ -127,18 +129,20 @@ class EstadosTest {
 
 	@Test
 	def void pedidoDeliveryDeListoParaEnviarAEstadoSiguiente() {
-		when(martin.email).thenReturn("shamainco@gmail.com")
-		when(martin.nombre).thenReturn("shamainco@gmail.com")
+		when(martin.email).thenReturn("lg.piergiacomi@gmail.com")
+		when(martin.nombre).thenReturn("Martin")
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof ListoParaEnviar)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof EnViaje)
+		//verify(notificador, times(1)).notificarPedidoEnViaje(pedidoDelivery)
 	}
+	
 
 	@Test
 	def void pedidoDeliveryDeEnViajeAEstadoPrevio() {
 		when(martin.email).thenReturn("shamainco@gmail.com")
-		when(martin.nombre).thenReturn("shamainco@gmail.com")
+		when(martin.nombre).thenReturn("Martin")
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof EnViaje)
@@ -149,7 +153,7 @@ class EstadosTest {
 	@Test
 	def void pedidoDeliveryDeEnViajeAEstadoSiguiente() {
 		when(martin.email).thenReturn("shamainco@gmail.com")
-		when(martin.nombre).thenReturn("shamainco@gmail.com")
+		when(martin.nombre).thenReturn("Martin")
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof EnViaje)
@@ -160,7 +164,7 @@ class EstadosTest {
 	@Test
 	def void pedidoDeliveryDeEntregadoAEstadoPrevio() {
 		when(martin.email).thenReturn("shamainco@gmail.com")
-		when(martin.nombre).thenReturn("shamainco@gmail.com")
+		when(martin.nombre).thenReturn("Martin")
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
@@ -172,7 +176,7 @@ class EstadosTest {
 	@Test
 	def void pedidoDeliveryDeEntregadoAEstadoSiguiente() {
 		when(martin.email).thenReturn("shamainco@gmail.com")
-		when(martin.nombre).thenReturn("shamainco@gmail.com")
+		when(martin.nombre).thenReturn("Martin")
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
