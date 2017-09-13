@@ -9,17 +9,36 @@ import org.mockito.MockitoAnnotations
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
-
+import ar.edu.unq.domino.Pizzas.Pedido
+import ar.edu.unq.domino.Pizzas.Plato
+import ar.edu.unq.domino.formasDeEnvio.RetiroLocal
 
 class SistemaTest {
 	@Mock Cliente lucas = mock(Cliente)
 	@Mock Cliente ramiro = mock(Cliente)
+	
 	Sistema sistema
+	
+	@Mock Plato plato1
+	@Mock Plato plato2
+
+	String aclaracion1
+	RetiroLocal envio1
+	Pedido pedido
 
 	@Before
 	def void setUp() {
 		MockitoAnnotations.initMocks(this)
 		sistema = new Sistema
+		MockitoAnnotations.initMocks(this)
+		aclaracion1 = "Cliente regular"
+		envio1 = new RetiroLocal
+		when(lucas.nombre).thenReturn("Lucas")
+		when(plato1.calcularPrecio).thenReturn(100.0)
+		when(plato2.calcularPrecio).thenReturn(80.0)
+		pedido = new Pedido(lucas)
+		pedido.aclaracion = "Cliente regular"
+		pedido.formaDeRetiro = new RetiroLocal
 	}
 
 	@Test
@@ -62,6 +81,11 @@ class SistemaTest {
 		sistema.registrarCliente(ramiro)
 	}
 
-
+	@Test 
+	def registrarPedido()
+	{
+		sistema.realizarPedido(pedido);
+		assertTrue(sistema.pedidos.contains(pedido))
+	}
 
 }

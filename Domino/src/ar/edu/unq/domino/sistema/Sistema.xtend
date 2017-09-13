@@ -5,15 +5,16 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unq.domino.Pizzas.Pedido
 import ar.edu.unq.domino.Pizzas.Menu
 
+
 @Accessors
 class Sistema {
-
+	
 	List<Cliente> clientes
 	List<Pedido> pedidos
 	Menu menu = new Menu
 
 	new() {
-
+		
 		this.clientes = newArrayList
 		this.pedidos = newArrayList
 	// Segun el enunciado dice que tiene un unico menu, no una lista de menues-***Ver
@@ -31,5 +32,8 @@ class Sistema {
 
 	}
 
+	def realizarPedido(Pedido pedido) {
+		this.pedidos.add(pedido)
+			}
 		}
 		
