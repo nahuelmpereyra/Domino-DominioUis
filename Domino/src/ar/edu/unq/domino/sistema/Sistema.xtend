@@ -4,8 +4,9 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unq.domino.Pizzas.Pedido
 import ar.edu.unq.domino.Pizzas.Menu
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
-
+@TransactionalAndObservable
 @Accessors
 class Sistema {
 	

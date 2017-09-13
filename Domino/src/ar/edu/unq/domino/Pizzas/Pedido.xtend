@@ -11,7 +11,9 @@ import java.time.format.DateTimeFormatter
 import java.util.List
 import java.util.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
+@TransactionalAndObservable
 @Accessors
 class Pedido  extends Observable {
 	Cliente cliente
