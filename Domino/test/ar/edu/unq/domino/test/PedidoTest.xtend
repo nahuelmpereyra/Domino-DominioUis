@@ -38,6 +38,7 @@ class PedidoTest {
 		pedido = new Pedido(lucas)
 		pedido.aclaracion = "Cliente regular"
 		pedido.formaDeRetiro = new RetiroLocal
+		
 	}
 
 	@Test
@@ -107,5 +108,6 @@ class PedidoTest {
 		pedido.fecha = fechaDelPedido
 		assertTrue(pedido.demoroMasDe30Minutos())
 	}
+	
 
 }

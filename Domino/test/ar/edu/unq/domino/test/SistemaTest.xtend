@@ -12,6 +12,8 @@ import static org.mockito.Mockito.*
 import ar.edu.unq.domino.Pizzas.Pedido
 import ar.edu.unq.domino.Pizzas.Plato
 import ar.edu.unq.domino.formasDeEnvio.RetiroLocal
+import ar.edu.unq.domino.EstadosDePedido.Entregado
+import ar.edu.unq.domino.EstadosDePedido.Cancelado
 
 class SistemaTest {
 	@Mock Cliente lucas = mock(Cliente)
@@ -25,6 +27,7 @@ class SistemaTest {
 	String aclaracion1
 	RetiroLocal envio1
 	Pedido pedido
+	Pedido pedido2
 
 	@Before
 	def void setUp() {
@@ -39,6 +42,7 @@ class SistemaTest {
 		pedido = new Pedido(lucas)
 		pedido.aclaracion = "Cliente regular"
 		pedido.formaDeRetiro = new RetiroLocal
+		pedido2 = new Pedido(lucas)
 	}
 
 	@Test
@@ -82,10 +86,47 @@ class SistemaTest {
 	}
 
 	@Test 
-	def registrarPedido()
-	{
-		sistema.realizarPedido(pedido);
+	def registrarPedido(){
+		sistema.realizarPedido(pedido)
 		assertTrue(sistema.pedidos.contains(pedido))
 	}
-
+	
+	@Test
+	def cancelarPedido(){
+		sistema.realizarPedido(pedido)
+		sistema.cancelarPedido(pedido)
+		assertTrue(pedido.estado instanceof Cancelado)
+	}
+	
+	@Test
+	def filtrarPedidosCancelados(){
+		sistema.realizarPedido(pedido)
+		assertEquals(sistema.pedidosCancelados.size, 0)
+		sistema.cancelarPedido(pedido)
+		assertEquals(sistema.pedidosCancelados.size, 1)
+		assertTrue(sistema.pedidosCancelados.contains(pedido))
+	}
+	
+	@Test
+	def filtrarPedidosEntregados(){
+		sistema.realizarPedido(pedido)
+		assertEquals(sistema.pedidosEntregados.size, 0)
+		pedido.estado = new Entregado
+		assertEquals(sistema.pedidosEntregados.size, 1)
+		assertTrue(sistema.pedidosEntregados.contains(pedido))
+	}
+	
+		@Test
+	def filtrarPedidosCerrados(){
+		assertEquals(sistema.pedidosCerrados.size, 0)
+		sistema.realizarPedido(pedido)
+		sistema.realizarPedido(pedido2)
+		sistema.cancelarPedido(pedido)
+		pedido2.estado = new Entregado
+		assertEquals(sistema.pedidosCerrados.size, 2)
+		assertTrue(sistema.pedidosCerrados.contains(pedido))
+		assertTrue(sistema.pedidosCerrados.contains(pedido2))
+		
+	}
+	
 }
