@@ -2,7 +2,9 @@ package ar.edu.unq.domino.Pizzas
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
+@TransactionalAndObservable
 @Accessors
 class Menu {
 
