@@ -13,7 +13,7 @@ Esteban Matas
 Nahuel Pereyra
 
 
-## TP 1 - Aplicación Desktop (Arena)
+## TP 1 - Aplicación Desktop (Arena). Proyecto que contiene el dominio de https://github.com/Esthebam/Domino-Arena/ 
 
 Aplicación de escritorio para
 1. **Gestionar pedidos**  Ver/Editar los pedidos abiertos. Ver los pedidos cerrados (cancelados / entregados)
