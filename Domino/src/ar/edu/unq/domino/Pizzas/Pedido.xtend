@@ -36,7 +36,7 @@ class Pedido  extends Observable {
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var LocalDateTime now = LocalDateTime.now
 		fecha = formateador.format(now)
-		this.addObserver(notificador)
+//		this.addObserver(notificador)
 		
 	}
 	
@@ -72,7 +72,8 @@ class Pedido  extends Observable {
 	}
 
 	def changed(){
-		setChanged
+		notificador.notificarPedidoEnViaje(this)
+//		setChanged
 	}
 	
 	def tiempoEspera(){

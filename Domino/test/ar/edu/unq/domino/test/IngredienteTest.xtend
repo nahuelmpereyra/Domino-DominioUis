@@ -11,7 +11,7 @@ class IngredienteTest {
 
 	@Test
 	def modificarPrecioIngrediente() {
-		ingrediente.modificarPrecio(4.intValue)
+		ingrediente.modificarPrecio(4)
 		assertEquals(ingrediente.precio, 4, 0)
 	}
 

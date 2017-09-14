@@ -129,13 +129,14 @@ class EstadosTest {
 
 	@Test
 	def void pedidoDeliveryDeListoParaEnviarAEstadoSiguiente() {
+		pedidoDelivery.notificador = notificador 
 		when(martin.email).thenReturn("lg.piergiacomi@gmail.com")
 		when(martin.nombre).thenReturn("Martin")
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof ListoParaEnviar)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof EnViaje)
-		//verify(notificador, times(1)).notificarPedidoEnViaje(pedidoDelivery)
+		verify(notificador, times(1)).notificarPedidoEnViaje(pedidoDelivery)
 	}
 	
 
