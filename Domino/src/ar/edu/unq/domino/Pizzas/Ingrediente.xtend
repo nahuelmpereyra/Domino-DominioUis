@@ -5,7 +5,7 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @TransactionalAndObservable
 @Accessors
-class Ingrediente {
+class Ingrediente implements Cloneable{
 
 	String nombre
 	double precio
@@ -15,6 +15,8 @@ class Ingrediente {
 		this.precio = precio
 
 	}
+	
+	//EXTENSION METHODS
 
 	def modificarPrecio(int nuevoPrecio) {
 		this.precio = nuevoPrecio
@@ -23,5 +25,16 @@ class Ingrediente {
 	def modificarNombre(String nombre) {
 		this.nombre = nombre
 	}
+	
+	def copy() {
+		super.clone as Ingrediente
+	}
+	
+	def reemplazarCon(Ingrediente ingrediente) {
+		nombre=ingrediente.nombre
+		precio=ingrediente.precio
+			}
+	
+	}
 
-}
+
