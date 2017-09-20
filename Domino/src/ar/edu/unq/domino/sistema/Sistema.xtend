@@ -16,11 +16,10 @@ class Sistema {
 	List<Pedido> pedidos
 	Menu menu = new Menu
 
-	new(Menu menu) { //el menú debe estar ya creado con las promos, si no de donde va a pedir cosas el cliente?
+	new() {
 
 		this.clientes = newArrayList
 		this.pedidos = newArrayList
-		this.menu = menu
 	}
 
 	def registrarCliente(Cliente cliente) throws Exception {
@@ -34,16 +33,9 @@ class Sistema {
 		}
 
 	}
-	
-	def puedeRealizarPedido(){
-		if (!this.menu.tienePromosDisponibles){
-			throw new Exception("No es posible realizar un pedido en este momento") 
-		} else {true} // esto me suena a miedo al booleano pero si no me lo toma como void
-	}
 
 	def realizarPedido(Pedido pedido) {
-		if (this.puedeRealizarPedido()){
-		this.pedidos.add(pedido)}
+		this.pedidos.add(pedido)
 	}
 
 	def cancelarPedido(Pedido pedido) {

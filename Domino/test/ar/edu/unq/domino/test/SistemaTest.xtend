@@ -14,38 +14,26 @@ import ar.edu.unq.domino.Pizzas.Plato
 import ar.edu.unq.domino.formasDeEnvio.RetiroLocal
 import ar.edu.unq.domino.EstadosDePedido.Entregado
 import ar.edu.unq.domino.EstadosDePedido.Cancelado
-import ar.edu.unq.domino.Pizzas.Menu
-import ar.edu.unq.domino.Pizzas.Promocion
 
 class SistemaTest {
 	@Mock Cliente lucas = mock(Cliente)
 	@Mock Cliente ramiro = mock(Cliente)
 	
-	
 	Sistema sistema
-	
-	@Mock Promocion promocion = mock(Promocion)
-	
+
 	@Mock Plato plato1
 	@Mock Plato plato2
 
-	Menu menuVacio
-	Menu menuNoVacio 
-	
 	String aclaracion1
 	RetiroLocal envio1
 	Pedido pedido
 	Pedido pedido2
 
 	@Before
-	def void setUp() {
-		menuVacio = new Menu
-		menuNoVacio = new Menu
-		menuNoVacio.agregarPromo(promocion)
-		
+	def void setUp() {		
 		MockitoAnnotations.initMocks(this)
 		
-		sistema = new Sistema(menuNoVacio)
+		sistema = new Sistema()
 		MockitoAnnotations.initMocks(this)
 		aclaracion1 = "Cliente regular"
 		envio1 = new RetiroLocal
@@ -100,16 +88,9 @@ class SistemaTest {
 		sistema.registrarCliente(lucas)
 		sistema.registrarCliente(ramiro)
 	}
-
-	@Test(expected=Exception) //nuevoTest
-	def void noPuedeRealizarPedidoSiElMenuEstaVacio(){
-		sistema.menu = menuVacio
-		sistema.puedeRealizarPedido()
-	}
 	
 	@Test 
 	def registrarPedido(){
-		sistema.menu = menuNoVacio
 		sistema.realizarPedido(pedido)
 		assertTrue(sistema.pedidos.contains(pedido))
 	}

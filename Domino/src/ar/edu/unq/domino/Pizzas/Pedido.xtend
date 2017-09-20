@@ -24,7 +24,6 @@ class Pedido  extends Observable {
 	EstadoDePedido estado
 	FormaDeRetiro formaDeRetiro
 	Notificador notificador = new Notificador("ciu.dominos.pizza@gmail.com","interfaces2017")
-	String nombre
 
 
 	new(Cliente cliente) {
@@ -39,10 +38,6 @@ class Pedido  extends Observable {
 //		this.addObserver(notificador)
 		
 	}
-	
-	def setNombre(Integer num){
-		this.nombre = "Pedido" + num
-	}	
 
 	def void agregarPlato(Plato plato) {
 		platos.add(plato)

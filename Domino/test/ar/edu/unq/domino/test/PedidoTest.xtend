@@ -21,17 +21,15 @@ class PedidoTest {
 
 	@Mock Cliente lucas
 	@Mock Plato plato1
-	@Mock Plato plato2
+	@Mock Plato plato2	
 
 	String aclaracion1
-	RetiroLocal envio1
 	Pedido pedido
 
 	@Before
 	def void setUp() {
 		MockitoAnnotations.initMocks(this)
 		aclaracion1 = "Cliente regular"
-		envio1 = new RetiroLocal
 		when(lucas.nombre).thenReturn("Lucas")
 		when(plato1.calcularPrecio).thenReturn(100.0)
 		when(plato2.calcularPrecio).thenReturn(80.0)
@@ -107,6 +105,7 @@ class PedidoTest {
 		var fechaDelPedido = formateador.format(LocalDateTime.of(2017, 9, 11, 15, 37, 20))
 		pedido.fecha = fechaDelPedido
 		assertTrue(pedido.demoroMasDe30Minutos())
+		
 	}
 	
 

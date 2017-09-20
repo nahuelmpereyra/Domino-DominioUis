@@ -17,9 +17,6 @@ class Menu {
 
 	}
 
-	def tienePromosDisponibles(){
-		this.promociones.size>0
-	}
 	def agregarPromo(Promocion promocion) {
 		promociones.add(promocion)
 	}
