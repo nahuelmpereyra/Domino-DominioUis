@@ -1,24 +1,21 @@
 package ar.edu.unq.domino.EstadosDePedido
 
+import ar.edu.unq.domino.Mailing.GMailSender
 import ar.edu.unq.domino.Pizzas.Pedido
-import ar.edu.unq.domino.Mailing.MailDemorado
 
 class EnViaje extends EstadoDePedido {
 
 	override siguiente(Pedido pedido) {
-		pedido.notificador.estrategiaMailing = new MailDemorado()
 		super.siguiente(pedido)
-		pedido.changed()
-		pedido.notifyObservers()
-		
+
+		if (pedido.demoroMasDe30Minutos) {
+//			GMailSender.config(new GMailSender("@gmail.com", "intercefaces2017"))
+			GMailSender.instance.notificarPedidoDemorado(pedido)
+		}
 	}
 
-	override proximo() {
-		new Entregado
-	}
+	override proximo() {new Entregado}
 
-	override previo() {
-		new ListoParaEnviar
-	}
+	override previo() {new ListoParaEnviar}
 
 }

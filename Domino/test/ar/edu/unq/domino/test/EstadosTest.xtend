@@ -6,10 +6,13 @@ import ar.edu.unq.domino.EstadosDePedido.Entregado
 import ar.edu.unq.domino.EstadosDePedido.ListoParaEnviar
 import ar.edu.unq.domino.EstadosDePedido.ListoParaRetirar
 import ar.edu.unq.domino.EstadosDePedido.Preparando
+import ar.edu.unq.domino.Mailing.GMailSender
 import ar.edu.unq.domino.Pizzas.Pedido
 import ar.edu.unq.domino.formasDeEnvio.Delivery
 import ar.edu.unq.domino.formasDeEnvio.RetiroLocal
 import ar.edu.unq.domino.sistema.Cliente
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -17,8 +20,6 @@ import org.mockito.MockitoAnnotations
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
-import ar.edu.unq.domino.Mailing.Notificador
-
 
 class EstadosTest {
 
@@ -28,7 +29,8 @@ class EstadosTest {
 	Delivery retiroDelivery
 	@Mock Cliente lucas
 	@Mock Cliente martin
-	@Mock Notificador notificador
+	@Mock GMailSender notificador
+
 	
 
 	@Before
@@ -39,10 +41,10 @@ class EstadosTest {
 		retiroLocal = new RetiroLocal
 		retiroDelivery = new Delivery
 		pedidoLocal.formaDeRetiro = retiroLocal
-		pedidoDelivery.formaDeRetiro = retiroDelivery
-		pedidoDelivery.notificador = notificador 
-		when(lucas.email).thenReturn("lg.piergiacomi@gmail.com")
-		when(lucas.nombre).thenReturn("Lucas")
+		pedidoDelivery.formaDeRetiro = retiroDelivery 
+		GMailSender.config(notificador)
+		when(lucas.email).thenReturn("nahuelmpereyra@gmail.com")
+		when(lucas.nombre).thenReturn("Nahuel")
 		
 	}
 
@@ -132,12 +134,14 @@ class EstadosTest {
 
 	@Test
 	def void pedidoDeliveryDeListoParaEnviarAEstadoSiguiente() {
-
+		
+		
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof ListoParaEnviar)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof EnViaje)
 		verify(notificador, times(1)).notificarPedidoEnViaje(pedidoDelivery)
+		verify(notificador, times(0)).notificarPedidoDemorado(pedidoDelivery)
 	}
 	
 
@@ -152,11 +156,17 @@ class EstadosTest {
 
 	@Test
 	def void pedidoDeliveryDeEnViajeAEstadoSiguiente() {
+		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
+		var LocalDateTime delay = LocalDateTime.now.minusMinutes(45)	
+		
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof EnViaje)
+		pedidoDelivery.fecha = formateador.format(delay)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
+		verify(notificador, times(1)).notificarPedidoDemorado(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
+		assertTrue(pedidoDelivery.demoroMasDe30Minutos)
 	}
 
 	@Test

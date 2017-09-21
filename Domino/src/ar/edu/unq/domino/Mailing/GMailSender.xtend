@@ -9,6 +9,7 @@ import javax.mail.Session
 import javax.mail.Transport
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
+import ar.edu.unq.domino.Pizzas.Pedido
 
 class GMailSender  {
 
@@ -18,15 +19,10 @@ class GMailSender  {
 		authentication = new UserPasswordAuthentication(username, password)
 	}
 
-	static GMailSender instance
 
-	static def instance() { instance }
 
-	static def config(GMailSender sender) {
-		instance = sender
-	}
-
-	def sendMail(String to, String subject, String text) {
+	def sendMail(String to, String subject, String text) 
+	{
 
 		try {
 			val message = new MimeMessage(createSession)
@@ -52,6 +48,28 @@ class GMailSender  {
 
 		Session.getInstance(props, authentication)
 	}
+	
+	public static GMailSender instance
+
+	static def instancia() { instance }
+
+	static def config(GMailSender sender) {
+		instance = sender
+	}
+	
+	def notificarPedidoEnViaje(Pedido pedido) {
+		this.sendMail(pedido.cliente.email, "Domino Pizza's: Pedido en viaje", "Estimado/a " + pedido.cliente.nombre +
+			", el pedido que realizo ya se encuentra en viaje.\n\nMuchas gracias por elegirnos!\n\nDomino Pizza's")
+	}
+	
+	def notificarPedidoDemorado(Pedido pedido) {
+		this.sendMail(pedido.cliente.email, "Domino Pizza's: Pedido demorado", "Mil disculpas " + pedido.cliente.nombre +
+			", el pedido que realizo se encuentra demorado, esperamos que sepa comprendernos.\n\nDomino Pizza's")
+
+	}
+	
+
+	
 }
 
 class UserPasswordAuthentication extends Authenticator {
