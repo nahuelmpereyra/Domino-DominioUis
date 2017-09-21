@@ -5,7 +5,7 @@ import java.util.List
 import ar.edu.unq.domino.Pizzas.Pedido
 
 @Accessors
-class Cliente {
+class Cliente implements Cloneable {
 
 	String nombre
 	String nick
@@ -26,6 +26,10 @@ class Cliente {
 
 	def agregarPedido(Pedido pedido) {
 		this.historial.add(pedido)
+	}
+
+	def copy() {
+		super.clone as Cliente
 	}
 
 }

@@ -14,6 +14,7 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 @TransactionalAndObservable
 @Accessors
 class Pedido  {
+	int numero
 	Cliente cliente
 	String fecha
 	String aclaracion
@@ -25,6 +26,7 @@ class Pedido  {
 
 
 	new(Cliente cliente) {
+	
 		this.cliente = cliente
 		this.aclaracion = ""
 		this.platos = newArrayList
