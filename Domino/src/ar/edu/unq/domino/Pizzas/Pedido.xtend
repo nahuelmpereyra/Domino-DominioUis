@@ -3,19 +3,17 @@ package ar.edu.unq.domino.Pizzas
 import ar.edu.unq.domino.EstadosDePedido.Cancelado
 import ar.edu.unq.domino.EstadosDePedido.EstadoDePedido
 import ar.edu.unq.domino.EstadosDePedido.Preparando
-import ar.edu.unq.domino.Mailing.Notificador
 import ar.edu.unq.domino.formasDeEnvio.FormaDeRetiro
 import ar.edu.unq.domino.sistema.Cliente
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.List
-import java.util.Observable
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @TransactionalAndObservable
 @Accessors
-class Pedido  extends Observable {
+class Pedido  {
 	Cliente cliente
 	String fecha
 	String aclaracion
@@ -23,7 +21,7 @@ class Pedido  extends Observable {
 	double monto
 	EstadoDePedido estado
 	FormaDeRetiro formaDeRetiro
-	Notificador notificador = new Notificador("ciu.dominos.pizza@gmail.com","interfaces2017")
+	
 
 
 	new(Cliente cliente) {
@@ -34,9 +32,7 @@ class Pedido  extends Observable {
 		this.estado = new Preparando
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var LocalDateTime now = LocalDateTime.now
-		fecha = formateador.format(now)
-//		this.addObserver(notificador)
-		
+		fecha = formateador.format(now)	
 	}
 
 	def void agregarPlato(Plato plato) {
@@ -66,10 +62,6 @@ class Pedido  extends Observable {
 		ahora.isAfter(fechaPedido.plusMinutes(30))
 	}
 
-	def changed(){
-		notificador.notificarPedidoEnViaje(this)
-//		setChanged
-	}
 	
 	def tiempoEspera(){
 		var ahora = LocalDateTime.now
