@@ -10,10 +10,11 @@ import java.time.format.DateTimeFormatter
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.Entity
 
 @TransactionalAndObservable
 @Accessors
-class Pedido  {
+class Pedido extends Entity {
 	int numero
 	Cliente cliente
 	String fecha

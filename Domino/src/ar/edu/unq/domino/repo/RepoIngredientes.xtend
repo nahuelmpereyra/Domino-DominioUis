@@ -6,61 +6,78 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class RepoIngredientes {
-	
+
 	List<Ingrediente> ingredientes
-	
+
 	private static RepoIngredientes instance = null
-	
-	private new(){
-		ingredientes= newArrayList
-	crearSiNoExiste(CrearIngrediente("Jamon",5.0))
-	crearSiNoExiste(CrearIngrediente("Queso",2.50))
-	crearSiNoExiste(CrearIngrediente("Morron",6.0))
-	crearSiNoExiste(CrearIngrediente("Anana",3.0))
-	crearSiNoExiste(CrearIngrediente("Anchoa",2.5))
+
+	private new() {
+		ingredientes = newArrayList
+		createIfNotExists(createIngrediente("Jamon", 5.0))
+		createIfNotExists(createIngrediente("Queso", 2.50))
+		createIfNotExists(createIngrediente("Morron", 6.0))
+		createIfNotExists(createIngrediente("Anana", 3.0))
+		createIfNotExists(createIngrediente("Anchoa", 2.5))
 	}
-	
-	def CrearIngrediente(String nombre, double precio) {
-		new Ingrediente(nombre,precio)
-	}
-	
-	def crearSiNoExiste(Ingrediente ingrediente) {
-		
-			if (this.getIngrediente(ingrediente) === null) { //SI NO EXISTE el ingrediente en el array, getIngr devolvió null
-				this.ingredientes.add(ingrediente) // lo guarda en el array
-			} else {
-				actualizarIngrediente(ingrediente) //Si existe, lo actualiza
-			}
-			
+
+	def createIfNotExists(Ingrediente ingrediente) {
+		val existe = this.getIngrediente(ingrediente) !== null
+		if (!existe) {
+			this.actualizarIngrediente(ingrediente)
 		}
-	
-	//A esta altura ya sabemos que existe, q el parámetro tiene nombre (lo usé en doGetIng)
-	def actualizarIngrediente(Ingrediente ingrediente) {
-		
-		val ingredienteAReemplazar = doGetIngrediente(ingrediente)
-		ingredienteAReemplazar.reemplazarCon(ingrediente)
+		existe
 	}
-	
-	//devuelve ingrediente si existe, si no, duvuelve null
-	def getIngrediente(Ingrediente ingrediente) {
-		 val result= doGetIngrediente(ingrediente)
-		 if (result === null){
-		 	null
-		 } else {
-		 	result.copy
-		 }
+
+	def createIngrediente(String unNombre, double unPrecio) {
+		new Ingrediente => [
+			nombre = unNombre
+			precio = unPrecio
+		]
 	}
-	
-	//Devuelve el primer ingrediente que encuentra en el array con pk ingrediente.nombre
-	def doGetIngrediente(Ingrediente ingrediente){
-		ingredientes.findFirst [it.nombre.equals(ingrediente.nombre)]
-		}
-	
+
 	static def getInstance() {
-		if (instance === null){
-			instance =new RepoIngredientes
+		if (instance === null) {
+			instance = new RepoIngredientes
 		}
-		instance	
+		instance
+	}
+
+	def doGetIngrediente(Ingrediente ingrediente) {
+		ingredientes.findFirst[it.nombre.equals(ingrediente.nombre)]
+	}
+
+	/** Genero una copia del objeto para no actualizar el que referencia el repo **/
+	def getIngrediente(Ingrediente ingrediente) {
+		val result = doGetIngrediente(ingrediente)
+		if (result === null) {
+			null
+		} else {
+			result.copy
+		}
 	}
 	
+	/** Genero una copia de los objetos para no actualizar el que referencia el repo **/
+	def List<Ingrediente> getIngredientes() {
+		ingredientes.map [ it.copy ].toList
+	}
+
+	def actualizarIngrediente(Ingrediente ingrediente) {
+
+		if (ingrediente.nombre === null) {
+			// es un alta
+			ingredientes.add(ingrediente)
+		} 
+		/*
+		else {
+			// es una modificación
+			val ingredientePosta = doGetIngrediente(ingrediente)
+			ingredientePosta.reemplazarCon(ingrediente)
+		}
+		*/
+	}
+
+	def eliminarIngrediente(Ingrediente ingrediente) {
+		ingredientes.remove(doGetIngrediente(ingrediente))
+	}
+
 }

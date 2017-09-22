@@ -5,9 +5,9 @@ import ar.edu.unq.domino.formasDeEnvio.Delivery
 import ar.edu.unq.domino.formasDeEnvio.FormaDeRetiro
 import ar.edu.unq.domino.repo.RepoPedidos
 import ar.edu.unq.domino.sistema.Cliente
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import static org.junit.Assert.*
 
 class RepoPedidosTest {
 
@@ -30,7 +30,7 @@ class RepoPedidosTest {
 	def void pedidoEnLaListaPedidos() {
 		val resultado = repoPedidos.getPedidos
 		repoPedidos.CrearPedidoNuevo(pedido)
-		Assert.assertEquals(resultado.size(), 1)
+		assertEquals(resultado.size(), 1)
 	}
 
 	@Test
@@ -38,6 +38,6 @@ class RepoPedidosTest {
 		val resultado = repoPedidos.getPedidos
 		repoPedidos.CrearPedidoNuevo(pedido)
 		repoPedidos.eliminarPedido(1)
-		Assert.assertEquals(resultado.size(), 0)
+		assertEquals(resultado.size(), 0)
 	}
 }

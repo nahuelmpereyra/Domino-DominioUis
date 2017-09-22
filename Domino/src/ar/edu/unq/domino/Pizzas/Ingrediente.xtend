@@ -3,9 +3,11 @@ package ar.edu.unq.domino.Pizzas
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
+
+
 @TransactionalAndObservable
 @Accessors
-class Ingrediente implements Cloneable{
+class Ingrediente implements Cloneable {
 
 	String nombre
 	double precio
@@ -15,6 +17,12 @@ class Ingrediente implements Cloneable{
 		this.precio = precio
 
 	}
+	
+	new() {
+		this.nombre = null;
+		this.precio = 0.0;
+	}
+	
 	
 	//EXTENSION METHODS
 
@@ -33,7 +41,12 @@ class Ingrediente implements Cloneable{
 	def reemplazarCon(Ingrediente ingrediente) {
 		nombre=ingrediente.nombre
 		precio=ingrediente.precio
-			}
+	}
+	
+	
+
+	
+	
 	
 	}
 
