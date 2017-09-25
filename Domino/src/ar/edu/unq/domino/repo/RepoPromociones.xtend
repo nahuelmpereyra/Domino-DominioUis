@@ -1,38 +1,38 @@
 package ar.edu.unq.domino.repo
 
-import ar.edu.unq.domino.Pizzas.Ingrediente
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
+import ar.edu.unq.domino.Pizzas.Promocion
 import org.apache.commons.collections15.Predicate
 
 @Observable
-class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
+class RepoPromociones extends CollectionBasedRepo<Promocion> {
 
 	// ********************************************************
 	// ** Altas y bajas
 	// ********************************************************
-	def void create(String iNombre, double iPrecio) {
-		this.create(new Ingrediente => [
-			nombre = iNombre
-			precio = iPrecio
+	def void create(String pNombre, double pPrecio) {
+		this.create(new Promocion => [
+			nombrePromo = pNombre
+			precioBase = pPrecio
 		])
 	}
 
-	override void validateCreate(Ingrediente ingrediente) {
-		ingrediente.validar()
-		validarIngredientesDuplicados(ingrediente)
+	override void validateCreate(Promocion promocion) {
+		promocion.validar()
+		validarPromocionesDuplicadas(promocion)
 	}
 
-	def validarIngredientesDuplicados(Ingrediente ingrediente) {
-		val nombre = ingrediente.nombre
+	def validarPromocionesDuplicadas(Promocion promocion) {
+		val nombre = promocion.nombrePromo
 		if (!this.search(nombre).isEmpty) {
-			throw new UserException("Ya existe un ingrediente con el nombre: " + nombre)
+			throw new UserException("Ya existe una promoción con el nombre: " + nombre)
 		}
 	}
 
 	def search(String nombre) {
-		allInstances.filter[ingrediente|this.match(nombre, ingrediente.nombre)].toList
+		allInstances.filter[promocion|this.match(nombre, promocion.nombrePromo)].toList
 	}
 
 	def match(Object expectedValue, Object realValue) {
@@ -46,14 +46,14 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
 	}
 
 	override createExample() {
-		new Ingrediente
+		new Promocion
 	}
 
 	override getEntityType() {
-		typeof(Ingrediente)
+		typeof(Promocion)
 	}
 
-	override def Predicate<Ingrediente> getCriterio(Ingrediente example) {
+	override def Predicate<Promocion> getCriterio(Promocion example) {
 		null
 	}
 

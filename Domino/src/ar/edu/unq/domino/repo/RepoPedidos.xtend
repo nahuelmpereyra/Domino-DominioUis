@@ -19,28 +19,26 @@ class RepoPedidos {
 	def CrearPedido(Cliente cliente) {
 		new Pedido(cliente)
 	}
-	def CrearPedidoNuevo(Pedido pedido){
-		
-	pedido.setNumero(pedidos.size+1)
-	pedidos.add(pedido)
-	}
-	 
-	static def getInstance() {
-		if (instance === null){
-			instance =new RepoPedidos
-		}
-		instance	
-	}
-	
 
-	def doGetPedido(int i)		 {
-	pedidos.findFirst [ it.numero.equals(i)]
+	def CrearPedidoNuevo(Pedido pedido) {
+
+		pedido.setNumero(pedidos.size + 1)
+		pedidos.add(pedido)
 	}
-	
+
+	static def getInstance() {
+		if (instance === null) {
+			instance = new RepoPedidos
+		}
+		instance
+	}
+
+	def doGetPedido(int i) {
+		pedidos.findFirst[it.numero.equals(i)]
+	}
+
 	def eliminarPedido(int i) {
 		pedidos.remove(doGetPedido(i))
 	}
 
-
-	
 }

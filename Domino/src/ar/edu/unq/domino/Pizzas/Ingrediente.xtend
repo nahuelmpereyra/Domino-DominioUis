@@ -17,15 +17,13 @@ class Ingrediente extends Entity implements Cloneable {
 		this.precio = precio
 
 	}
-	
+
 	new() {
 		this.nombre = null;
 		this.precio = 0.0;
 	}
-	
-	
-	//EXTENSION METHODS
 
+	// EXTENSION METHODS
 	def modificarPrecio(int nuevoPrecio) {
 		this.precio = nuevoPrecio
 	}
@@ -33,29 +31,25 @@ class Ingrediente extends Entity implements Cloneable {
 	def modificarNombre(String nombre) {
 		this.nombre = nombre
 	}
-	
+
 	def copy() {
 		super.clone as Ingrediente
 	}
-	
+
 	def reemplazarCon(Ingrediente ingrediente) {
-		nombre=ingrediente.nombre
-		precio=ingrediente.precio
+		nombre = ingrediente.nombre
+		precio = ingrediente.precio
 	}
-	
+
 	def validar() {
 
 		if (!this.ingresoNombre()) {
 			throw new UserException("Debe ingresar nombre")
 		}
-	
-	
-	
+
 	}
-	
+
 	def ingresoNombre() {
 		nombre !== null && !nombre.trim().equals("")
 	}
 }
-
-

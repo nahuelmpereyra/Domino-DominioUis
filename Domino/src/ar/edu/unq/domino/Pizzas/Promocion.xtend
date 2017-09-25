@@ -2,10 +2,13 @@ package ar.edu.unq.domino.Pizzas
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.exceptions.UserException
+import org.uqbar.commons.model.Entity
+
 
 @TransactionalAndObservable
 @Accessors
-class Promocion {
+class Promocion extends Entity implements Cloneable{
 
 	double precioBase
 	String nombrePromo
@@ -17,6 +20,14 @@ class Promocion {
 		this.precioBase = precio
 		this.ingredientesBase = distribucion
 	}
+	
+	new() {
+		this.nombrePromo = null;
+		this.precioBase = 0.0;
+		//this.ingredientesBase = newArrayList
+	}
+		
+	
 
 	def agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
 
@@ -47,6 +58,18 @@ class Promocion {
 
 	def cantidadDeIngredientes() {
 		this.ingredientesBase.listaDeIngredientes().size
+	}
+	
+	def validar() {
+
+		if (!this.ingresoNombre()) {
+			throw new UserException("Debe ingresar nombre")
+		}
+
+	}
+
+	def ingresoNombre() {
+		nombrePromo !== null && !nombrePromo.trim().equals("")
 	}
 
 }
