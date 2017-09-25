@@ -1,83 +1,114 @@
 package ar.edu.unq.domino.repo
 
 import ar.edu.unq.domino.Pizzas.Ingrediente
-import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.CollectionBasedRepo
+import org.uqbar.commons.model.annotations.Observable
+import org.uqbar.commons.model.exceptions.UserException
+import org.apache.commons.collections15.Predicate
 
-@Accessors
-class RepoIngredientes {
+@Observable
+class RepoIngredientes extends CollectionBasedRepo<Ingrediente>{
 
-	List<Ingrediente> ingredientes
-
-	private static RepoIngredientes instance = null
-
-	private new() {
-		ingredientes = newArrayList
-		createIfNotExists(createIngrediente("Jamon", 5.0))
-		createIfNotExists(createIngrediente("Queso", 2.50))
-		createIfNotExists(createIngrediente("Morron", 6.0))
-		createIfNotExists(createIngrediente("Anana", 3.0))
-		createIfNotExists(createIngrediente("Anchoa", 2.5))
+	// ********************************************************
+	// ** Altas y bajas
+	// ********************************************************
+	def void create(String iNombre, double iPrecio) {
+		this.create(new Ingrediente => [
+			nombre = iNombre
+			precio = iPrecio
+		])
 	}
 
-	def createIfNotExists(Ingrediente ingrediente) {
-		val existe = this.getIngrediente(ingrediente) !== null
-		if (!existe) {
-			this.actualizarIngrediente(ingrediente)
-		}
-		existe
-	}
-
-	def createIngrediente(String unNombre, double unPrecio) {
-		new Ingrediente => [
-			nombre = unNombre
-			precio = unPrecio
-		]
-	}
-
-	static def getInstance() {
-		if (instance === null) {
-			instance = new RepoIngredientes
-		}
-		instance
-	}
-
-	def doGetIngrediente(Ingrediente ingrediente) {
-		ingredientes.findFirst[it.nombre.equals(ingrediente.nombre)]
-	}
-
-	/** Genero una copia del objeto para no actualizar el que referencia el repo **/
-	def getIngrediente(Ingrediente ingrediente) {
-		val result = doGetIngrediente(ingrediente)
-		if (result === null) {
-			null
-		} else {
-			result.copy
-		}
+	override void validateCreate(Ingrediente ingrediente) {
+		ingrediente.validar()
+		validarIngredientesDuplicados(ingrediente)
 	}
 	
-	/** Genero una copia de los objetos para no actualizar el que referencia el repo **/
-	def List<Ingrediente> getIngredientes() {
-		ingredientes.map [ it.copy ].toList
-	}
-
-	def actualizarIngrediente(Ingrediente ingrediente) {
-
-		if (ingrediente.nombre === null) {
-			// es un alta
-			ingredientes.add(ingrediente)
-		} 
-		/*
-		else {
-			// es una modificación
-			val ingredientePosta = doGetIngrediente(ingrediente)
-			ingredientePosta.reemplazarCon(ingrediente)
+	def validarIngredientesDuplicados(Ingrediente ingrediente) {
+		val nombre = ingrediente.nombre
+		if (!this.search(nombre).isEmpty) {
+			throw new UserException("Ya existe un ingrediente con el nombre: " + nombre)
 		}
-		*/
 	}
 
-	def eliminarIngrediente(Ingrediente ingrediente) {
-		ingredientes.remove(doGetIngrediente(ingrediente))
+
+	def search(String nombre) {
+		allInstances.filter[ingrediente|this.match(nombre, ingrediente.nombre)].toList
 	}
+
+	def match(Object expectedValue, Object realValue) {
+		if (expectedValue === null) {
+			return true
+		}
+		if (realValue === null) {
+			return false
+		}
+		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
+	}		
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+
+	
+
+//	def actualizarIngrediente(Ingrediente ingrediente) {
+//
+//		if (ingrediente.nombre === null) {
+//			// es un alta
+//			ingredientes.add(ingrediente)
+//		} 
+//		/*
+//		else {
+//			// es una modificación
+//			val ingredientePosta = doGetIngrediente(ingrediente)
+//			ingredientePosta.reemplazarCon(ingrediente)
+//		}
+//		*/
+//	}
+
+	
+
+	override createExample() {
+		new Ingrediente
+	}
+	
+	override getEntityType() {
+		typeof(Ingrediente)
+	}
+	
+	override def Predicate<Ingrediente> getCriterio(Ingrediente example) {
+		null
+	}
+	
+	
 
 }

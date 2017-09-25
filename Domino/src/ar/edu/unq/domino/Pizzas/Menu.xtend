@@ -1,10 +1,8 @@
 package ar.edu.unq.domino.Pizzas
 
-import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
-import ar.edu.unq.domino.repo.RepoIngredientes
-
 
 @TransactionalAndObservable
 @Accessors
@@ -40,11 +38,5 @@ class Menu {
 	def quitarIngrediente(Ingrediente ingrediente) {
 		ingredientes.remove(ingrediente)
 	}
-	
-	def buscar() {
-		ingredientes = RepoIngredientes.instance.getIngredientes()
-	}
-	
-
 
 }

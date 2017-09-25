@@ -1,13 +1,13 @@
 package ar.edu.unq.domino.Pizzas
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
-
-
+import org.uqbar.commons.model.exceptions.UserException
 
 @TransactionalAndObservable
 @Accessors
-class Ingrediente implements Cloneable {
+class Ingrediente extends Entity implements Cloneable {
 
 	String nombre
 	double precio
@@ -43,11 +43,19 @@ class Ingrediente implements Cloneable {
 		precio=ingrediente.precio
 	}
 	
-	
+	def validar() {
 
+		if (!this.ingresoNombre()) {
+			throw new UserException("Debe ingresar nombre")
+		}
 	
 	
 	
 	}
+	
+	def ingresoNombre() {
+		nombre !== null && !nombre.trim().equals("")
+	}
+}
 
 

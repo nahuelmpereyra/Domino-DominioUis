@@ -5,6 +5,7 @@ import org.junit.Before
 import ar.edu.unq.domino.repo.RepoIngredientes
 import org.junit.Test
 import static org.junit.Assert.*
+import org.uqbar.commons.applicationContext.ApplicationContext
 
 class RepoIngredientesTest{
 
@@ -14,7 +15,7 @@ class RepoIngredientesTest{
 
 	@Before
 	def void init() {
-		repoIngrediente = RepoIngredientes.instance
+		repoIngrediente = ApplicationContext.instance.getSingleton(typeof(RepoIngredientes))
 
 		jamon = new Ingrediente("Jamon", 6.0)
 		rucula = new Ingrediente("Rucula", 2.0)

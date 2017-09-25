@@ -7,7 +7,7 @@ import static org.junit.Assert.*
 
 class IngredienteTest {
 
-	Ingrediente ingrediente = new Ingrediente("Morron", 3)
+	Ingrediente ingrediente = new Ingrediente("Morron", 3.0)
 
 	@Test
 	def modificarPrecioIngrediente() {
