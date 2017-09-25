@@ -43,7 +43,7 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente>{
 		if (realValue === null) {
 			return false
 		}
-		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
+		realValue.toString().toLowerCase().equals(expectedValue.toString().toLowerCase())
 	}		
 
 
