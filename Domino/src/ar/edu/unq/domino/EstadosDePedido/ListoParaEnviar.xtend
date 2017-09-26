@@ -4,6 +4,10 @@ import ar.edu.unq.domino.Mailing.GMailSender
 import ar.edu.unq.domino.Pizzas.Pedido
 
 class ListoParaEnviar extends EstadoDePedido {
+	
+	new(){
+		this.nombre = "Listo para enviar"
+	}
 
 
 	override siguiente(Pedido pedido) {
@@ -18,6 +22,10 @@ class ListoParaEnviar extends EstadoDePedido {
 
 	override previo() {
 		new Preparando
+	}
+	
+	override toString() {
+		"Listo para enviar"
 	}
 
 }

@@ -3,6 +3,10 @@ package ar.edu.unq.domino.EstadosDePedido
 import ar.edu.unq.domino.Pizzas.Pedido
 
 class ListoParaRetirar extends EstadoDePedido {
+	
+	new(){
+		this.nombre = "Listo para retirar"
+	}
 
 	override siguiente(Pedido pedido) {
 		pedido.estado = this.proximo
@@ -17,6 +21,10 @@ class ListoParaRetirar extends EstadoDePedido {
 
 	override previo() {
 		new Preparando
+	}
+	
+	override toString() {
+		"Listo para retirar"
 	}
 
 }

@@ -56,5 +56,9 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
 	override def Predicate<Ingrediente> getCriterio(Ingrediente example) {
 		null
 	}
+	
+	def ingredientes(){
+		allInstances
+	}
 
 }

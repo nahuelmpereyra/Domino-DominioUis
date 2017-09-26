@@ -13,6 +13,15 @@ import ar.edu.unq.domino.repo.RepoPedidos
 import ar.edu.unq.domino.Pizzas.Pedido
 import ar.edu.unq.domino.sistema.Cliente
 import ar.edu.unq.domino.repo.RepoClientes
+import ar.edu.unq.domino.EstadosDePedido.Cancelado
+import ar.edu.unq.domino.Pizzas.Plato
+import ar.edu.unq.domino.repo.RepoPlatos
+import ar.edu.unq.domino.EstadosDePedido.EstadoDePedido
+import ar.edu.unq.domino.EstadosDePedido.Preparando
+import ar.edu.unq.domino.repo.RepoEstados
+import ar.edu.unq.domino.TamanioPizzas.TamanioPromo
+import ar.edu.unq.domino.TamanioPizzas.Chica
+import ar.edu.unq.domino.repo.RepoTamanios
 
 @Accessors
 @Observable
@@ -31,10 +40,22 @@ class Buscador implements Serializable {
 	List<Pedido> resultadosPedidosCerrados
 	Pedido pedidoSeleccionado
 	
-	
 	Cliente exampleCliente= new Cliente
 	List<Cliente> resultadosCliente
 	Cliente clienteSeleccionado
+	
+	Plato examplePlato = new Plato
+	List<Plato> resultadosPlato
+	Plato platoSeleccionado
+	
+	EstadoDePedido exampleEstado = new Preparando
+	List<EstadoDePedido> resultadosEstado
+	EstadoDePedido estadoSeleccionado
+	
+	TamanioPromo exampleTamanio = new Chica
+	List<TamanioPromo> resultadosTamanio
+	TamanioPromo tamanioSeleccionado
+	
 
 	def void search() {
 		resultadosIngrediente = repoIngredientes.search(exampleIngrediente.nombre)
@@ -42,6 +63,9 @@ class Buscador implements Serializable {
 		resultadosCliente   = repoClientes.search(exampleCliente.nick)
 		resultadosPedidosAbiertos   = repoPedidos.buscarPedidosAbiertos()
 		resultadosPedidosCerrados= repoPedidos.buscarPedidosCerrados()
+		resultadosPlato = repoPlatos.search(examplePlato.nombre)
+		resultadosEstado = repoEstados.search(exampleEstado.nombre)
+		resultadosTamanio = repoTamanios.search(exampleTamanio.nombre)
 		
 	}
 
@@ -67,7 +91,7 @@ class Buscador implements Serializable {
 	// ********************************************************
 	// ** Acciones Promocion
 	// ********************************************************
-	def void clear() {
+	def void clearPromocion() {
 		examplePromocion = new Promocion
 		resultadosPromocion = newArrayList
 		promoSeleccionada = null
@@ -104,6 +128,10 @@ class Buscador implements Serializable {
 		pedidoSeleccionado = null
 	}
 	
+	def cancelarPedido() {
+		pedidoSeleccionado.estado = new Cancelado
+	}
+	
 	// ********************************************************
 	// ** Acciones Clientes
 	// ********************************************************
@@ -122,4 +150,62 @@ class Buscador implements Serializable {
 		this.search()
 		clienteSeleccionado = null
 	}
+	
+	// ********************************************************
+	// ** Acciones Plato
+	// ********************************************************
+	def void clearPlato() {
+		examplePlato = new Plato
+		resultadosPlato = newArrayList
+		platoSeleccionado = null
+	}
+
+	def void eliminarPlatoSeleccionado() {
+		getRepoPlatos().delete(platoSeleccionado)
+		this.search()
+		platoSeleccionado = null
+	}
+
+	def RepoPlatos getRepoPlatos() {
+		ApplicationContext.instance.getSingleton(typeof(Plato))
+	}
+	
+	// ********************************************************
+	// ** Acciones Estados
+	// ********************************************************
+	def void clearEstado() {
+		exampleEstado = new Preparando
+		resultadosEstado = newArrayList
+		estadoSeleccionado = null
+	}
+
+	def void eliminarEstadoSeleccionado() {
+		getRepoEstados().delete(estadoSeleccionado)
+		this.search()
+		estadoSeleccionado = null
+	}
+
+	def RepoEstados getRepoEstados() {
+		ApplicationContext.instance.getSingleton(typeof(EstadoDePedido))
+	}
+	
+	// ********************************************************
+	// ** Acciones Tamanios
+	// ********************************************************
+	def void clearTamanio() {
+		exampleTamanio = new Chica
+		resultadosTamanio = newArrayList
+		tamanioSeleccionado = null
+	}
+
+	def void eliminarTamanioSeleccionado() {
+		getRepoTamanios().delete(tamanioSeleccionado)
+		this.search()
+		tamanioSeleccionado = null
+	}
+
+	def RepoTamanios getRepoTamanios() {
+		ApplicationContext.instance.getSingleton(typeof(TamanioPromo))
+	}
+	
 }

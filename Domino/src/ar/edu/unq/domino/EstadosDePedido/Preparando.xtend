@@ -5,6 +5,10 @@ import ar.edu.unq.domino.Pizzas.Pedido
 
 @Accessors
 class Preparando extends EstadoDePedido {
+	
+	new(){
+		this.nombre = "Preparando"
+	}
 
 	override siguiente(Pedido pedido) {
 		pedido.estado = pedido.formaDeRetiro.proximoEstado
@@ -15,6 +19,10 @@ class Preparando extends EstadoDePedido {
 
 	override previo() {
 		this
+	}
+	
+	override toString() {
+		"Preparando"
 	}
 
 }

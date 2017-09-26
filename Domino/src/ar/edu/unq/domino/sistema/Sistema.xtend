@@ -38,7 +38,7 @@ class Sistema {
 		this.pedidos.add(pedido)
 	}
 
-	def cancelarPedido(Pedido pedido) {
+	def void cancelarPedido(Pedido pedido) {
 		pedido.cancelar
 	}
 

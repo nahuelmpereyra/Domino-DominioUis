@@ -71,5 +71,6 @@ class Promocion extends Entity implements Cloneable{
 	def ingresoNombre() {
 		nombrePromo !== null && !nombrePromo.trim().equals("")
 	}
+	
 
 }

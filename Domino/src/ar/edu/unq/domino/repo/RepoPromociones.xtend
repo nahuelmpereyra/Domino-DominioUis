@@ -57,4 +57,9 @@ class RepoPromociones extends CollectionBasedRepo<Promocion> {
 		null
 	}
 
+	
+	def promociones(){
+		allInstances
+	}
+
 }

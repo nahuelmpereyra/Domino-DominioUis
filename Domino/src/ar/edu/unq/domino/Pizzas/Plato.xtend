@@ -2,22 +2,32 @@ package ar.edu.unq.domino.Pizzas
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unq.domino.TamanioPizzas.TamanioPromo
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import org.uqbar.commons.model.Entity
 
+@TransactionalAndObservable
 @Accessors
-class Plato {
+class Plato extends Entity implements Cloneable{
 
+	String nombre
 	Promocion promo
 	TamanioPromo tamanio
 	IngredientesExtras ingredientesExtras
+	double precio
 
-	new(Promocion promo, TamanioPromo tamanio, IngredientesExtras ingredientesExtras) {
+	new(String nombre, Promocion promo, TamanioPromo tamanio, IngredientesExtras ingredientesExtras) {
+		this.nombre = nombre
 		this.promo = promo
 		this.tamanio = tamanio
 		this.ingredientesExtras = ingredientesExtras
 	}
+	
+	new(){
+		this.precio = 0.0 
+	}
 
 	def calcularPrecio() {
-		this.promo.precioBase * precioTamanio + costoIngredientesExtras
+		this.precio = this.promo.precioBase * precioTamanio + costoIngredientesExtras
 	}
 
 	def costoIngredientesExtras() {
