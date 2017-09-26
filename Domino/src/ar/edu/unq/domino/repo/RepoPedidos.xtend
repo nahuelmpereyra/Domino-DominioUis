@@ -1,44 +1,74 @@
 package ar.edu.unq.domino.repo
 
-import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unq.domino.Pizzas.Pedido
-import java.util.List
+import ar.edu.unq.domino.formasDeEnvio.FormaDeRetiro
 import ar.edu.unq.domino.sistema.Cliente
+import org.apache.commons.collections15.Predicate
+import org.uqbar.commons.model.CollectionBasedRepo
+import org.uqbar.commons.model.annotations.Observable
+import ar.edu.unq.domino.EstadosDePedido.Cancelado
+import ar.edu.unq.domino.EstadosDePedido.Entregado
+import ar.edu.unq.domino.EstadosDePedido.EstadoDePedido
 
-@Accessors
-class RepoPedidos {
+@Observable
+class RepoPedidos extends CollectionBasedRepo<Pedido> {
 
-	List<Pedido> pedidos
-
-	private static RepoPedidos instance = null
-
-	private new() {
-		pedidos = newArrayList
+	// ********************************************************
+	// ** Altas y bajas
+	// ********************************************************
+	def void create(Cliente pCliente, FormaDeRetiro pFormaDeRetiro, String pAclaracion) {
+		this.create(new Pedido => [
+			cliente = pCliente
+			formaDeRetiro = pFormaDeRetiro
+			aclaracion = pAclaracion
+			numero = allInstances.size + 1
+		])
 	}
 
-	def CrearPedido(Cliente cliente) {
-		new Pedido(cliente)
+	def void create2(Cliente pCliente, FormaDeRetiro pFormaDeRetiro, String pAclaracion) {
+		this.create(new Pedido => [
+			cliente = pCliente
+			formaDeRetiro = pFormaDeRetiro
+			aclaracion = pAclaracion
+			numero = allInstances.size + 1
+			esCerrado = 1
+		])
 	}
 
-	def CrearPedidoNuevo(Pedido pedido) {
-
-		pedido.setNumero(pedidos.size + 1)
-		pedidos.add(pedido)
+	// override void validateCreate(Pedido pedido) {
+	// validarIngredientesDuplicados(ingrediente)
+	// }
+	// def search(Boolean esCerrado) {
+	// allInstances.filter[pedido|this.match(esCerrado, pedido.esCerrado)].toList
+	// }
+	def buscarPedidosCerrados() {
+		allInstances.filter[pedido|this.match(1, pedido.esCerrado)].toList
 	}
 
-	static def getInstance() {
-		if (instance === null) {
-			instance = new RepoPedidos
+	def buscarPedidosAbiertos() {
+		allInstances.filter[pedido|this.match(0, pedido.esCerrado)].toList
+	}
+
+	def match(Object expectedValue, Object realValue) {
+		if (expectedValue === null) {
+			return true
 		}
-		instance
+		if (realValue === null) {
+			return false
+		}
+		realValue.toString().toLowerCase().equals(expectedValue.toString().toLowerCase())
 	}
 
-	def doGetPedido(int i) {
-		pedidos.findFirst[it.numero.equals(i)]
+	override createExample() {
+		new Pedido
 	}
 
-	def eliminarPedido(int i) {
-		pedidos.remove(doGetPedido(i))
+	override getEntityType() {
+		typeof(Pedido)
+	}
+
+	override def Predicate<Pedido> getCriterio(Pedido example) {
+		null
 	}
 
 }

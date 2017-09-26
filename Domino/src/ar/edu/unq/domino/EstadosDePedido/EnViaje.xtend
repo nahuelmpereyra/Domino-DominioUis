@@ -11,7 +11,10 @@ class EnViaje extends EstadoDePedido {
 		if (pedido.demoroMasDe30Minutos) {
 //			GMailSender.config(new GMailSender("@gmail.com", "intercefaces2017"))
 			GMailSender.instance.notificarPedidoDemorado(pedido)
+			
 		}
+		pedido.esCerrado = 1
+		pedido.setTiempoEspera() 
 	}
 
 	override proximo() {new Entregado}

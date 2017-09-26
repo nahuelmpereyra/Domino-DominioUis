@@ -3,9 +3,10 @@ package ar.edu.unq.domino.sistema
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import ar.edu.unq.domino.Pizzas.Pedido
+import org.uqbar.commons.model.Entity
 
 @Accessors
-class Cliente implements Cloneable {
+class Cliente extends Entity implements Cloneable {
 
 	String nombre
 	String nick
@@ -22,6 +23,10 @@ class Cliente implements Cloneable {
 		this.direccion = direccion
 		this.historial = newArrayList
 
+	}
+	
+	new() {
+		this.historial = newArrayList
 	}
 
 	def agregarPedido(Pedido pedido) {

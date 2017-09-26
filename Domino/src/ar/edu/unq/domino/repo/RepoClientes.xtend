@@ -1,50 +1,60 @@
 package ar.edu.unq.domino.repo
 
 import ar.edu.unq.domino.sistema.Cliente
-import java.util.List
-import org.eclipse.xtend.lib.annotations.Accessors
+import ar.edu.unq.domino.Pizzas.Pedido
+import org.apache.commons.collections15.Predicate
+import org.uqbar.commons.model.CollectionBasedRepo
+import org.uqbar.commons.model.annotations.Observable
 
-@Accessors
-class RepoClientes {
-	private static RepoClientes instance = null
-	List<Cliente> clientes
+@Observable
+class RepoClientes extends CollectionBasedRepo<Cliente> {
 
-	private new() {
-		clientes = newArrayList
-		crearSiNoExiste(CrearCliente("Lucas", "Pier", "sarasa123", "Shamainco@gmail.com", "Av.Falsa 12345"))
+	// ********************************************************
+	// ** Altas y bajas
+	// ********************************************************
+	def void create(String cNombre, String cNick, String cPassword, String cEmail, String cDireccion) {
+		this.create(new Cliente => [
+			nombre = cNombre
+			nick = cNick
+			password = cPassword
+			email = cEmail
+			direccion = cDireccion
+		])
 	}
 
-	def CrearCliente(String nombre, String nick, String password, String mail, String direccion) {
-		new Cliente(nombre, nick, password, mail, direccion)
+	//override void validateCreate(Pedido pedido) {
+		//validarIngredientesDuplicados(ingrediente)
+	//}
+
+
+	
+
+	def search(String nick) {
+		allInstances.filter[cliente|this.match(nick, cliente.nick)].toList
 	}
 
-	static def getInstance() {
-		if (instance === null) {
-			instance = new RepoClientes
+	def match(Object expectedValue, Object realValue) {
+		if (expectedValue === null) {
+			return true
 		}
-		instance
-	}
-
-	def getCliente(Cliente cliente) {
-		val result = doGetCliente(cliente)
-		if (result === null) {
-			null
-		} else {
-			result.copy
+		if (realValue === null) {
+			return false
 		}
+		realValue.toString().toLowerCase().equals(expectedValue.toString().toLowerCase())
 	}
 
-	def doGetCliente(Cliente cliente) {
-		clientes.findFirst[it.nick.equals(cliente.nick)]
-		clientes.findFirst[it.email.equals(cliente.email)]
+	override createExample() {
+		new Cliente
 	}
 
-	def crearSiNoExiste(Cliente cliente) {
-
-		if (this.getCliente(cliente) === null) { // SI NO EXISTE el ingrediente en el array, getIngr devolvió null
-			this.clientes.add(cliente) // lo guarda en el array
-		}
-
+	override getEntityType() {
+		typeof(Cliente)
 	}
+
+	override def Predicate<Cliente> getCriterio(Cliente example) {
+		null
+	}
+	
 
 }
+

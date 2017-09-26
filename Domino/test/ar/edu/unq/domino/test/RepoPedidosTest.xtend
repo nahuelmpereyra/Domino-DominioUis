@@ -10,8 +10,7 @@ import org.junit.Test
 import static org.junit.Assert.*
 
 class RepoPedidosTest {
-
-	RepoPedidos repoPedidos
+/*	RepoPedidos repoPedidos
 	Cliente nahuel
 	Pedido pedido
 	FormaDeRetiro formaDeRetiro
@@ -39,5 +38,6 @@ class RepoPedidosTest {
 		repoPedidos.CrearPedidoNuevo(pedido)
 		repoPedidos.eliminarPedido(1)
 		assertEquals(resultado.size(), 0)
-	}
+	} */
+	
 }

@@ -12,7 +12,7 @@ class RepoClienteTest {
 	RepoClientes repoCliente
 	Cliente ramiro
 	Cliente nahuel
-
+/* 
 	@Before
 	def void init() {
 		repoCliente = RepoClientes.instance
@@ -37,5 +37,5 @@ class RepoClienteTest {
 		assertFalse(resultado.contains(nahuel))
 
 	}
-
+*/
 }
