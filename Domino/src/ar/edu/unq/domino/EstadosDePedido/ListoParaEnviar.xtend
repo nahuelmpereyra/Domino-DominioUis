@@ -13,7 +13,7 @@ class ListoParaEnviar extends EstadoDePedido {
 	override siguiente(Pedido pedido) {
 		super.siguiente(pedido)
 //		GMailSender.config(new GMailSender("@gmail.com", "intercefaces2017"))
-		GMailSender.instance.notificarPedidoEnViaje(pedido)
+		//GMailSender.instance.notificarPedidoEnViaje(pedido)
 	}
 	
 	override proximo() {

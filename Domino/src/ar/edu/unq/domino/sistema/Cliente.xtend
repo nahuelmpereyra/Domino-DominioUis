@@ -4,7 +4,9 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.List
 import ar.edu.unq.domino.Pizzas.Pedido
 import org.uqbar.commons.model.Entity
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
+@TransactionalAndObservable
 @Accessors
 class Cliente extends Entity implements Cloneable {
 

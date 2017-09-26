@@ -32,6 +32,7 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 			aclaracion = pAclaracion
 			numero = allInstances.size + 1
 			esCerrado = 1
+			estado= new Cancelado
 		])
 	}
 
