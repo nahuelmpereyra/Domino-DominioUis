@@ -7,11 +7,11 @@ class Entregado extends EstadoDePedido {
 	}
 
 	override proximo() {
-		this
+		throw new RuntimeException("El pedido ya se encuentra entregado")
 	}
 
 	override previo() {
-		this
+		throw new RuntimeException("El pedido ya se encuentra entregado")
 	}
 	
 	override toString() {

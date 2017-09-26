@@ -4,6 +4,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.Map
 import java.util.HashMap
 import java.util.ArrayList
+import ar.edu.unq.domino.distribuciones.DistribucionPizza
 
 @Accessors
 class IngredientesExtras {

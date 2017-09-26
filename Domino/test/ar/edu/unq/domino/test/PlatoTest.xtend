@@ -1,6 +1,5 @@
 package ar.edu.unq.domino.test
 
-import ar.edu.unq.domino.Pizzas.DistribucionPizza
 import ar.edu.unq.domino.Pizzas.Ingrediente
 import ar.edu.unq.domino.Pizzas.IngredientesExtras
 import ar.edu.unq.domino.Pizzas.Plato
@@ -13,6 +12,8 @@ import org.mockito.MockitoAnnotations
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
+import ar.edu.unq.domino.distribuciones.DistribucionPizza
+import ar.edu.unq.domino.distribuciones.Toda
 
 class PlatoTest {
 
@@ -27,7 +28,7 @@ class PlatoTest {
 	def void setUp() {
 		MockitoAnnotations.initMocks(this)
 		ingredientesExtra = new IngredientesExtras
-		distribucion = DistribucionPizza.Toda
+		distribucion = new Toda
 		plato = new Plato("Muzzarella", promo, tamanio, ingredientesExtra)
 		cebolla = new Ingrediente("Cebolla", 10.0)
 	}

@@ -45,7 +45,7 @@ class RepoEstados extends CollectionBasedRepo<EstadoDePedido> {
 	}
 
 	def search(String nombre) {
-		allInstances.filter[tamanio|this.match(nombre, tamanio.toString)].toList
+		allInstances.filter[estados|this.match(nombre, estados.toString)].toList
 	}
 
 	def match(Object expectedValue, Object realValue) {

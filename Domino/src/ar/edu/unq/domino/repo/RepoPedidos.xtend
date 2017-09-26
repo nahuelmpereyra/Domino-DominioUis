@@ -9,6 +9,7 @@ import org.uqbar.commons.model.annotations.Observable
 import ar.edu.unq.domino.EstadosDePedido.Cancelado
 import ar.edu.unq.domino.EstadosDePedido.Entregado
 import ar.edu.unq.domino.EstadosDePedido.EstadoDePedido
+import ar.edu.unq.domino.Pizzas.Plato
 
 @Observable
 class RepoPedidos extends CollectionBasedRepo<Pedido> {
@@ -22,6 +23,7 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 			formaDeRetiro = pFormaDeRetiro
 			aclaracion = pAclaracion
 			numero = allInstances.size + 1
+			
 		])
 	}
 

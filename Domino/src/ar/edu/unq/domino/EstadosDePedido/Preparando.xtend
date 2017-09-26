@@ -18,7 +18,7 @@ class Preparando extends EstadoDePedido {
 	}
 
 	override previo() {
-		this
+		throw new RuntimeException("El pedido ya se encuentra preparando")
 	}
 	
 	override toString() {

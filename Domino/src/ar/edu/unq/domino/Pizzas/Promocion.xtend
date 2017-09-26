@@ -4,7 +4,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import org.uqbar.commons.model.exceptions.UserException
 import org.uqbar.commons.model.Entity
-
+import ar.edu.unq.domino.distribuciones.DistribucionPizza
 
 @TransactionalAndObservable
 @Accessors
