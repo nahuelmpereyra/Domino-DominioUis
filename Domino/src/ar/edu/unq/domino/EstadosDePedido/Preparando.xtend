@@ -2,6 +2,7 @@ package ar.edu.unq.domino.EstadosDePedido
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unq.domino.Pizzas.Pedido
+import org.uqbar.commons.model.exceptions.UserException
 
 @Accessors
 class Preparando extends EstadoDePedido {
@@ -18,7 +19,7 @@ class Preparando extends EstadoDePedido {
 	}
 
 	override previo() {
-		throw new RuntimeException("El pedido ya se encuentra preparando")
+		throw new UserException("El pedido ya se encuentra preparando")
 	}
 	
 	override toString() {

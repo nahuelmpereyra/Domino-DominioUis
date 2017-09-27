@@ -1,5 +1,7 @@
 package ar.edu.unq.domino.EstadosDePedido
 
+import org.uqbar.commons.model.exceptions.UserException
+
 class Entregado extends EstadoDePedido {
 	
 	new(){
@@ -7,11 +9,11 @@ class Entregado extends EstadoDePedido {
 	}
 
 	override proximo() {
-		throw new RuntimeException("El pedido ya se encuentra entregado")
+		throw new UserException("El pedido ya se encuentra entregado")
 	}
 
 	override previo() {
-		throw new RuntimeException("El pedido ya se encuentra entregado")
+		throw new UserException("El pedido ya se encuentra entregado")
 	}
 	
 	override toString() {
