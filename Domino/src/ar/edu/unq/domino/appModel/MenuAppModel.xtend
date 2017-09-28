@@ -4,7 +4,6 @@ import ar.edu.unq.domino.Pizzas.Ingrediente
 import ar.edu.unq.domino.Pizzas.Menu
 import ar.edu.unq.domino.Pizzas.Promocion
 import ar.edu.unq.domino.repo.RepoIngredientes
-import ar.edu.unq.domino.repo.RepoMenu
 import ar.edu.unq.domino.repo.RepoPromociones
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
@@ -29,9 +28,6 @@ class MenuAppModel {
 		this.searchIngrediente
 	}
 
-	def RepoMenu getRepoMenu() {
-		ApplicationContext.instance.getSingleton(typeof(Menu))
-	}
 
 	// ********************************************************
 	// ** Acciones Promocion
