@@ -7,21 +7,21 @@ import org.uqbar.commons.model.exceptions.UserException
 @TransactionalAndObservable
 @Accessors
 class Entregado extends EstadoDePedido {
-	
-	new(){
+
+	new() {
 		this.nombre = "Entregado"
 	}
 
 	override proximo() {
-		//throw new UserException("El pedido ya se encuentra entregado")
+		// throw new UserException("El pedido ya se encuentra entregado")
 		null
 	}
 
 	override previo() {
-		//throw new UserException("El pedido ya se encuentra entregado")
+		// throw new UserException("El pedido ya se encuentra entregado")
 		null
 	}
-	
+
 	override toString() {
 		"Entregado"
 	}

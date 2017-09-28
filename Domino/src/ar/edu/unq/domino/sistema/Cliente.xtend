@@ -26,7 +26,7 @@ class Cliente extends Entity implements Cloneable {
 		this.historial = newArrayList
 
 	}
-	
+
 	new() {
 		this.historial = newArrayList
 	}

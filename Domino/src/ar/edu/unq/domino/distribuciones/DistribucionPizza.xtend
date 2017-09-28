@@ -6,9 +6,8 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @TransactionalAndObservable
 @Accessors
-abstract class DistribucionPizza extends Entity implements Cloneable{
-	
+abstract class DistribucionPizza extends Entity implements Cloneable {
+
 	String nombre
 
 }
-

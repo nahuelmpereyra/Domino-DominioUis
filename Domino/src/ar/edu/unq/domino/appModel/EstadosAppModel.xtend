@@ -11,17 +11,16 @@ import org.uqbar.commons.model.annotations.Observable
 @Accessors
 @Observable
 class EstadosAppModel {
-	
+
 	EstadoDePedido exampleEstado = new Preparando
 	List<EstadoDePedido> estados
 	EstadoDePedido estadoSeleccionado
-	
-	
+
 	def void search() {
 		estados = repoEstados.search(exampleEstado.nombre)
-		
+
 	}
-	
+
 	// ********************************************************
 	// ** Acciones Estados
 	// ********************************************************
@@ -40,6 +39,5 @@ class EstadosAppModel {
 	def RepoEstados getRepoEstados() {
 		ApplicationContext.instance.getSingleton(typeof(EstadoDePedido))
 	}
-	
-	
+
 }

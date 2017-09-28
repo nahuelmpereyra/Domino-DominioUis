@@ -8,10 +8,10 @@ import ar.edu.unq.domino.distribuciones.DistribucionPizza
 
 @TransactionalAndObservable
 @Accessors
-class Promocion extends Entity implements Cloneable{
+class Promocion extends Entity implements Cloneable {
 
-	double precioBase
 	String nombrePromo
+	double precioBase
 	IngredientesExtras ingredientesBase
 
 	new(String nombre, double precio, IngredientesExtras distribucion) {
@@ -20,19 +20,15 @@ class Promocion extends Entity implements Cloneable{
 		this.precioBase = precio
 		this.ingredientesBase = distribucion
 	}
-	
+
 	new() {
-		this.nombrePromo = null;
-		this.precioBase = 0.0;
-		//this.ingredientesBase = newArrayList
+		this.nombrePromo = ""
+		this.precioBase = 0.0
 	}
-		
-	
 
 	def agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
 
 		this.ingredientesBase.agregarIngrediente(ingrediente, distribucion)
-
 	}
 
 	def quitarIngrediente(Ingrediente ingrediente) {
@@ -44,7 +40,7 @@ class Promocion extends Entity implements Cloneable{
 		this.nombrePromo = nombre
 	}
 
-	def editarPrecio(Integer precio) {
+	def editarPrecio(double precio) {
 		this.precioBase = precio
 	}
 
@@ -59,7 +55,7 @@ class Promocion extends Entity implements Cloneable{
 	def cantidadDeIngredientes() {
 		this.ingredientesBase.listaDeIngredientes().size
 	}
-	
+
 	def validar() {
 
 		if (!this.ingresoNombre()) {
@@ -71,6 +67,5 @@ class Promocion extends Entity implements Cloneable{
 	def ingresoNombre() {
 		nombrePromo !== null && !nombrePromo.trim().equals("")
 	}
-	
 
 }

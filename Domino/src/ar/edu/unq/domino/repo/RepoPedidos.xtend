@@ -7,9 +7,6 @@ import org.apache.commons.collections15.Predicate
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.model.annotations.Observable
 import ar.edu.unq.domino.EstadosDePedido.Cancelado
-import ar.edu.unq.domino.EstadosDePedido.Entregado
-import ar.edu.unq.domino.EstadosDePedido.EstadoDePedido
-import ar.edu.unq.domino.Pizzas.Plato
 
 @Observable
 class RepoPedidos extends CollectionBasedRepo<Pedido> {
@@ -23,7 +20,6 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 			formaDeRetiro = pFormaDeRetiro
 			aclaracion = pAclaracion
 			numero = allInstances.size + 1
-			
 		])
 	}
 
@@ -34,10 +30,9 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 			aclaracion = pAclaracion
 			numero = allInstances.size + 1
 			esCerrado = 1
-			estado= new Cancelado
+			estado = new Cancelado
 		])
 	}
-
 
 	def buscarPedidosCerrados() {
 		allInstances.filter[pedido|this.match(1, pedido.esCerrado)].toList

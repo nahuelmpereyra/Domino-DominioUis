@@ -22,17 +22,14 @@ class RepoTamanios extends CollectionBasedRepo<TamanioPromo> {
 
 	def createFamiliar() {
 		this.create(new Familiar)
-
 	}
 
 	def createGrande() {
 		this.create(new Grande)
-
 	}
 
 	def createPorcion() {
 		this.create(new Porcion)
-
 	}
 
 	def tamanios() {

@@ -59,7 +59,7 @@ class EstadosTest {
 	def void pedidoLocalDePreparandoAEstadoPrevio() {
 		assertTrue(pedidoLocal.estado instanceof Preparando)
 		pedidoLocal.estado.anterior(pedidoLocal)
-		assertTrue(pedidoLocal.estado instanceof Preparando)
+		assertTrue(pedidoLocal.estado === null)
 	}
 
 	@Test
@@ -91,7 +91,7 @@ class EstadosTest {
 		pedidoLocal.estado.siguiente(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Entregado)
 		pedidoLocal.estado.anterior(pedidoLocal)
-		assertTrue(pedidoLocal.estado instanceof Entregado)
+		assertTrue(pedidoLocal.estado === null)
 	}
 
 	@Test
@@ -100,7 +100,7 @@ class EstadosTest {
 		pedidoLocal.estado.siguiente(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Entregado)
 		pedidoLocal.estado.siguiente(pedidoLocal)
-		assertTrue(pedidoLocal.estado instanceof Entregado)
+		assertTrue(pedidoLocal.estado === null)
 	}
 
 	@Test
@@ -114,7 +114,7 @@ class EstadosTest {
 	def void pedidoDeliveryDePreparandoAEstadoPrevio() {
 		assertTrue(pedidoDelivery.estado instanceof Preparando)
 		pedidoDelivery.estado.anterior(pedidoDelivery)
-		assertTrue(pedidoDelivery.estado instanceof Preparando)
+		assertTrue(pedidoDelivery.estado === null)
 	}
 
 	@Test
@@ -134,8 +134,7 @@ class EstadosTest {
 
 	@Test
 	def void pedidoDeliveryDeListoParaEnviarAEstadoSiguiente() {
-		
-		
+	
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof ListoParaEnviar)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
@@ -176,7 +175,7 @@ class EstadosTest {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
 		pedidoDelivery.estado.anterior(pedidoDelivery)
-		assertTrue(pedidoDelivery.estado instanceof Entregado)
+		assertTrue(pedidoDelivery.estado === null)
 	}
 
 	@Test
@@ -186,7 +185,7 @@ class EstadosTest {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
-		assertTrue(pedidoDelivery.estado instanceof Entregado)
+		assertTrue(pedidoDelivery.estado === null)
 	}
 
 }

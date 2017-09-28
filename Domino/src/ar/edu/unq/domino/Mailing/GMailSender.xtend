@@ -11,7 +11,7 @@ import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 import ar.edu.unq.domino.Pizzas.Pedido
 
-class GMailSender  {
+class GMailSender {
 
 	UserPasswordAuthentication authentication
 
@@ -19,10 +19,7 @@ class GMailSender  {
 		authentication = new UserPasswordAuthentication(username, password)
 	}
 
-
-
-	def sendMail(String to, String subject, String text) 
-	{
+	def sendMail(String to, String subject, String text) {
 
 		try {
 			val message = new MimeMessage(createSession)
@@ -48,7 +45,7 @@ class GMailSender  {
 
 		Session.getInstance(props, authentication)
 	}
-	
+
 	public static GMailSender instance
 
 	static def instancia() { instance }
@@ -56,32 +53,32 @@ class GMailSender  {
 	static def config(GMailSender sender) {
 		instance = sender
 	}
-	
+
 	def notificarPedidoEnViaje(Pedido pedido) {
 		this.sendMail(pedido.cliente.email, "Domino Pizza's: Pedido en viaje", "Estimado/a " + pedido.cliente.nombre +
 			", el pedido que realizo ya se encuentra en viaje.\n\nMuchas gracias por elegirnos!\n\nDomino Pizza's")
 	}
-	
+
 	def notificarPedidoDemorado(Pedido pedido) {
-		this.sendMail(pedido.cliente.email, "Domino Pizza's: Pedido demorado", "Mil disculpas " + pedido.cliente.nombre +
-			", el pedido que realizo se encuentra demorado, esperamos que sepa comprendernos.\n\nDomino Pizza's")
+		this.sendMail(pedido.cliente.email, "Domino Pizza's: Pedido demorado",
+			"Mil disculpas " + pedido.cliente.nombre +
+				", el pedido que realizo se encuentra demorado, esperamos que sepa comprendernos.\n\nDomino Pizza's")
 
-	}
-	
+			}
 
-	
-}
+		}
 
-class UserPasswordAuthentication extends Authenticator {
+		class UserPasswordAuthentication extends Authenticator {
 
-	val String username
-	val String password
+			val String username
+			val String password
 
-	new(String _username, String _password) {
-		username = _username
-		password = _password
-	}
+			new(String _username, String _password) {
+				username = _username
+				password = _password
+			}
 
-	override protected getPasswordAuthentication() { new PasswordAuthentication(username, password) }
+			override protected getPasswordAuthentication() { new PasswordAuthentication(username, password) }
 
-}
+		}
+		

@@ -27,14 +27,13 @@ class Pedido extends Entity implements Cloneable {
 	FormaDeRetiro formaDeRetiro
 	int esCerrado
 	String tiempoEspera
-	
-	
+
 	new(Cliente cliente) {
 
 		this.cliente = cliente
 		this.aclaracion = ""
 		this.platos = newArrayList
-		this.monto = montoFinal()
+		this.monto = 0
 		this.estado = new Preparando
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var LocalDateTime now = LocalDateTime.now
@@ -84,9 +83,8 @@ class Pedido extends Entity implements Cloneable {
 		var ahora = LocalDateTime.now
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var fechaPedido = LocalDateTime.parse(this.fecha, formateador)
-		tiempoEspera = Duration.between(fechaPedido, ahora).toMinutes.toString +" mins"
-		
+		tiempoEspera = Duration.between(fechaPedido, ahora).toMinutes.toString + " mins"
+
 	}
-	
 
 }

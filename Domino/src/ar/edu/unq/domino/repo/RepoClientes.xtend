@@ -1,7 +1,6 @@
 package ar.edu.unq.domino.repo
 
 import ar.edu.unq.domino.sistema.Cliente
-import ar.edu.unq.domino.Pizzas.Pedido
 import org.apache.commons.collections15.Predicate
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.model.annotations.Observable
@@ -21,13 +20,6 @@ class RepoClientes extends CollectionBasedRepo<Cliente> {
 			direccion = cDireccion
 		])
 	}
-
-	//override void validateCreate(Pedido pedido) {
-		//validarIngredientesDuplicados(ingrediente)
-	//}
-
-
-	
 
 	def search(String nick) {
 		allInstances.filter[cliente|this.match(nick, cliente.nick)].toList
@@ -54,7 +46,5 @@ class RepoClientes extends CollectionBasedRepo<Cliente> {
 	override def Predicate<Cliente> getCriterio(Cliente example) {
 		null
 	}
-	
 
 }
-

@@ -15,7 +15,6 @@ class Ingrediente extends Entity implements Cloneable {
 	new(String nombre, double precio) {
 		this.nombre = nombre
 		this.precio = precio
-
 	}
 
 	new() {

@@ -7,10 +7,9 @@ import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @TransactionalAndObservable
 @Accessors
-abstract class EstadoDePedido extends Entity implements Cloneable{
-	
+abstract class EstadoDePedido extends Entity implements Cloneable {
+
 	String nombre
-	
 
 	def void siguiente(Pedido pedido) {
 		pedido.estado = this.proximo()
@@ -20,12 +19,12 @@ abstract class EstadoDePedido extends Entity implements Cloneable{
 	def void anterior(Pedido pedido) {
 		pedido.estado = this.previo()
 	}
-	
-	def tieneSiguiente(){
+
+	def tieneSiguiente() {
 		this.proximo !== null
 	}
-	
-	def tienePrevio(){
+
+	def tienePrevio() {
 		this.previo !== null
 	}
 

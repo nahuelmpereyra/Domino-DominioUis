@@ -79,10 +79,12 @@ class Sistema {
 		}
 		pedidosCerrados
 	}
- def promos(){
- 	menu.promociones
- }
- def ingredientes(){
- 	menu.ingredientes;
- }
+
+	def promos() {
+		menu.promociones
+	}
+
+	def ingredientes() {
+		menu.ingredientes;
+	}
 }

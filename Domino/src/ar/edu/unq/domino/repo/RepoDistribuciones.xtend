@@ -1,9 +1,7 @@
 package ar.edu.unq.domino.repo
 
-import ar.edu.unq.domino.Pizzas.Ingrediente
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.model.annotations.Observable
-import org.uqbar.commons.model.exceptions.UserException
 import org.apache.commons.collections15.Predicate
 import ar.edu.unq.domino.distribuciones.DistribucionPizza
 import ar.edu.unq.domino.distribuciones.MitadDerecha
@@ -31,7 +29,6 @@ class RepoDistribuciones extends CollectionBasedRepo<DistribucionPizza> {
 
 	}
 
-
 	def search(String nombre) {
 		allInstances.filter[distribuciones|this.match(nombre, distribuciones.nombre)].toList
 	}
@@ -57,8 +54,8 @@ class RepoDistribuciones extends CollectionBasedRepo<DistribucionPizza> {
 	override def Predicate<DistribucionPizza> getCriterio(DistribucionPizza example) {
 		null
 	}
-	
-	def distribuciones(){
+
+	def distribuciones() {
 		allInstances
 	}
 

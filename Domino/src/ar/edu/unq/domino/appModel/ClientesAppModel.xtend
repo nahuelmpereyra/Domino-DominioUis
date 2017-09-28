@@ -10,25 +10,24 @@ import org.uqbar.commons.model.annotations.Observable
 @Accessors
 @Observable
 class ClientesAppModel {
-	
+
 	Cliente exampleCliente = new Cliente
 	List<Cliente> clientes
 	Cliente clienteSeleccionado
-	
-	
+
 	def void search() {
 		clientes = repoClientes.search(exampleCliente.nick)
-		
+
 	}
-	
+
 	// ********************************************************
 	// ** Acciones
 	// ********************************************************
-		def RepoClientes getRepoClientes() {
+	def RepoClientes getRepoClientes() {
 		ApplicationContext.instance.getSingleton(typeof(Cliente))
 	}
-	
-		def void clearCliente() {
+
+	def void clearCliente() {
 		exampleCliente = new Cliente
 		clientes = newArrayList
 		clienteSeleccionado = null
@@ -39,5 +38,5 @@ class ClientesAppModel {
 		this.search()
 		clienteSeleccionado = null
 	}
-	
+
 }

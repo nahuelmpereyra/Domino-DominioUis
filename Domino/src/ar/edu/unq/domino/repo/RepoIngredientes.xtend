@@ -17,7 +17,7 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
 	// ** Altas y bajas
 	// ********************************************************
 	var List<Ingrediente> resultados
-	
+
 	def void create(String iNombre, double iPrecio) {
 		this.create(new Ingrediente => [
 			nombre = iNombre
@@ -38,13 +38,11 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
 	}
 
 	def search(String nombre) {
-		
+
 		resultados = allInstances.filter[ingrediente|this.match(nombre, ingrediente.nombre)].toList
 		ObservableUtils.firePropertyChanged(this, "resultados")
 		resultados
 	}
-	
-
 
 	def match(Object expectedValue, Object realValue) {
 		if (expectedValue === null) {
@@ -67,8 +65,8 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
 	override def Predicate<Ingrediente> getCriterio(Ingrediente example) {
 		null
 	}
-	
-	def ingredientes(){
+
+	def ingredientes() {
 		allInstances
 	}
 

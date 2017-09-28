@@ -8,8 +8,8 @@ import org.uqbar.commons.model.exceptions.UserException
 @TransactionalAndObservable
 @Accessors
 class Preparando extends EstadoDePedido {
-		
-	new(){
+
+	new() {
 		this.nombre = "Preparando"
 	}
 
@@ -21,13 +21,12 @@ class Preparando extends EstadoDePedido {
 	}
 
 	override previo() {
-		//throw new UserException("El pedido ya se encuentra preparando")
+		// throw new UserException("El pedido ya se encuentra preparando")
 		null
 	}
-	
+
 	override toString() {
 		"Preparando"
 	}
-	
 
 }

@@ -11,17 +11,16 @@ import org.uqbar.commons.model.annotations.Observable
 @Accessors
 @Observable
 class TamaniosAppModel {
-	
+
 	TamanioPromo exampleTamanio = new Chica
 	List<TamanioPromo> tamanios
 	TamanioPromo tamanioSeleccionado
-	
-	
+
 	def void search() {
 		tamanios = repoTamanios.search(exampleTamanio.nombre)
-		
+
 	}
-	
+
 	// ********************************************************
 	// ** Acciones
 	// ********************************************************
@@ -40,5 +39,5 @@ class TamaniosAppModel {
 	def RepoTamanios getRepoTamanios() {
 		ApplicationContext.instance.getSingleton(typeof(TamanioPromo))
 	}
-	
+
 }

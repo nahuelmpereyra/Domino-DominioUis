@@ -8,7 +8,7 @@ import ar.edu.unq.domino.distribuciones.DistribucionPizza
 
 @TransactionalAndObservable
 @Accessors
-class Plato extends Entity implements Cloneable{
+class Plato extends Entity implements Cloneable {
 
 	String nombre
 	Promocion promo
@@ -22,9 +22,9 @@ class Plato extends Entity implements Cloneable{
 		this.tamanio = tamanio
 		this.ingredientesExtras = ingredientesExtras
 	}
-	
-	new(){
-		this.precio = 0.0 
+
+	new() {
+		this.precio = 0.0
 	}
 
 	def calcularPrecio() {

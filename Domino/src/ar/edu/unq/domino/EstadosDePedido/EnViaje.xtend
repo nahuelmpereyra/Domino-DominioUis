@@ -4,8 +4,8 @@ import ar.edu.unq.domino.Mailing.GMailSender
 import ar.edu.unq.domino.Pizzas.Pedido
 
 class EnViaje extends EstadoDePedido {
-	
-	new(){
+
+	new() {
 		this.nombre = "En viaje"
 	}
 
@@ -15,16 +15,16 @@ class EnViaje extends EstadoDePedido {
 		if (pedido.demoroMasDe30Minutos) {
 //			GMailSender.config(new GMailSender("@gmail.com", "intercefaces2017"))
 			GMailSender.instance.notificarPedidoDemorado(pedido)
-			
+
 		}
 		pedido.esCerrado = 1
-		pedido.setTiempoEspera() 
+		pedido.setTiempoEspera()
 	}
 
-	override proximo() {new Entregado}
+	override proximo() { new Entregado }
 
-	override previo() {new ListoParaEnviar}
-	
+	override previo() { new ListoParaEnviar }
+
 	override toString() {
 		"En viaje"
 	}
