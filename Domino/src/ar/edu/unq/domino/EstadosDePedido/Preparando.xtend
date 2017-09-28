@@ -1,12 +1,14 @@
 package ar.edu.unq.domino.EstadosDePedido
 
-import org.eclipse.xtend.lib.annotations.Accessors
 import ar.edu.unq.domino.Pizzas.Pedido
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import org.uqbar.commons.model.exceptions.UserException
 
+@TransactionalAndObservable
 @Accessors
 class Preparando extends EstadoDePedido {
-	
+		
 	new(){
 		this.nombre = "Preparando"
 	}
@@ -19,11 +21,13 @@ class Preparando extends EstadoDePedido {
 	}
 
 	override previo() {
-		throw new UserException("El pedido ya se encuentra preparando")
+		//throw new UserException("El pedido ya se encuentra preparando")
+		null
 	}
 	
 	override toString() {
 		"Preparando"
 	}
+	
 
 }

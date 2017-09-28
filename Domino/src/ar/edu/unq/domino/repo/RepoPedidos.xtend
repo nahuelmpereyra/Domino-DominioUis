@@ -38,12 +38,7 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 		])
 	}
 
-	// override void validateCreate(Pedido pedido) {
-	// validarIngredientesDuplicados(ingrediente)
-	// }
-	// def search(Boolean esCerrado) {
-	// allInstances.filter[pedido|this.match(esCerrado, pedido.esCerrado)].toList
-	// }
+
 	def buscarPedidosCerrados() {
 		allInstances.filter[pedido|this.match(1, pedido.esCerrado)].toList
 	}

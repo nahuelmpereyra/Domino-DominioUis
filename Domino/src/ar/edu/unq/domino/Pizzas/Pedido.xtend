@@ -5,12 +5,13 @@ import ar.edu.unq.domino.EstadosDePedido.EstadoDePedido
 import ar.edu.unq.domino.EstadosDePedido.Preparando
 import ar.edu.unq.domino.formasDeEnvio.FormaDeRetiro
 import ar.edu.unq.domino.sistema.Cliente
+import java.time.Duration
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import org.uqbar.commons.model.Entity
+import org.uqbar.commons.model.annotations.TransactionalAndObservable
 
 @TransactionalAndObservable
 @Accessors
@@ -25,8 +26,9 @@ class Pedido extends Entity implements Cloneable {
 	EstadoDePedido estado
 	FormaDeRetiro formaDeRetiro
 	int esCerrado
-	LocalDateTime tiempoEspera
-
+	String tiempoEspera
+	
+	
 	new(Cliente cliente) {
 
 		this.cliente = cliente
@@ -82,10 +84,9 @@ class Pedido extends Entity implements Cloneable {
 		var ahora = LocalDateTime.now
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var fechaPedido = LocalDateTime.parse(this.fecha, formateador)
-		tiempoEspera = ahora.minusMinutes(fechaPedido.minute)
+		tiempoEspera = Duration.between(fechaPedido, ahora).toMinutes.toString +" mins"
+		
 	}
+	
 
-// def esCerrado () {
-// return this.estado == Entregado || this.estado == Cancelado
-// }
 }

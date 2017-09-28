@@ -1,17 +1,23 @@
 package ar.edu.unq.domino.repo
 
 import ar.edu.unq.domino.Pizzas.Ingrediente
+import java.util.List
+import org.apache.commons.collections15.Predicate
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
-import org.apache.commons.collections15.Predicate
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Observable
+@Accessors
 class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
 
 	// ********************************************************
 	// ** Altas y bajas
 	// ********************************************************
+	var List<Ingrediente> resultados
+	
 	def void create(String iNombre, double iPrecio) {
 		this.create(new Ingrediente => [
 			nombre = iNombre
@@ -32,8 +38,13 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
 	}
 
 	def search(String nombre) {
-		allInstances.filter[ingrediente|this.match(nombre, ingrediente.nombre)].toList
+		
+		resultados = allInstances.filter[ingrediente|this.match(nombre, ingrediente.nombre)].toList
+		ObservableUtils.firePropertyChanged(this, "resultados")
+		resultados
 	}
+	
+
 
 	def match(Object expectedValue, Object realValue) {
 		if (expectedValue === null) {

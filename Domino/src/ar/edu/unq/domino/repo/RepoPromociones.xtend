@@ -33,6 +33,7 @@ class RepoPromociones extends CollectionBasedRepo<Promocion> {
 
 	def search(String nombre) {
 		allInstances.filter[promocion|this.match(nombre, promocion.nombrePromo)].toList
+		
 	}
 
 	def match(Object expectedValue, Object realValue) {
