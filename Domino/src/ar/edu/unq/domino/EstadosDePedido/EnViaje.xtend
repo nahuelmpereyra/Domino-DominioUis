@@ -17,7 +17,6 @@ class EnViaje extends EstadoDePedido {
 			GMailSender.instance.notificarPedidoDemorado(pedido)
 
 		}
-		pedido.esCerrado = 1
 		pedido.setTiempoEspera()
 	}
 

@@ -9,7 +9,6 @@ class AppModelsSingleton {
 
 	MenuAppModel appModelMenu = new MenuAppModel()
 	PedidosAppModel appModelPedidos = new PedidosAppModel()
-	ClientesAppModel appModelClientes = new ClientesAppModel()
 	EstadosAppModel appModelEstados = new EstadosAppModel()
 	TamaniosAppModel appModelTamanios = new TamaniosAppModel()
 

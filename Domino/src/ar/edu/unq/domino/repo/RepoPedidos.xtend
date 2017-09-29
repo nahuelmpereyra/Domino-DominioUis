@@ -29,27 +29,16 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 			formaDeRetiro = pFormaDeRetiro
 			aclaracion = pAclaracion
 			numero = allInstances.size + 1
-			esCerrado = 1
 			estado = new Cancelado
 		])
 	}
 
 	def buscarPedidosCerrados() {
-		allInstances.filter[pedido|this.match(1, pedido.esCerrado)].toList
+		allInstances.filter[pedido|pedido.esCerrado].toList
 	}
 
 	def buscarPedidosAbiertos() {
-		allInstances.filter[pedido|this.match(0, pedido.esCerrado)].toList
-	}
-
-	def match(Object expectedValue, Object realValue) {
-		if (expectedValue === null) {
-			return true
-		}
-		if (realValue === null) {
-			return false
-		}
-		realValue.toString().toLowerCase().equals(expectedValue.toString().toLowerCase())
+		allInstances.filter[pedido|!pedido.esCerrado].toList
 	}
 
 	override createExample() {

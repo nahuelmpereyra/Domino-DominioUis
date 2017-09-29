@@ -19,13 +19,13 @@ class Pedido extends Entity implements Cloneable {
 
 	int numero
 	Cliente cliente
+	//TODO: Cambiar a fecha
 	String fecha
 	String aclaracion
 	List<Plato> platos
-	double monto
 	EstadoDePedido estado
 	FormaDeRetiro formaDeRetiro
-	int esCerrado
+	//TODO: ??? String?
 	String tiempoEspera
 
 	new(Cliente cliente) {
@@ -33,7 +33,6 @@ class Pedido extends Entity implements Cloneable {
 		this.cliente = cliente
 		this.aclaracion = ""
 		this.platos = newArrayList
-		this.monto = 0
 		this.estado = new Preparando
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var LocalDateTime now = LocalDateTime.now
@@ -42,7 +41,6 @@ class Pedido extends Entity implements Cloneable {
 
 	new() {
 		this.platos = newArrayList
-		this.monto = 0
 		this.estado = new Preparando
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var LocalDateTime now = LocalDateTime.now
@@ -59,17 +57,16 @@ class Pedido extends Entity implements Cloneable {
 	}
 
 	def montoFinal() {
-		var double precioFinal = 0.0
-		for (Plato p : platos) {
-			precioFinal += p.calcularPrecio.intValue()
-		}
-		monto = precioFinal + formaDeRetiro.costoEnvio()
+		var precioFinal = platos.stream.mapToDouble[plato | plato.calcularPrecio].sum
+		precioFinal + formaDeRetiro.costoEnvio()
+	}
+	
+	def esCerrado() {
+		estado.esCerrado
 	}
 
 	def cancelar() {
 		estado = new Cancelado
-		this.esCerrado = 1
-
 	}
 
 	def demoroMasDe30Minutos() {
@@ -83,8 +80,6 @@ class Pedido extends Entity implements Cloneable {
 		var ahora = LocalDateTime.now
 		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var fechaPedido = LocalDateTime.parse(this.fecha, formateador)
-		tiempoEspera = Duration.between(fechaPedido, ahora).toMinutes.toString + " mins"
-
+		tiempoEspera = Duration.between(fechaPedido, ahora).toMinutes.toString + " mins" //TODO: Lógica de vista
 	}
-
 }

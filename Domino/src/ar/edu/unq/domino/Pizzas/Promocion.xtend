@@ -8,7 +8,7 @@ import ar.edu.unq.domino.distribuciones.DistribucionPizza
 
 @TransactionalAndObservable
 @Accessors
-class Promocion extends Entity implements Cloneable {
+class Promocion extends Entity {
 
 	String nombrePromo
 	double precioBase
@@ -21,10 +21,7 @@ class Promocion extends Entity implements Cloneable {
 		this.ingredientesBase = distribucion
 	}
 
-	new() {
-		this.nombrePromo = ""
-		this.precioBase = 0.0
-	}
+	new() {	}
 
 	def agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
 

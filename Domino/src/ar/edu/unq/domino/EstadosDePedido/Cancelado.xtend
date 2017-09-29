@@ -21,5 +21,9 @@ class Cancelado extends EstadoDePedido {
 	override toString() {
 		"Cancelado"
 	}
+	
+	override esCerrado() {
+		true
+	}
 
 }

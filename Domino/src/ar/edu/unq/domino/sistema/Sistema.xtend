@@ -22,7 +22,7 @@ class Sistema {
 		this.pedidos = newArrayList
 	}
 
-	def registrarCliente(Cliente cliente) throws Exception {
+	def registrarCliente(Cliente cliente) {
 		if (clientes.stream.anyMatch[c|c.email == cliente.email]) {
 			throw new Exception("el email " + cliente.email + " ya se encuentra registrado")
 		} else if (clientes.stream.anyMatch[c|c.nick == cliente.nick]) {

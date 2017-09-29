@@ -21,9 +21,9 @@ class Entregado extends EstadoDePedido {
 		// throw new UserException("El pedido ya se encuentra entregado")
 		null
 	}
-
-	override toString() {
-		"Entregado"
+	
+	override esCerrado() {
+		true
 	}
 
 }

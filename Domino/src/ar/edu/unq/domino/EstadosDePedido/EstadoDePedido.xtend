@@ -31,5 +31,10 @@ abstract class EstadoDePedido extends Entity implements Cloneable {
 	def EstadoDePedido proximo()
 
 	def EstadoDePedido previo()
+	
+	def Boolean esCerrado() { false }
 
+	override toString() { //Mmmmmmmmmmmmmm
+		nombre
+	}
 }
