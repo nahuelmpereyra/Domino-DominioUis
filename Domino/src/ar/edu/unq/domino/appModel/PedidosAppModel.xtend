@@ -6,25 +6,22 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Observable
-import ar.edu.unq.domino.Pizzas.Plato
-import ar.edu.unq.domino.repo.RepoPlatos
 
 @Accessors
 @Observable
 class PedidosAppModel {
 
-	Pedido examplePedido = new Pedido
+	Pedido examplePedidoAbierto = new Pedido
 	List<Pedido> pedidosAbiertos
+	Pedido pedidoAbiertoSeleccionado
+
+	Pedido examplePedidoCerrado = new Pedido
 	List<Pedido> pedidosCerrados
-	Pedido pedidoSeleccionado
-	Plato examplePlato = new Plato
-	List<Plato> platos
-	Plato platoSeleccionado
+	Pedido pedidoCerradoSeleccionado
 
 	def void search() {
 		pedidosAbiertos = repoPedidos.buscarPedidosAbiertos()
 		pedidosCerrados = repoPedidos.buscarPedidosCerrados()
-		platos = repoPlatos.search(examplePlato.nombre)
 	}
 
 	// ********************************************************
@@ -34,42 +31,8 @@ class PedidosAppModel {
 		ApplicationContext.instance.getSingleton(typeof(Pedido))
 	}
 
-	def void clearPedido() {
-		examplePedido = new Pedido
-		pedidosAbiertos = newArrayList
-		pedidosCerrados = newArrayList
-		pedidoSeleccionado = null
-	}
-
-	def void eliminarPedidoSeleccionada() {
-		getRepoPedidos().delete(pedidoSeleccionado)
-		this.search()
-		pedidoSeleccionado = null
-	}
-
 	def cancelarPedido() {
-		pedidoSeleccionado.cancelar
-	}
-
-	// ********************************************************
-	// ** Acciones Platos
-	// ********************************************************
-	def void clearPlato() {
-		examplePlato = new Plato
-		platos = newArrayList
-		platoSeleccionado = null
-	}
-
-	def void eliminarPlatoSeleccionado() {
-		getRepoPedidos().allInstances.filter[pedido|pedidoSeleccionado == pedido].forEach [p|
-			p.quitarPlato(platoSeleccionado)
-		]
-		this.search()
-		platoSeleccionado = null
-	}
-
-	def RepoPlatos getRepoPlatos() {
-		ApplicationContext.instance.getSingleton(typeof(Plato))
+		pedidoAbiertoSeleccionado.cancelar
 	}
 
 }

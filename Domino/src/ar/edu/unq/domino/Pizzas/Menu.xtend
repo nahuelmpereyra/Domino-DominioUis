@@ -12,11 +12,8 @@ class Menu extends Entity {
 
 	List<Promocion> promociones
 	List<Ingrediente> ingredientes
-	Ingrediente ingredienteSeleccionado
 
 	public static Menu instance
-
-	static def instancia() { instance }
 
 	static def config(Menu menu) {
 		instance = menu
@@ -43,8 +40,12 @@ class Menu extends Entity {
 	}
 
 	def agregarIngrediente(Ingrediente ingrediente) {
+		if(!ingredientes.exists[i | i.nombre == ingrediente.nombre])
+		{
 		ingredientes.add(ingrediente)
 		ObservableUtils.firePropertyChanged(this, "ingredientes")
+		}
+		else this.modificarIngrediente(ingrediente)
 	}
 
 	def quitarIngrediente(Ingrediente ingrediente) {
@@ -57,12 +58,14 @@ class Menu extends Entity {
 			editarNombre(promocion.nombrePromo)
 			editarPrecio(promocion.precioBase)
 		]
+		ObservableUtils.firePropertyChanged(this, "ingredientes")
 	}
 	
 	def modificarIngrediente(Ingrediente ingrediente) {
-		promociones.findFirst[i|i == ingrediente] => [
-			editarNombre(ingrediente.nombre)
-			editarPrecio(ingrediente.precio)
+		ingredientes.findFirst[i|i == ingrediente] => [
+			modificarNombre(ingrediente.nombre)
+			modificarPrecio(ingrediente.precio)
+			ObservableUtils.firePropertyChanged(this, "ingredientes")
 		]
 	}
 

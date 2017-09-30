@@ -7,7 +7,7 @@ import org.uqbar.commons.model.exceptions.UserException
 
 @TransactionalAndObservable
 @Accessors
-class Ingrediente extends Entity implements Cloneable {
+class Ingrediente extends Entity {
 
 	String nombre
 	double precio
@@ -23,21 +23,13 @@ class Ingrediente extends Entity implements Cloneable {
 	}
 
 	// EXTENSION METHODS
-	def modificarPrecio(int nuevoPrecio) {
+	
+	def modificarPrecio(double nuevoPrecio) {
 		this.precio = nuevoPrecio
 	}
 
 	def modificarNombre(String nombre) {
 		this.nombre = nombre
-	}
-
-	def copy() {
-		super.clone as Ingrediente
-	}
-
-	def reemplazarCon(Ingrediente ingrediente) {
-		nombre = ingrediente.nombre
-		precio = ingrediente.precio
 	}
 
 	def validar() {
