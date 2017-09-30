@@ -20,13 +20,6 @@ abstract class EstadoDePedido extends Entity implements Cloneable {
 		pedido.estado = this.previo()
 	}
 
-	def tieneSiguiente() {
-		this.proximo !== null
-	}
-
-	def tienePrevio() {
-		this.previo !== null
-	}
 
 	def EstadoDePedido proximo()
 

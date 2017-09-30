@@ -3,11 +3,8 @@ package ar.edu.unq.domino.appModel
 import ar.edu.unq.domino.Pizzas.Ingrediente
 import ar.edu.unq.domino.Pizzas.Menu
 import ar.edu.unq.domino.Pizzas.Promocion
-import ar.edu.unq.domino.repo.RepoIngredientes
-import ar.edu.unq.domino.repo.RepoPromociones
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.applicationContext.ApplicationContext
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.utils.ObservableUtils
 
@@ -49,15 +46,13 @@ class MenuAppModel {
 		promoSeleccionada = null
 	}
 
-	def RepoPromociones getRepoPromociones() {
-		ApplicationContext.instance.getSingleton(typeof(Promocion))
-	}
 
 	// ********************************************************
 	// ** Acciones Ingrediente
 	// ********************************************************
 	def void searchIngrediente() {
-		ingredientes = repoIngredientes.search(exampleIngrediente.nombre)
+		ingredientes = Menu.instance.ingredientes
+		ObservableUtils.firePropertyChanged(this, "ingredientes")
 	}
 
 	def void clearIngrediente() {
@@ -70,10 +65,6 @@ class MenuAppModel {
 		Menu.instance.quitarIngrediente(ingredienteSeleccionado)
 		this.search()
 		ingredienteSeleccionado = null
-	}
-
-	def RepoIngredientes getRepoIngredientes() {
-		ApplicationContext.instance.getSingleton(typeof(Ingrediente))
 	}
 
 }

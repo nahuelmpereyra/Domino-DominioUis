@@ -44,16 +44,25 @@ class Menu extends Entity {
 
 	def agregarIngrediente(Ingrediente ingrediente) {
 		ingredientes.add(ingrediente)
+		ObservableUtils.firePropertyChanged(this, "ingredientes")
 	}
 
 	def quitarIngrediente(Ingrediente ingrediente) {
 		ingredientes.remove(ingrediente)
+		ObservableUtils.firePropertyChanged(this, "ingredientes")
 	}
 
 	def modificarPromo(Promocion promocion) {
 		promociones.findFirst[p|p == promocion] => [
 			editarNombre(promocion.nombrePromo)
 			editarPrecio(promocion.precioBase)
+		]
+	}
+	
+	def modificarIngrediente(Ingrediente ingrediente) {
+		promociones.findFirst[i|i == ingrediente] => [
+			editarNombre(ingrediente.nombre)
+			editarPrecio(ingrediente.precio)
 		]
 	}
 

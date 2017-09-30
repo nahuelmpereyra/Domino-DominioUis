@@ -9,13 +9,13 @@ class Cancelado extends EstadoDePedido {
 	}
 
 	override proximo() {
-		// throw new UserException("El pedido ya se encuentra cancelado")
-		null
+		throw new UserException("El pedido ya se encuentra cancelado")
+		
 	}
 
 	override previo() {
-		// throw new UserException("El pedido ya se encuentra cancelado")
-		null
+		throw new UserException("El pedido ya se encuentra cancelado")
+		
 	}
 
 	override toString() {

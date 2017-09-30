@@ -42,13 +42,15 @@ class Ingrediente extends Entity implements Cloneable {
 
 	def validar() {
 
-		if (!this.ingresoNombre()) {
+		if (!this.ingresoNombre) {
 			throw new UserException("Debe ingresar nombre")
 		}
+		else true
 
 	}
 
 	def ingresoNombre() {
 		nombre !== null && !nombre.trim().equals("")
 	}
+	
 }

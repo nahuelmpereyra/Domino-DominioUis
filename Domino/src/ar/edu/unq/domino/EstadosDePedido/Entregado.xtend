@@ -13,13 +13,11 @@ class Entregado extends EstadoDePedido {
 	}
 
 	override proximo() {
-		// throw new UserException("El pedido ya se encuentra entregado")
-		null
+		throw new UserException("El pedido ya se encuentra entregado")
 	}
 
 	override previo() {
-		// throw new UserException("El pedido ya se encuentra entregado")
-		null
+		throw new UserException("El pedido ya se encuentra entregado")
 	}
 	
 	override esCerrado() {

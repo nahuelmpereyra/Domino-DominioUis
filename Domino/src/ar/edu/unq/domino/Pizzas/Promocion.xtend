@@ -1,10 +1,10 @@
 package ar.edu.unq.domino.Pizzas
 
+import ar.edu.unq.domino.distribuciones.DistribucionPizza
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
 import org.uqbar.commons.model.exceptions.UserException
-import org.uqbar.commons.model.Entity
-import ar.edu.unq.domino.distribuciones.DistribucionPizza
 
 @TransactionalAndObservable
 @Accessors
@@ -58,6 +58,8 @@ class Promocion extends Entity {
 		if (!this.ingresoNombre()) {
 			throw new UserException("Debe ingresar nombre")
 		}
+		else
+		true
 
 	}
 
