@@ -12,11 +12,11 @@ import ar.edu.unq.domino.formasDeEnvio.Delivery
 import ar.edu.unq.domino.formasDeEnvio.RetiroLocal
 import ar.edu.unq.domino.sistema.Cliente
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
+import org.uqbar.commons.model.exceptions.UserException
 
 import static org.junit.Assert.*
 import static org.mockito.Mockito.*
@@ -55,11 +55,10 @@ class EstadosTest {
 		assertTrue(pedidoLocal.estado instanceof Cancelado)
 	}
 
-	@Test
+	@Test(expected = UserException)
 	def void pedidoLocalDePreparandoAEstadoPrevio() {
 		assertTrue(pedidoLocal.estado instanceof Preparando)
 		pedidoLocal.estado.anterior(pedidoLocal)
-		assertTrue(pedidoLocal.estado === null)
 	}
 
 	@Test
@@ -83,24 +82,23 @@ class EstadosTest {
 		assertTrue(pedidoLocal.estado instanceof ListoParaRetirar)
 		pedidoLocal.estado.siguiente(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Entregado)
+
 	}
 
-	@Test
+	@Test(expected = UserException)
 	def void pedidoLocalDeEntregadoAEstadoPrevio() {
 		pedidoLocal.estado.siguiente(pedidoLocal)
 		pedidoLocal.estado.siguiente(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Entregado)
 		pedidoLocal.estado.anterior(pedidoLocal)
-		assertTrue(pedidoLocal.estado === null)
 	}
 
-	@Test
+	@Test(expected = UserException)
 	def void pedidoLocalDeEntregadoAEstadoSiguiente() {
 		pedidoLocal.estado.siguiente(pedidoLocal)
 		pedidoLocal.estado.siguiente(pedidoLocal)
 		assertTrue(pedidoLocal.estado instanceof Entregado)
 		pedidoLocal.estado.siguiente(pedidoLocal)
-		assertTrue(pedidoLocal.estado === null)
 	}
 
 	@Test
@@ -110,11 +108,10 @@ class EstadosTest {
 		assertTrue(pedidoDelivery.estado instanceof Cancelado)
 	}
 
-	@Test
+	@Test(expected = UserException)
 	def void pedidoDeliveryDePreparandoAEstadoPrevio() {
 		assertTrue(pedidoDelivery.estado instanceof Preparando)
 		pedidoDelivery.estado.anterior(pedidoDelivery)
-		assertTrue(pedidoDelivery.estado === null)
 	}
 
 	@Test
@@ -155,37 +152,37 @@ class EstadosTest {
 
 	@Test
 	def void pedidoDeliveryDeEnViajeAEstadoSiguiente() {
-		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
 		var LocalDateTime delay = LocalDateTime.now.minusMinutes(45)	
-		
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof EnViaje)
-		pedidoDelivery.fecha = formateador.format(delay)
+		pedidoDelivery.fecha = delay
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
+//		println(pedidoDelivery.fecha)
+//		println(pedidoDelivery.fechaFinPedido)
+//		println(pedidoDelivery.tiempoEspera)
 		verify(notificador, times(1)).notificarPedidoDemorado(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
 		assertTrue(pedidoDelivery.demoroMasDe30Minutos)
 	}
 
-	@Test
+	@Test(expected = UserException)
 	def void pedidoDeliveryDeEntregadoAEstadoPrevio() {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
 		pedidoDelivery.estado.anterior(pedidoDelivery)
-		assertTrue(pedidoDelivery.estado === null)
 	}
 
-	@Test
+	@Test(expected = UserException)
 	def void pedidoDeliveryDeEntregadoAEstadoSiguiente() {
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
-		assertTrue(pedidoDelivery.estado === null)
+
 	}
 
 }

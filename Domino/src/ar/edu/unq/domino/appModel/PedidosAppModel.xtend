@@ -34,5 +34,17 @@ class PedidosAppModel {
 	def cancelarPedido() {
 		pedidoAbiertoSeleccionado.cancelar
 	}
+	
+	def pasarEstadoAnterior(Pedido pedido) {
+		
+		pedido.anteriorEstado()
+	}
+	
+	def pasarEstadoSiguiente(Pedido pedido) {
+		pedido.siguienteEstado()
+		this.search
+	}
+	
+	
 
 }

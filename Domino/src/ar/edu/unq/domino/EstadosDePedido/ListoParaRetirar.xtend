@@ -1,6 +1,7 @@
 package ar.edu.unq.domino.EstadosDePedido
 
 import ar.edu.unq.domino.Pizzas.Pedido
+import java.time.LocalDateTime
 
 class ListoParaRetirar extends EstadoDePedido {
 
@@ -10,6 +11,7 @@ class ListoParaRetirar extends EstadoDePedido {
 
 	override siguiente(Pedido pedido) {
 		pedido.estado = this.proximo
+		pedido.fechaFinPedido = LocalDateTime.now
 		pedido.setTiempoEspera()
 	}
 

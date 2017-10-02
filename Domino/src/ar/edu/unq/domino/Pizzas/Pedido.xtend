@@ -7,7 +7,6 @@ import ar.edu.unq.domino.formasDeEnvio.FormaDeRetiro
 import ar.edu.unq.domino.sistema.Cliente
 import java.time.Duration
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
@@ -19,14 +18,14 @@ class Pedido extends Entity implements Cloneable {
 
 	int numero
 	Cliente cliente
-	//TODO: Cambiar a fecha
-	String fecha
+	LocalDateTime fecha
 	String aclaracion
 	List<Plato> platos
 	EstadoDePedido estado
 	FormaDeRetiro formaDeRetiro
-	//TODO: ??? String?
-	String tiempoEspera
+	long tiempoEspera
+	LocalDateTime fechaFinPedido
+	
 
 	new(Cliente cliente) {
 
@@ -34,18 +33,13 @@ class Pedido extends Entity implements Cloneable {
 		this.aclaracion = ""
 		this.platos = newArrayList
 		this.estado = new Preparando
-		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
-		var LocalDateTime now = LocalDateTime.now
-		fecha = formateador.format(now)
+		fecha = LocalDateTime.now
 	}
 
 	new() {
 		this.platos = newArrayList
 		this.estado = new Preparando
-		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
-		var LocalDateTime now = LocalDateTime.now
-		fecha = formateador.format(now)
-
+		fecha = LocalDateTime.now
 	}
 
 	def void agregarPlato(Plato plato) {
@@ -70,16 +64,25 @@ class Pedido extends Entity implements Cloneable {
 	}
 
 	def demoroMasDe30Minutos() {
-		var ahora = LocalDateTime.now
-		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
-		var fechaPedido = LocalDateTime.parse(this.fecha, formateador)
-		ahora.isAfter(fechaPedido.plusMinutes(30))
+		tiempoEspera > 30
 	}
 
 	def setTiempoEspera() {
-		var ahora = LocalDateTime.now
-		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
-		var fechaPedido = LocalDateTime.parse(this.fecha, formateador)
-		tiempoEspera = Duration.between(fechaPedido, ahora).toMinutes.toString + " mins" //TODO: Lógica de vista
+		tiempoEspera = Duration.between(this.fecha, this.fechaFinPedido).toMinutes
 	}
+	
+	
+	def siguienteEstado() {
+		
+		this.estado.siguiente(this)
+	}
+	
+	def anteriorEstado() {
+			this.estado.anterior(this)
+	}
+	
+	def setFechaDeFinPedido() {
+		fechaFinPedido= LocalDateTime.now
+	}
+	
 }

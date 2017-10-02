@@ -8,7 +8,6 @@ import ar.edu.unq.domino.formasDeEnvio.Delivery
 import ar.edu.unq.domino.formasDeEnvio.RetiroLocal
 import ar.edu.unq.domino.sistema.Cliente
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -39,13 +38,6 @@ class PedidoTest {
 		
 	}
 
-	@Test
-	def inicializacionFecha() {
-		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
-		var now = LocalDateTime.now
-		var ahora = formateador.format(now)
-		assertEquals(pedido.fecha, ahora)
-	}
 
 	@Test
 	def inicializacionPedido() {
@@ -93,17 +85,17 @@ class PedidoTest {
 
 	@Test
 	def pedidoConTiempoDeDemoraSinExceder() {
-		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
-		var fechaDelPedido = formateador.format(LocalDateTime.now)
+		var fechaDelPedido = LocalDateTime.now
 		pedido.fecha = fechaDelPedido
 		assertFalse(pedido.demoroMasDe30Minutos())
 	}
 
 	@Test
 	def pedidoConTiempoDeDemoraExcedido() {
-		var DateTimeFormatter formateador = DateTimeFormatter.ofPattern("yyy/MM/dd HH:mm:ss")
-		var fechaDelPedido = formateador.format(LocalDateTime.of(2017, 9, 11, 15, 37, 20))
+		var fechaDelPedido = LocalDateTime.now.minusMinutes(45)
 		pedido.fecha = fechaDelPedido
+		pedido.siguienteEstado
+		pedido.siguienteEstado
 		assertTrue(pedido.demoroMasDe30Minutos())
 		
 	}
