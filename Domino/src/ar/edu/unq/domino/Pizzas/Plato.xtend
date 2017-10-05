@@ -23,12 +23,16 @@ class Plato extends Entity implements Cloneable {
 		this.ingredientesExtras = ingredientesExtras
 	}
 
-	new() {
-		this.precio = 0.0
+	new(String pNombre){
+		nombre = pNombre
+		
 	}
+	new(){
+		
+	}		
 
 	def calcularPrecio() {
-		this.precio = this.promo.precioBase * precioTamanio + costoIngredientesExtras
+		this.promo.precioBase * precioTamanio + costoIngredientesExtras
 	}
 
 	def costoIngredientesExtras() {

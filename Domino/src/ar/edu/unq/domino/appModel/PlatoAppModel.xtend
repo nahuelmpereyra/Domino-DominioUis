@@ -10,7 +10,12 @@ import ar.edu.unq.domino.TamanioPizzas.TamanioPromo
 import ar.edu.unq.domino.distribuciones.DistribucionPizza
 import ar.edu.unq.domino.repo.RepoDistribuciones
 import ar.edu.unq.domino.repo.RepoTamanios
-import ar.edu.unq.domino.repo.RepoPlatos
+import ar.edu.unq.domino.Pizzas.Promocion
+import java.util.List
+import ar.edu.unq.domino.Pizzas.Ingrediente
+import ar.edu.unq.domino.Pizzas.Menu
+import java.util.Map
+import org.uqbar.commons.model.utils.ObservableUtils
 
 @Accessors
 @TransactionalAndObservable
@@ -18,25 +23,27 @@ import ar.edu.unq.domino.repo.RepoPlatos
 class PlatoAppModel {
 	
 	Plato platoSeleccionado
+	Pedido pedidoSeleccionado
+	
+	List<Promocion> promociones
+	Map<Ingrediente, DistribucionPizza> ingredientes
 		
-	new(Plato plato){
+	new(Plato plato, Pedido pedido){
 		platoSeleccionado = plato
-	}
+		pedidoSeleccionado = pedido
+		}
 	
 	def getPrecio(){
 		platoSeleccionado.calcularPrecio()
 	}
 	
 	//insert?
-	//repo Pizza?
+	//repo Plato?
 	
 	// ********************************************************
 	// ** Acciones
 	// ********************************************************	
 
-	def getRepoPlatos() {
-        ApplicationContext.instance.getSingleton(typeof(Plato)) as RepoPlatos
-    }
     
 	def getRepoTamanios() {
 		ApplicationContext.instance.getSingleton(typeof(TamanioPromo)) as RepoTamanios
