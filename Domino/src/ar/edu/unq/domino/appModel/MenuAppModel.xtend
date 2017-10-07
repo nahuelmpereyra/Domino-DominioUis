@@ -1,7 +1,6 @@
 package ar.edu.unq.domino.appModel
 
 import ar.edu.unq.domino.Pizzas.Ingrediente
-import ar.edu.unq.domino.Pizzas.Menu
 import ar.edu.unq.domino.Pizzas.Promocion
 import ar.edu.unq.domino.repo.RepoIngredientes
 import ar.edu.unq.domino.repo.RepoPromociones
@@ -32,7 +31,7 @@ class MenuAppModel {
 	// ** Acciones Promocion
 	// ********************************************************
 	def void searchPromocion() {
-		promociones = Menu.instance.promociones
+		promociones = repoPromociones.search(examplePromocion.nombrePromo)
 		ObservableUtils.firePropertyChanged(this, "promociones")
 	}
 
