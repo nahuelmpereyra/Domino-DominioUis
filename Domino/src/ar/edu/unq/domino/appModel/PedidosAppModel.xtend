@@ -33,6 +33,7 @@ class PedidosAppModel {
 
 	def cancelarPedido() {
 		pedidoAbiertoSeleccionado.cancelar
+		this.search
 	}
 	
 	def pasarEstadoAnterior(Pedido pedido) {
