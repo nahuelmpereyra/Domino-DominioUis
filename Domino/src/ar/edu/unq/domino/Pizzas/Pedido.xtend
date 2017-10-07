@@ -64,10 +64,14 @@ class Pedido extends Entity implements Cloneable {
 	}
 
 	def demoroMasDe30Minutos() {
-		tiempoEspera > 30
+		tiempoDelPedido > 30
 	}
 
-	def setTiempoEspera() {
+//	def setTiempoEspera() {
+//		tiempoEspera = Duration.between(this.fecha, this.fechaFinPedido).toMinutes
+//	}
+//	
+	def tiempoDelPedido() {
 		tiempoEspera = Duration.between(this.fecha, this.fechaFinPedido).toMinutes
 	}
 	
@@ -82,7 +86,7 @@ class Pedido extends Entity implements Cloneable {
 	}
 	
 	def setFechaDeFinPedido() {
-		fechaFinPedido= LocalDateTime.now
+		fechaFinPedido = LocalDateTime.now
 	}
 	
 }

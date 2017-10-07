@@ -12,7 +12,6 @@ class EnViaje extends EstadoDePedido {
 	override siguiente(Pedido pedido) {
 		super.siguiente(pedido)
 		pedido.setFechaDeFinPedido()
-		pedido.setTiempoEspera()
 		if (pedido.demoroMasDe30Minutos) {
 		
 			GMailSender.instance.notificarPedidoDemorado(pedido)

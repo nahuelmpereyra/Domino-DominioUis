@@ -12,7 +12,6 @@ class ListoParaRetirar extends EstadoDePedido {
 	override siguiente(Pedido pedido) {
 		pedido.estado = this.proximo
 		pedido.fechaFinPedido = LocalDateTime.now
-		pedido.setTiempoEspera()
 	}
 
 	override proximo() {

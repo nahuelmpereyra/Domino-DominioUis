@@ -69,5 +69,6 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
 	def ingredientes() {
 		allInstances
 	}
+	
 
 }
