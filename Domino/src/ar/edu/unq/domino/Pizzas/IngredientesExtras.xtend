@@ -1,14 +1,16 @@
 package ar.edu.unq.domino.Pizzas
 
-import org.eclipse.xtend.lib.annotations.Accessors
-import java.util.Map
-import java.util.HashMap
-import java.util.ArrayList
 import ar.edu.unq.domino.distribuciones.DistribucionPizza
+import java.util.ArrayList
+import java.util.HashMap
+import java.util.Map
+import org.eclipse.xtend.lib.annotations.Accessors
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 
 @Accessors
 class IngredientesExtras {
-
+	
+	@JsonDeserialize
 	Map<Ingrediente, DistribucionPizza> ingredientes = new HashMap<Ingrediente, DistribucionPizza>();
 
 	def void agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
@@ -21,6 +23,7 @@ class IngredientesExtras {
 		} else {
 			throw new Exception("No se encuentra dicho ingrediente")
 		}
+		
 
 	}
 
@@ -44,3 +47,5 @@ class IngredientesExtras {
 	}
 
 }
+
+

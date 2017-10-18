@@ -13,5 +13,13 @@ class RetiroLocal implements FormaDeRetiro {
 	override costoEnvio() {
 		0.0
 	}
+	
+	override esRetiro() {
+		true
+	}
+	
+	override esDelivery() {
+		false
+	}
 
 }

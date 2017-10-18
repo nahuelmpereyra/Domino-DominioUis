@@ -27,12 +27,13 @@ class Pedido extends Entity implements Cloneable {
 	LocalDateTime fechaFinPedido
 	
 
-	new(Cliente cliente) {
+	new(Cliente cliente, String aclaracion, FormaDeRetiro formaRetiro) {
 
 		this.cliente = cliente
-		this.aclaracion = ""
+		this.aclaracion = aclaracion
 		this.platos = newArrayList
 		this.estado = new Preparando
+		this.formaDeRetiro= formaRetiro
 		fecha = LocalDateTime.now
 	}
 

@@ -43,8 +43,8 @@ class EstadosTest {
 		pedidoLocal.formaDeRetiro = retiroLocal
 		pedidoDelivery.formaDeRetiro = retiroDelivery 
 		GMailSender.config(notificador)
-		when(lucas.email).thenReturn("nahuelmpereyra@gmail.com")
-		when(lucas.nombre).thenReturn("Nahuel")
+		when(lucas.email).thenReturn("lg.piergiacomi@gmail.com")
+		when(lucas.nombre).thenReturn("Lucas")
 		
 	}
 

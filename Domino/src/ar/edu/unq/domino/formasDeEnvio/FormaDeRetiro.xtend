@@ -7,4 +7,7 @@ interface FormaDeRetiro {
 
 	def double costoEnvio()
 
+	def boolean esRetiro()
+	
+	def boolean esDelivery()
 }

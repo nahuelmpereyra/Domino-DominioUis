@@ -41,6 +41,7 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 		allInstances.filter[pedido|!pedido.esCerrado].toList
 	}
 
+
 	override createExample() {
 		new Pedido
 	}
@@ -51,6 +52,10 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 
 	override def Predicate<Pedido> getCriterio(Pedido example) {
 		null
+	}
+	
+	def buscarPorEstado(String estado) {
+		allInstances.filter[pedido|pedido.estado.nombre == estado].toList
 	}
 
 }
