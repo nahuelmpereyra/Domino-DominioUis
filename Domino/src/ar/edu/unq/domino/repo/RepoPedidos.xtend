@@ -54,8 +54,11 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 		null
 	}
 	
-	def buscarPorEstado(String estado) {
-		allInstances.filter[pedido|pedido.estado.nombre == estado].toList
+	def buscar(String estado, String idCliente) {
+		allInstances.filter[pedido|
+			(estado === null || pedido.estado.nombre == estado) && (idCliente === null || pedido.cliente.id.toString == idCliente)
+		].toList
 	}
+	
 
 }
