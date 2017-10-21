@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 class ListoParaRetirar extends EstadoDePedido {
 
 	new() {
-		this.nombre = "Listo para retirar"
+		this.nombre = "listopararetirar"
 	}
 
 	override siguiente(Pedido pedido) {

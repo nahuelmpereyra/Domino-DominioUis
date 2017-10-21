@@ -10,7 +10,7 @@ import org.uqbar.commons.model.exceptions.UserException
 class Preparando extends EstadoDePedido {
 
 	new() {
-		this.nombre = "Preparando"
+		this.nombre = "preparando"
 	}
 
 	override siguiente(Pedido pedido) {

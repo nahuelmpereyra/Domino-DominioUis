@@ -36,12 +36,10 @@ class EstadosTest {
 	@Before
 	def void setUp() {
 		MockitoAnnotations.initMocks(this)
-		pedidoLocal = new Pedido(martin)
-		pedidoDelivery = new Pedido(lucas)
 		retiroLocal = new RetiroLocal
-		retiroDelivery = new Delivery
-		pedidoLocal.formaDeRetiro = retiroLocal
-		pedidoDelivery.formaDeRetiro = retiroDelivery 
+		retiroDelivery = new Delivery("Calle falsa 123")
+		pedidoLocal = new Pedido(martin, "Sin aceitunas", retiroLocal)
+		pedidoDelivery = new Pedido(lucas, "Con aceitunas", retiroDelivery)
 		GMailSender.config(notificador)
 		when(lucas.email).thenReturn("lg.piergiacomi@gmail.com")
 		when(lucas.nombre).thenReturn("Lucas")
@@ -158,9 +156,6 @@ class EstadosTest {
 		assertTrue(pedidoDelivery.estado instanceof EnViaje)
 		pedidoDelivery.fecha = delay
 		pedidoDelivery.estado.siguiente(pedidoDelivery)
-//		println(pedidoDelivery.fecha)
-//		println(pedidoDelivery.fechaFinPedido)
-//		println(pedidoDelivery.tiempoEspera)
 		verify(notificador, times(1)).notificarPedidoDemorado(pedidoDelivery)
 		assertTrue(pedidoDelivery.estado instanceof Entregado)
 		assertTrue(pedidoDelivery.demoroMasDe30Minutos)

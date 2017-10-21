@@ -5,7 +5,7 @@ import org.uqbar.commons.model.exceptions.UserException
 class Cancelado extends EstadoDePedido {
 
 	new() {
-		this.nombre = "Cancelado"
+		this.nombre = "cancelado"
 	}
 
 	override proximo() {

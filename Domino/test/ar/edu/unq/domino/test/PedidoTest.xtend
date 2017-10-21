@@ -32,10 +32,8 @@ class PedidoTest {
 		when(lucas.nombre).thenReturn("Lucas")
 		when(plato1.calcularPrecio).thenReturn(100.0)
 		when(plato2.calcularPrecio).thenReturn(80.0)
-		pedido = new Pedido(lucas)
+		pedido = new Pedido(lucas, "Con morrones", new RetiroLocal)
 		pedido.aclaracion = "Cliente regular"
-		pedido.formaDeRetiro = new RetiroLocal
-		
 	}
 
 
@@ -73,7 +71,7 @@ class PedidoTest {
 	def calculoPrecioDelivery() {
 		pedido.agregarPlato(plato1)
 		pedido.agregarPlato(plato2)
-		pedido.formaDeRetiro = new Delivery
+		pedido.formaDeRetiro = new Delivery("Boedo 45845454")
 		assertTrue(pedido.montoFinal == 195.0)
 	}
 
@@ -86,7 +84,7 @@ class PedidoTest {
 	@Test
 	def pedidoConTiempoDeDemoraSinExceder() {
 		var fechaDelPedido = LocalDateTime.now
-		pedido.fecha = fechaDelPedido
+		pedido.fechaFinPedido = fechaDelPedido
 		assertFalse(pedido.demoroMasDe30Minutos())
 	}
 

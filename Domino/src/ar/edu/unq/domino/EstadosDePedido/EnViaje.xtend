@@ -6,7 +6,7 @@ import ar.edu.unq.domino.Pizzas.Pedido
 class EnViaje extends EstadoDePedido {
 
 	new() {
-		this.nombre = "En viaje"
+		this.nombre = "enviaje"
 	}
 
 	override siguiente(Pedido pedido) {

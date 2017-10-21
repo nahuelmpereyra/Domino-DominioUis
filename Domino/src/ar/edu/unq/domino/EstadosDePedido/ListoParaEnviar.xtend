@@ -6,7 +6,7 @@ import ar.edu.unq.domino.Mailing.GMailSender
 class ListoParaEnviar extends EstadoDePedido {
 
 	new() {
-		this.nombre = "Listo para enviar"
+		this.nombre = "listoparaenviar"
 	}
 
 	override siguiente(Pedido pedido) {

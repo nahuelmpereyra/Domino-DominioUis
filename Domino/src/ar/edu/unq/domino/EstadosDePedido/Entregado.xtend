@@ -9,7 +9,7 @@ import org.uqbar.commons.model.exceptions.UserException
 class Entregado extends EstadoDePedido {
 
 	new() {
-		this.nombre = "Entregado"
+		this.nombre = "entregado"
 	}
 
 	override proximo() {

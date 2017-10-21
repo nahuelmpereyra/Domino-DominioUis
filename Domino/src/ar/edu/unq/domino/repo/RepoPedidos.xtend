@@ -60,13 +60,6 @@ class RepoPedidos extends CollectionBasedRepo<Pedido> {
 		].toList
 	}
 	
-	def actualizarEstado(Integer id, String estadoNuevo){
-		val pedido = this.searchById(id)
-		
-		
-		
-		
-	}
 	
 
 }
