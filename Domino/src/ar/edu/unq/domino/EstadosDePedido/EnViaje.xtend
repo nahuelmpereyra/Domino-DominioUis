@@ -23,8 +23,4 @@ class EnViaje extends EstadoDePedido {
 
 	override previo() { new ListoParaEnviar }
 
-	override toString() {
-		"En viaje"
-	}
-
 }

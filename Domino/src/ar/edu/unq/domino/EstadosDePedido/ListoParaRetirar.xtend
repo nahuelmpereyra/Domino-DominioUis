@@ -16,15 +16,10 @@ class ListoParaRetirar extends EstadoDePedido {
 
 	override proximo() {
 		new Entregado
-
 	}
 
 	override previo() {
 		new Preparando
-	}
-
-	override toString() {
-		"Listo para retirar"
 	}
 
 }

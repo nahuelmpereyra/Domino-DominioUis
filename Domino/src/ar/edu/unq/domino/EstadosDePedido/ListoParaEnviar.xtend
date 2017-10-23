@@ -23,8 +23,4 @@ class ListoParaEnviar extends EstadoDePedido {
 		new Preparando
 	}
 
-	override toString() {
-		"Listo para enviar"
-	}
-
 }

@@ -24,8 +24,5 @@ class Preparando extends EstadoDePedido {
 		throw new UserException("El pedido ya se encuentra preparando")
 	}
 
-	override toString() {
-		"Preparando"
-	}
 
 }

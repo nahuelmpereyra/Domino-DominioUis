@@ -27,7 +27,4 @@ abstract class EstadoDePedido extends Entity implements Cloneable {
 	
 	def Boolean esCerrado() { false }
 
-	override toString() { //Mmmmmmmmmmmmmm
-		nombre
-	}
 }

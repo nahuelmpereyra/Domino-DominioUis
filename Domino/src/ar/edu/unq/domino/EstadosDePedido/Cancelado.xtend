@@ -17,10 +17,6 @@ class Cancelado extends EstadoDePedido {
 		throw new UserException("El pedido ya se encuentra cancelado")
 		
 	}
-
-	override toString() {
-		"Cancelado"
-	}
 	
 	override esCerrado() {
 		true
