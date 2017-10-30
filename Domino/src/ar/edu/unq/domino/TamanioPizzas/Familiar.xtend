@@ -4,11 +4,7 @@ class Familiar extends TamanioPromo {
 	
 	new(){
 		this.nombre = "Familiar"
-	}
-	
-
-	override precio() {
-		1.25
+		this.precio = 1.25
 	}
 	
 	override toString() {

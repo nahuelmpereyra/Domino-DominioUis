@@ -10,5 +10,5 @@ abstract class TamanioPromo extends Entity implements Cloneable{
 
 	String nombre
 	
-	def double precio()
+	double precio
 }

@@ -5,12 +5,11 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 
 @Accessors
 class IngredientesExtras {
 	
-	@JsonDeserialize
+	
 	Map<Ingrediente, DistribucionPizza> ingredientes = new HashMap<Ingrediente, DistribucionPizza>();
 
 	def void agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {

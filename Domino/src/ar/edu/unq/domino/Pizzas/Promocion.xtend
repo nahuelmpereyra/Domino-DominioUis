@@ -21,7 +21,10 @@ class Promocion extends Entity {
 		this.ingredientesBase = distribucion
 	}
 
-	new() {	}
+	new() {
+		
+		this.ingredientesBase = new IngredientesExtras
+	}
 
 	def agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
 

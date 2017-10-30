@@ -4,11 +4,8 @@ class Grande extends TamanioPromo {
 	
 	new(){
 		this.nombre = "Grande"
-	}
-
-
-	override precio() {
-		1
+		this.precio = 1
+		
 	}
 	
 	override toString() {
