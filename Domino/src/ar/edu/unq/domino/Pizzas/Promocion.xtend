@@ -14,11 +14,11 @@ class Promocion extends Entity {
 	double precioBase
 	IngredientesExtras ingredientesBase
 
-	new(String nombre, double precio, IngredientesExtras distribucion) {
+	new(String nombre, double precio, IngredientesExtras ingredientesBase) {
 
 		this.nombrePromo = nombre
 		this.precioBase = precio
-		this.ingredientesBase = distribucion
+		this.ingredientesBase = ingredientesBase
 	}
 
 	new() {
