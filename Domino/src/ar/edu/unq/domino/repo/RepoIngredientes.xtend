@@ -43,6 +43,13 @@ class RepoIngredientes extends CollectionBasedRepo<Ingrediente> {
 		ObservableUtils.firePropertyChanged(this, "resultados")
 		resultados
 	}
+	
+	def searchByName(String nombre) {
+
+		resultados = allInstances.filter[ingrediente|this.match(nombre, ingrediente.nombre)].toList
+		ObservableUtils.firePropertyChanged(this, "resultados")
+		resultados.get(0)
+	}
 
 	def match(Object expectedValue, Object realValue) {
 		if (expectedValue === null) {

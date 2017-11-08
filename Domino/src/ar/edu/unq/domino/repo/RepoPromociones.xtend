@@ -1,10 +1,11 @@
 package ar.edu.unq.domino.repo
 
+import ar.edu.unq.domino.Pizzas.IngredientesExtras
+import ar.edu.unq.domino.Pizzas.Promocion
+import org.apache.commons.collections15.Predicate
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.model.annotations.Observable
 import org.uqbar.commons.model.exceptions.UserException
-import ar.edu.unq.domino.Pizzas.Promocion
-import org.apache.commons.collections15.Predicate
 
 @Observable
 class RepoPromociones extends CollectionBasedRepo<Promocion> {
@@ -12,10 +13,11 @@ class RepoPromociones extends CollectionBasedRepo<Promocion> {
 	// ********************************************************
 	// ** Altas y bajas
 	// ********************************************************
-	def void create(String pNombre, double pPrecio) {
+	def void create(String pNombre, double pPrecio, IngredientesExtras extras) {
 		this.create(new Promocion => [
 			nombrePromo = pNombre
 			precioBase = pPrecio
+			ingredientesBase = extras
 		])
 	}
 

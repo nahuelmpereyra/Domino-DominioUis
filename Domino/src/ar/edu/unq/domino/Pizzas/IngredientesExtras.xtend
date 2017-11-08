@@ -2,7 +2,7 @@ package ar.edu.unq.domino.Pizzas
 
 import ar.edu.unq.domino.distribuciones.DistribucionPizza
 import java.util.ArrayList
-import java.util.HashMap
+import java.util.LinkedHashMap
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -10,7 +10,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class IngredientesExtras {
 	
 	
-	Map<Ingrediente, DistribucionPizza> ingredientes = new HashMap<Ingrediente, DistribucionPizza>();
+	Map<Ingrediente, DistribucionPizza> ingredientes = new LinkedHashMap<Ingrediente, DistribucionPizza>();
 
 	def void agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
 		this.ingredientes.put(ingrediente, distribucion)

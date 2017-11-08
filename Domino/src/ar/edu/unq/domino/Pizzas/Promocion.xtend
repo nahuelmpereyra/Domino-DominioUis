@@ -13,7 +13,7 @@ class Promocion extends Entity {
 	String nombrePromo
 	double precioBase
 	IngredientesExtras ingredientesBase
-
+	
 	new(String nombre, double precio, IngredientesExtras ingredientesBase) {
 
 		this.nombrePromo = nombre
@@ -22,8 +22,6 @@ class Promocion extends Entity {
 	}
 
 	new() {
-		
-		this.ingredientesBase = new IngredientesExtras
 	}
 
 	def agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
