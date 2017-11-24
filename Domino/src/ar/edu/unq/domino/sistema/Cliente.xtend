@@ -31,7 +31,7 @@ class Cliente extends Entity implements Cloneable {
 		this.historial = newArrayList
 	}
 
-	def agregarPedido(Pedido pedido) {
+	def void agregarPedido(Pedido pedido) {
 		this.historial.add(pedido)
 	}
 

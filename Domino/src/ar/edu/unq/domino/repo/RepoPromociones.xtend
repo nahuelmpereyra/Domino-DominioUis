@@ -1,7 +1,8 @@
 package ar.edu.unq.domino.repo
 
-import ar.edu.unq.domino.Pizzas.IngredientesExtras
+import ar.edu.unq.domino.Pizzas.IngredienteConDistribucion
 import ar.edu.unq.domino.Pizzas.Promocion
+import java.util.List
 import org.apache.commons.collections15.Predicate
 import org.uqbar.commons.model.CollectionBasedRepo
 import org.uqbar.commons.model.annotations.Observable
@@ -13,7 +14,7 @@ class RepoPromociones extends CollectionBasedRepo<Promocion> {
 	// ********************************************************
 	// ** Altas y bajas
 	// ********************************************************
-	def void create(String pNombre, double pPrecio, IngredientesExtras extras) {
+	def void create(String pNombre, double pPrecio, List<IngredienteConDistribucion> extras) {
 		this.create(new Promocion => [
 			nombrePromo = pNombre
 			precioBase = pPrecio

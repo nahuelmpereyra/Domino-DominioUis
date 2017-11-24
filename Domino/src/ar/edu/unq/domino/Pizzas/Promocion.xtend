@@ -1,6 +1,7 @@
 package ar.edu.unq.domino.Pizzas
 
 import ar.edu.unq.domino.distribuciones.DistribucionPizza
+import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
@@ -12,9 +13,9 @@ class Promocion extends Entity {
 
 	String nombrePromo
 	double precioBase
-	IngredientesExtras ingredientesBase
+	List<IngredienteConDistribucion> ingredientesBase
 	
-	new(String nombre, double precio, IngredientesExtras ingredientesBase) {
+	new(String nombre, double precio, List<IngredienteConDistribucion> ingredientesBase) {
 
 		this.nombrePromo = nombre
 		this.precioBase = precio
@@ -25,13 +26,18 @@ class Promocion extends Entity {
 	}
 
 	def agregarIngrediente(Ingrediente ingrediente, DistribucionPizza distribucion) {
-
-		this.ingredientesBase.agregarIngrediente(ingrediente, distribucion)
+		
+		val ingredienteAAgregar = new IngredienteConDistribucion(ingrediente, distribucion)	
+		this.ingredientesBase.add(ingredienteAAgregar)
 	}
 
 	def quitarIngrediente(Ingrediente ingrediente) {
-		this.ingredientesBase.quitarIngrediente(ingrediente)
-
+		if (this.ingredientesBase.contains(ingrediente)) {
+			this.ingredientesBase.remove(ingrediente)
+		} else {
+			throw new Exception("No se encuentra dicho ingrediente")
+		}
+		
 	}
 
 	def editarNombre(String nombre) {
@@ -42,16 +48,16 @@ class Promocion extends Entity {
 		this.precioBase = precio
 	}
 
-	def cambiarDistribucion(Ingrediente ingrediente, DistribucionPizza distribucion) {
-		this.ingredientesBase.cambiarDistribucion(ingrediente, distribucion)
-	}
+//	def cambiarDistribucion(Ingrediente ingrediente, DistribucionPizza distribucion) {
+//		this.ingredientesBase.cambiarDistribucion(ingrediente, distribucion)
+//	}
 
 	def listaDeIngredientes() {
-		this.ingredientesBase.listaDeIngredientes()
+		this.ingredientesBase
 	}
 
 	def cantidadDeIngredientes() {
-		this.ingredientesBase.listaDeIngredientes().size
+		this.ingredientesBase.size
 	}
 
 	def validar() {
