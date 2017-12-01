@@ -11,9 +11,11 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.annotations.TransactionalAndObservable
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @TransactionalAndObservable
 @Accessors
+@JsonIgnoreProperties(#["new", "fecha", "tiempoEspera", "fechaFinPedido"])
 class Pedido extends Entity implements Cloneable {
 
 	int numero
